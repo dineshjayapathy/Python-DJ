@@ -1,0 +1,2385 @@
+scriptline
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.PatientId as varchar(max)),char(10),''),char(13),''),'"','') as PatientId
+,replace(replace(replace(cast(a.MeasureId as varchar(max)),char(10),''),char(13),''),'"','') as MeasureId
+,replace(replace(replace(cast(a.MeasureName as varchar(max)),char(10),''),char(13),''),'"','') as MeasureName
+,replace(replace(replace(cast(a.ItemId as varchar(max)),char(10),''),char(13),''),'"','') as ItemId
+,replace(replace(replace(cast(a.Frequency as varchar(max)),char(10),''),char(13),''),'"','') as Frequency
+,replace(replace(replace(cast(a.LastDone as varchar(max)),char(10),''),char(13),''),'"','') as LastDone
+,replace(replace(replace(cast(a.DueDate as varchar(max)),char(10),''),char(13),''),'"','') as DueDate
+,replace(replace(replace(cast(a.Value as varchar(max)),char(10),''),char(13),''),'"','') as Value
+,replace(replace(replace(cast(a.controlstatus as varchar(max)),char(10),''),char(13),''),'"','') as controlstatus
+,replace(replace(replace(cast(a.RegistryAlert as varchar(max)),char(10),''),char(13),''),'"','') as RegistryAlert
+,replace(replace(replace(cast(a.labReceived as varchar(max)),char(10),''),char(13),''),'"','') as labReceived
+,convert(varchar, cast(a.mdate as datetime), 20) as mdate
+
+
+from alertdata a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.PatientId as varchar(max)),char(10),''),char(13),''),'"','') as PatientId
+,replace(replace(replace(cast(a.MeasureId as varchar(max)),char(10),''),char(13),''),'"','') as MeasureId
+,convert(varchar, cast(a.DueDate as datetime), 20) as DueDate
+,replace(replace(replace(cast(a.NeverRemind as varchar(max)),char(10),''),char(13),''),'"','') as NeverRemind
+,replace(replace(replace(cast(a.Reason as varchar(max)),char(10),''),char(13),''),'"','') as Reason
+,replace(replace(replace(cast(a.status as varchar(max)),char(10),''),char(13),''),'"','') as status
+,replace(replace(replace(cast(a.statusLabel as varchar(max)),char(10),''),char(13),''),'"','') as statusLabel
+,replace(replace(replace(cast(a.reset as varchar(max)),char(10),''),char(13),''),'"','') as reset
+
+
+from alertoverride a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.patientID as varchar(max)),char(10),''),char(13),''),'"','') as patientID
+,replace(replace(replace(cast(a.drug as varchar(max)),char(10),''),char(13),''),'"','') as drug
+,replace(replace(replace(cast(a.allergy as varchar(max)),char(10),''),char(13),''),'"','') as allergy
+,replace(replace(replace(cast(a.encounterId as varchar(max)),char(10),''),char(13),''),'"','') as encounterId
+,replace(replace(replace(cast(a.itemID as varchar(max)),char(10),''),char(13),''),'"','') as itemID
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.SMDamConceptID as varchar(max)),char(10),''),char(13),''),'"','') as SMDamConceptID
+,replace(replace(replace(cast(a.SMDamConceptIDDesc as varchar(max)),char(10),''),char(13),''),'"','') as SMDamConceptIDDesc
+,replace(replace(replace(cast(a.ndc_code as varchar(max)),char(10),''),char(13),''),'"','') as ndc_code
+,replace(replace(replace(cast(a.allergytype as varchar(max)),char(10),''),char(13),''),'"','') as allergytype
+,replace(replace(replace(cast(a.type as varchar(max)),char(10),''),char(13),''),'"','') as type
+,replace(replace(replace(cast(a.status as varchar(max)),char(10),''),char(13),''),'"','') as status
+
+
+from allergies a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.EncounterId as varchar(max)),char(10),''),char(13),''),'"','') as EncounterId
+,replace(replace(replace(cast(a.ItemId as varchar(max)),char(10),''),char(13),''),'"','') as ItemId
+,replace(replace(replace(cast(a.PrimaryAsmt as varchar(max)),char(10),''),char(13),''),'"','') as PrimaryAsmt
+,replace(replace(replace(cast(a.Specify as varchar(max)),char(10),''),char(13),''),'"','') as Specify
+,replace(replace(replace(cast(a.Notes as varchar(max)),char(10),''),char(13),''),'"','') as Notes
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.axis as varchar(max)),char(10),''),char(13),''),'"','') as axis
+,replace(replace(replace(cast(a.AsmtOnsetDate as varchar(max)),char(10),''),char(13),''),'"','') as AsmtOnsetDate
+,replace(replace(replace(cast(a.SlNo as varchar(max)),char(10),''),char(13),''),'"','') as SlNo
+,replace(replace(replace(cast(a.websync as varchar(max)),char(10),''),char(13),''),'"','') as websync
+,replace(replace(replace(cast(a.Risk as varchar(max)),char(10),''),char(13),''),'"','') as Risk
+,replace(replace(replace(cast(a.SNOMED as varchar(max)),char(10),''),char(13),''),'"','') as SNOMED
+
+
+from diagnosis a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.doctorID as varchar(max)),char(10),''),char(13),''),'"','') as doctorID
+,replace(replace(replace(cast(a.deaNo as varchar(max)),char(10),''),char(13),''),'"','') as deaNo
+,replace(replace(replace(cast(a.FaxNo as varchar(max)),char(10),''),char(13),''),'"','') as FaxNo
+,replace(replace(replace(cast(a.speciality as varchar(max)),char(10),''),char(13),''),'"','') as speciality
+,replace(replace(replace(cast(a.SpecialityCode as varchar(max)),char(10),''),char(13),''),'"','') as SpecialityCode
+,replace(replace(replace(cast(a.PrintName as varchar(max)),char(10),''),char(13),''),'"','') as PrintName
+,replace(replace(replace(cast(a.providerCode as varchar(max)),char(10),''),char(13),''),'"','') as providerCode
+,replace(replace(replace(cast(a.LicenseKey as varchar(max)),char(10),''),char(13),''),'"','') as LicenseKey
+,replace(replace(replace(cast(a.TaxID as varchar(max)),char(10),''),char(13),''),'"','') as TaxID
+,replace(replace(replace(cast(a.TaxIDType as varchar(max)),char(10),''),char(13),''),'"','') as TaxIDType
+,replace(replace(replace(cast(a.TaxIDSuffix as varchar(max)),char(10),''),char(13),''),'"','') as TaxIDSuffix
+,replace(replace(replace(cast(a.EMCProviderID as varchar(max)),char(10),''),char(13),''),'"','') as EMCProviderID
+,replace(replace(replace(cast(a.OrgType as varchar(max)),char(10),''),char(13),''),'"','') as OrgType
+,replace(replace(replace(cast(a.FacilityId as varchar(max)),char(10),''),char(13),''),'"','') as FacilityId
+,replace(replace(replace(cast(a.NPI as varchar(max)),char(10),''),char(13),''),'"','') as NPI
+,replace(replace(replace(cast(a.UPIN as varchar(max)),char(10),''),char(13),''),'"','') as UPIN
+,replace(replace(replace(cast(a.MamoCerNo as varchar(max)),char(10),''),char(13),''),'"','') as MamoCerNo
+,replace(replace(replace(cast(a.MedicareNo as varchar(max)),char(10),''),char(13),''),'"','') as MedicareNo
+,replace(replace(replace(cast(a.MedicaidNo as varchar(max)),char(10),''),char(13),''),'"','') as MedicaidNo
+,replace(replace(replace(cast(a.ChampusNo as varchar(max)),char(10),''),char(13),''),'"','') as ChampusNo
+,replace(replace(replace(cast(a.BlueShieldNo as varchar(max)),char(10),''),char(13),''),'"','') as BlueShieldNo
+,replace(replace(replace(cast(a.SpLicNo as varchar(max)),char(10),''),char(13),''),'"','') as SpLicNo
+,replace(replace(replace(cast(a.StLicNo as varchar(max)),char(10),''),char(13),''),'"','') as StLicNo
+,replace(replace(replace(cast(a.AneLicNo as varchar(max)),char(10),''),char(13),''),'"','') as AneLicNo
+,replace(replace(replace(cast(a.inactive as varchar(max)),char(10),''),char(13),''),'"','') as inactive
+,replace(replace(replace(cast(a.TaxonomyCode as varchar(max)),char(10),''),char(13),''),'"','') as TaxonomyCode
+,replace(replace(replace(cast(a.HPSAFlag as varchar(max)),char(10),''),char(13),''),'"','') as HPSAFlag
+,replace(replace(replace(cast(a.hl7id as varchar(max)),char(10),''),char(13),''),'"','') as hl7id
+,replace(replace(replace(cast(a.SuprPrId as varchar(max)),char(10),''),char(13),''),'"','') as SuprPrId
+,replace(replace(replace(cast(a.DefStaffID as varchar(max)),char(10),''),char(13),''),'"','') as DefStaffID
+,replace(replace(replace(cast(a.ClaimPrefix as varchar(max)),char(10),''),char(13),''),'"','') as ClaimPrefix
+,replace(replace(replace(cast(a.CarolinaAccessNo as varchar(max)),char(10),''),char(13),''),'"','') as CarolinaAccessNo
+,replace(replace(replace(cast(a.KenPAC as varchar(max)),char(10),''),char(13),''),'"','') as KenPAC
+,replace(replace(replace(cast(a.ProfCode as varchar(max)),char(10),''),char(13),''),'"','') as ProfCode
+,replace(replace(replace(cast(a.SPI as varchar(max)),char(10),''),char(13),''),'"','') as SPI
+,replace(replace(replace(cast(a.ActiveStartDate as varchar(max)),char(10),''),char(13),''),'"','') as ActiveStartDate
+,replace(replace(replace(cast(a.ActiveEndDate as varchar(max)),char(10),''),char(13),''),'"','') as ActiveEndDate
+,replace(replace(replace(cast(a.PostURL as varchar(max)),char(10),''),char(13),''),'"','') as PostURL
+,replace(replace(replace(cast(a.VisitTypeSearch as varchar(max)),char(10),''),char(13),''),'"','') as VisitTypeSearch
+,replace(replace(replace(cast(a.VisitTypeIndicator as varchar(max)),char(10),''),char(13),''),'"','') as VisitTypeIndicator
+,replace(replace(replace(cast(a.DefRefillRxAssignedTo as varchar(max)),char(10),''),char(13),''),'"','') as DefRefillRxAssignedTo
+,replace(replace(replace(cast(a.doctorType as varchar(max)),char(10),''),char(13),''),'"','') as doctorType
+,replace(replace(replace(cast(a.PhotoMedicId as varchar(max)),char(10),''),char(13),''),'"','') as PhotoMedicId
+,replace(replace(replace(cast(a.TakeNewAppts as varchar(max)),char(10),''),char(13),''),'"','') as TakeNewAppts
+,replace(replace(replace(cast(a.AHCAID as varchar(max)),char(10),''),char(13),''),'"','') as AHCAID
+,replace(replace(replace(cast(a.DefaultRefAssignedTo as varchar(max)),char(10),''),char(13),''),'"','') as DefaultRefAssignedTo
+,replace(replace(replace(cast(a.ucpid as varchar(max)),char(10),''),char(13),''),'"','') as ucpid
+,replace(replace(replace(cast(a.GrpNPI as varchar(max)),char(10),''),char(13),''),'"','') as GrpNPI
+,replace(replace(replace(cast(a.DefaultFaxRxStyleId as varchar(max)),char(10),''),char(13),''),'"','') as DefaultFaxRxStyleId
+,replace(replace(replace(cast(a.DefaultPrintRxStyleId as varchar(max)),char(10),''),char(13),''),'"','') as DefaultPrintRxStyleId
+,replace(replace(replace(cast(a.SeqNoExempted as varchar(max)),char(10),''),char(13),''),'"','') as SeqNoExempted
+,replace(replace(replace(cast(a.EntityType as varchar(max)),char(10),''),char(13),''),'"','') as EntityType
+,replace(replace(replace(cast(a.ProviderType as varchar(max)),char(10),''),char(13),''),'"','') as ProviderType
+,replace(replace(replace(cast(a.DPSNo as varchar(max)),char(10),''),char(13),''),'"','') as DPSNo
+,replace(replace(replace(cast(a.RxhubId as varchar(max)),char(10),''),char(13),''),'"','') as RxhubId
+,replace(replace(replace(cast(a.ProvRoleType as varchar(max)),char(10),''),char(13),''),'"','') as ProvRoleType
+,replace(replace(replace(cast(a.DefStaffIDForProcedure as varchar(max)),char(10),''),char(13),''),'"','') as DefStaffIDForProcedure
+,replace(replace(replace(cast(a.DefStaffIDForDI as varchar(max)),char(10),''),char(13),''),'"','') as DefStaffIDForDI
+,replace(replace(replace(cast(a.isResident as varchar(max)),char(10),''),char(13),''),'"','') as isResident
+,replace(replace(replace(cast(a.PrescriptiveAuthNo as varchar(max)),char(10),''),char(13),''),'"','') as PrescriptiveAuthNo
+,replace(replace(replace(cast(a.isNurseAncProv as varchar(max)),char(10),''),char(13),''),'"','') as isNurseAncProv
+,replace(replace(replace(cast(a.DefRefillRxAssignedTo2 as varchar(max)),char(10),''),char(13),''),'"','') as DefRefillRxAssignedTo2
+,replace(replace(replace(cast(a.DefRefillRxAssignedTo3 as varchar(max)),char(10),''),char(13),''),'"','') as DefRefillRxAssignedTo3
+,replace(replace(replace(cast(a.regNHX as varchar(max)),char(10),''),char(13),''),'"','') as regNHX
+,replace(replace(replace(cast(a.p2pimport as varchar(max)),char(10),''),char(13),''),'"','') as p2pimport
+,replace(replace(replace(cast(a.regp2pnpi as varchar(max)),char(10),''),char(13),''),'"','') as regp2pnpi
+,replace(replace(replace(cast(a.DefaultIncomingRefAssignedTo as varchar(max)),char(10),''),char(13),''),'"','') as DefaultIncomingRefAssignedTo
+,replace(replace(replace(cast(a.NetAffId as varchar(max)),char(10),''),char(13),''),'"','') as NetAffId
+,replace(replace(replace(cast(a.SS_Deactivated as varchar(max)),char(10),''),char(13),''),'"','') as SS_Deactivated
+,replace(replace(replace(cast(a.CoPayType as varchar(max)),char(10),''),char(13),''),'"','') as CoPayType
+,replace(replace(replace(cast(a.takenewportalmsg as varchar(max)),char(10),''),char(13),''),'"','') as takenewportalmsg
+,replace(replace(replace(cast(a.DefaultPRAssignedTo as varchar(max)),char(10),''),char(13),''),'"','') as DefaultPRAssignedTo
+,replace(replace(replace(cast(a.regOA as varchar(max)),char(10),''),char(13),''),'"','') as regOA
+,replace(replace(replace(cast(a.diwapptprotectiontype as varchar(max)),char(10),''),char(13),''),'"','') as diwapptprotectiontype
+,replace(replace(replace(cast(a.defaultstate as varchar(max)),char(10),''),char(13),''),'"','') as defaultstate
+,replace(replace(replace(cast(a.regTV as varchar(max)),char(10),''),char(13),''),'"','') as regTV
+
+
+from doctors a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Code as varchar(max)),char(10),''),char(13),''),'"','') as Code
+,replace(replace(replace(cast(a.Name as varchar(max)),char(10),''),char(13),''),'"','') as Name
+
+
+from edi_employmentstatus a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.FacilityType as varchar(max)),char(10),''),char(13),''),'"','') as FacilityType
+,replace(replace(replace(cast(a.Name as varchar(max)),char(10),''),char(13),''),'"','') as Name
+,replace(replace(replace(cast(a.AddressLine1 as varchar(max)),char(10),''),char(13),''),'"','') as AddressLine1
+,replace(replace(replace(cast(a.AddressLine2 as varchar(max)),char(10),''),char(13),''),'"','') as AddressLine2
+,replace(replace(replace(cast(a.City as varchar(max)),char(10),''),char(13),''),'"','') as City
+,replace(replace(replace(cast(a.State as varchar(max)),char(10),''),char(13),''),'"','') as State
+,replace(replace(replace(cast(a.Zip as varchar(max)),char(10),''),char(13),''),'"','') as Zip
+,replace(replace(replace(cast(a.Tel as varchar(max)),char(10),''),char(13),''),'"','') as Tel
+,replace(replace(replace(cast(a.Fax as varchar(max)),char(10),''),char(13),''),'"','') as Fax
+,replace(replace(replace(cast(a.EMail as varchar(max)),char(10),''),char(13),''),'"','') as EMail
+,replace(replace(replace(cast(a.BillingAddressLine1 as varchar(max)),char(10),''),char(13),''),'"','') as BillingAddressLine1
+,replace(replace(replace(cast(a.BillingAddressLine2 as varchar(max)),char(10),''),char(13),''),'"','') as BillingAddressLine2
+,replace(replace(replace(cast(a.BillingCity as varchar(max)),char(10),''),char(13),''),'"','') as BillingCity
+,replace(replace(replace(cast(a.BillingState as varchar(max)),char(10),''),char(13),''),'"','') as BillingState
+,replace(replace(replace(cast(a.BillingZip as varchar(max)),char(10),''),char(13),''),'"','') as BillingZip
+,replace(replace(replace(cast(a.BillingTel as varchar(max)),char(10),''),char(13),''),'"','') as BillingTel
+,replace(replace(replace(cast(a.BillingFax as varchar(max)),char(10),''),char(13),''),'"','') as BillingFax
+,replace(replace(replace(cast(a.BillingEMail as varchar(max)),char(10),''),char(13),''),'"','') as BillingEMail
+,replace(replace(replace(cast(a.PracticeType as varchar(max)),char(10),''),char(13),''),'"','') as PracticeType
+,replace(replace(replace(cast(a.PracticeOption as varchar(max)),char(10),''),char(13),''),'"','') as PracticeOption
+,replace(replace(replace(cast(a.PayableTo as varchar(max)),char(10),''),char(13),''),'"','') as PayableTo
+,replace(replace(replace(cast(a.BankAccount as varchar(max)),char(10),''),char(13),''),'"','') as BankAccount
+,replace(replace(replace(cast(a.FederalTaxID as varchar(max)),char(10),''),char(13),''),'"','') as FederalTaxID
+,replace(replace(replace(cast(a.Notes as varchar(max)),char(10),''),char(13),''),'"','') as Notes
+,replace(replace(replace(cast(a.PrimaryFacility as varchar(max)),char(10),''),char(13),''),'"','') as PrimaryFacility
+,replace(replace(replace(cast(a.CliaId as varchar(max)),char(10),''),char(13),''),'"','') as CliaId
+,replace(replace(replace(cast(a.code as varchar(max)),char(10),''),char(13),''),'"','') as code
+,replace(replace(replace(cast(a.POS as varchar(max)),char(10),''),char(13),''),'"','') as POS
+,replace(replace(replace(cast(a.MammoCertId as varchar(max)),char(10),''),char(13),''),'"','') as MammoCertId
+,replace(replace(replace(cast(a.HPSAFlag as varchar(max)),char(10),''),char(13),''),'"','') as HPSAFlag
+,replace(replace(replace(cast(a.HPSAModifier as varchar(max)),char(10),''),char(13),''),'"','') as HPSAModifier
+,replace(replace(replace(cast(a.DeleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as DeleteFlag
+,replace(replace(replace(cast(a.vmid as varchar(max)),char(10),''),char(13),''),'"','') as vmid
+,replace(replace(replace(cast(a.hl7id as varchar(max)),char(10),''),char(13),''),'"','') as hl7id
+,replace(replace(replace(cast(a.Color as varchar(max)),char(10),''),char(13),''),'"','') as Color
+,replace(replace(replace(cast(a.FeeSchedule as varchar(max)),char(10),''),char(13),''),'"','') as FeeSchedule
+,replace(replace(replace(cast(a.FacilityIdType as varchar(max)),char(10),''),char(13),''),'"','') as FacilityIdType
+,replace(replace(replace(cast(a.PtStmtFacOption as varchar(max)),char(10),''),char(13),''),'"','') as PtStmtFacOption
+,replace(replace(replace(cast(a.PtStmtFacId as varchar(max)),char(10),''),char(13),''),'"','') as PtStmtFacId
+,replace(replace(replace(cast(a.RestrictPrintAppts as varchar(max)),char(10),''),char(13),''),'"','') as RestrictPrintAppts
+,replace(replace(replace(cast(a.NPI as varchar(max)),char(10),''),char(13),''),'"','') as NPI
+,replace(replace(replace(cast(a.ImmStateId as varchar(max)),char(10),''),char(13),''),'"','') as ImmStateId
+,replace(replace(replace(cast(a.TaxonomyCode as varchar(max)),char(10),''),char(13),''),'"','') as TaxonomyCode
+,replace(replace(replace(cast(a.RestrictPrintStmts as varchar(max)),char(10),''),char(13),''),'"','') as RestrictPrintStmts
+,convert(varchar, cast(a.startedOn as datetime), 20) as startedOn
+,replace(replace(replace(cast(a.RevenueCode as varchar(max)),char(10),''),char(13),''),'"','') as RevenueCode
+,replace(replace(replace(cast(a.Percent as varchar(max)),char(10),''),char(13),''),'"','') as Percent
+,replace(replace(replace(cast(a.OverrideSalesTax as varchar(max)),char(10),''),char(13),''),'"','') as OverrideSalesTax
+,replace(replace(replace(cast(a.MerchantID as varchar(max)),char(10),''),char(13),''),'"','') as MerchantID
+,replace(replace(replace(cast(a.ImmLocationId as varchar(max)),char(10),''),char(13),''),'"','') as ImmLocationId
+,replace(replace(replace(cast(a.TimeZoneCode as varchar(max)),char(10),''),char(13),''),'"','') as TimeZoneCode
+,replace(replace(replace(cast(a.MessCallerId as varchar(max)),char(10),''),char(13),''),'"','') as MessCallerId
+,replace(replace(replace(cast(a.MessOperNum as varchar(max)),char(10),''),char(13),''),'"','') as MessOperNum
+,replace(replace(replace(cast(a.CreditCardOption as varchar(max)),char(10),''),char(13),''),'"','') as CreditCardOption
+,replace(replace(replace(cast(a.CountryCode as varchar(max)),char(10),''),char(13),''),'"','') as CountryCode
+,replace(replace(replace(cast(a.BillingCountryCode as varchar(max)),char(10),''),char(13),''),'"','') as BillingCountryCode
+,replace(replace(replace(cast(a.Immfacid as varchar(max)),char(10),''),char(13),''),'"','') as Immfacid
+,replace(replace(replace(cast(a.BillType as varchar(max)),char(10),''),char(13),''),'"','') as BillType
+,replace(replace(replace(cast(a.takeNewPortalAppts as varchar(max)),char(10),''),char(13),''),'"','') as takeNewPortalAppts
+,replace(replace(replace(cast(a.portal_name as varchar(max)),char(10),''),char(13),''),'"','') as portal_name
+,replace(replace(replace(cast(a.takenewportalmsg as varchar(max)),char(10),''),char(13),''),'"','') as takenewportalmsg
+,replace(replace(replace(cast(a.showinpi as varchar(max)),char(10),''),char(13),''),'"','') as showinpi
+,convert(varchar, cast(a.modifiedDate as datetime), 20) as modifiedDate
+,replace(replace(replace(cast(a.nsexclude as varchar(max)),char(10),''),char(13),''),'"','') as nsexclude
+,replace(replace(replace(cast(a.facilitysmsname as varchar(max)),char(10),''),char(13),''),'"','') as facilitysmsname
+,replace(replace(replace(cast(a.birthdayexclude as varchar(max)),char(10),''),char(13),''),'"','') as birthdayexclude
+,replace(replace(replace(cast(a.ASC_TN_FacilityType as varchar(max)),char(10),''),char(13),''),'"','') as ASC_TN_FacilityType
+,replace(replace(replace(cast(a.ASC_TN_FacilityId as varchar(max)),char(10),''),char(13),''),'"','') as ASC_TN_FacilityId
+,replace(replace(replace(cast(a.facilitynickname as varchar(max)),char(10),''),char(13),''),'"','') as facilitynickname
+,replace(replace(replace(cast(a.exclude as varchar(max)),char(10),''),char(13),''),'"','') as exclude
+,replace(replace(replace(cast(a.labexclude as varchar(max)),char(10),''),char(13),''),'"','') as labexclude
+,replace(replace(replace(cast(a.ASC_WI_FacilityType as varchar(max)),char(10),''),char(13),''),'"','') as ASC_WI_FacilityType
+,replace(replace(replace(cast(a.rxexclude as varchar(max)),char(10),''),char(13),''),'"','') as rxexclude
+
+
+from edi_facilities a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.Speciality as varchar(max)),char(10),''),char(13),''),'"','') as Speciality
+,replace(replace(replace(cast(a.Code as varchar(max)),char(10),''),char(13),''),'"','') as Code
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+
+
+from edi_speciality a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.insId as varchar(max)),char(10),''),char(13),''),'"','') as insId
+,replace(replace(replace(cast(a.insuranceName as varchar(max)),char(10),''),char(13),''),'"','') as insuranceName
+,replace(replace(replace(cast(a.insurancephone as varchar(max)),char(10),''),char(13),''),'"','') as insurancephone
+,replace(replace(replace(cast(a.insurancefax as varchar(max)),char(10),''),char(13),''),'"','') as insurancefax
+,replace(replace(replace(cast(a.insuranceemail as varchar(max)),char(10),''),char(13),''),'"','') as insuranceemail
+,replace(replace(replace(cast(a.insuranceaddress as varchar(max)),char(10),''),char(13),''),'"','') as insuranceaddress
+,replace(replace(replace(cast(a.insuranceaddress2 as varchar(max)),char(10),''),char(13),''),'"','') as insuranceaddress2
+,replace(replace(replace(cast(a.insurancecity as varchar(max)),char(10),''),char(13),''),'"','') as insurancecity
+,replace(replace(replace(cast(a.insurancestate as varchar(max)),char(10),''),char(13),''),'"','') as insurancestate
+,replace(replace(replace(cast(a.insurancezip as varchar(max)),char(10),''),char(13),''),'"','') as insurancezip
+,replace(replace(replace(cast(a.PayorId as varchar(max)),char(10),''),char(13),''),'"','') as PayorId
+,replace(replace(replace(cast(a.ClaimOfficeNumber as varchar(max)),char(10),''),char(13),''),'"','') as ClaimOfficeNumber
+,replace(replace(replace(cast(a.ClaimOfficeNumberType as varchar(max)),char(10),''),char(13),''),'"','') as ClaimOfficeNumberType
+,replace(replace(replace(cast(a.MedigapID as varchar(max)),char(10),''),char(13),''),'"','') as MedigapID
+,replace(replace(replace(cast(a.carrierCode as varchar(max)),char(10),''),char(13),''),'"','') as carrierCode
+,replace(replace(replace(cast(a.ProviderIdRef as varchar(max)),char(10),''),char(13),''),'"','') as ProviderIdRef
+,replace(replace(replace(cast(a.TestProdIndicator as varchar(max)),char(10),''),char(13),''),'"','') as TestProdIndicator
+,replace(replace(replace(cast(a.ANSI as varchar(max)),char(10),''),char(13),''),'"','') as ANSI
+,replace(replace(replace(cast(a.SendSVT as varchar(max)),char(10),''),char(13),''),'"','') as SendSVT
+,replace(replace(replace(cast(a.SendDecimalUnit as varchar(max)),char(10),''),char(13),''),'"','') as SendDecimalUnit
+,replace(replace(replace(cast(a.PaymentSrc as varchar(max)),char(10),''),char(13),''),'"','') as PaymentSrc
+,replace(replace(replace(cast(a.capitationplan as varchar(max)),char(10),''),char(13),''),'"','') as capitationplan
+,replace(replace(replace(cast(a.capitationpayment as varchar(max)),char(10),''),char(13),''),'"','') as capitationpayment
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+,replace(replace(replace(cast(a.vmid as varchar(max)),char(10),''),char(13),''),'"','') as vmid
+,replace(replace(replace(cast(a.labcorpid as varchar(max)),char(10),''),char(13),''),'"','') as labcorpid
+,replace(replace(replace(cast(a.website as varchar(max)),char(10),''),char(13),''),'"','') as website
+,replace(replace(replace(cast(a.Send2310EAlways as varchar(max)),char(10),''),char(13),''),'"','') as Send2310EAlways
+,replace(replace(replace(cast(a.ClaimSubmitType as varchar(max)),char(10),''),char(13),''),'"','') as ClaimSubmitType
+,replace(replace(replace(cast(a.ERAPayorId as varchar(max)),char(10),''),char(13),''),'"','') as ERAPayorId
+,replace(replace(replace(cast(a.Inactive as varchar(max)),char(10),''),char(13),''),'"','') as Inactive
+,replace(replace(replace(cast(a.AllCodesCapitated as varchar(max)),char(10),''),char(13),''),'"','') as AllCodesCapitated
+,replace(replace(replace(cast(a.SelCodesCapitated as varchar(max)),char(10),''),char(13),''),'"','') as SelCodesCapitated
+,replace(replace(replace(cast(a.ReqOrdPrInfo as varchar(max)),char(10),''),char(13),''),'"','') as ReqOrdPrInfo
+,replace(replace(replace(cast(a.sendDupSubNoForPat as varchar(max)),char(10),''),char(13),''),'"','') as sendDupSubNoForPat
+,replace(replace(replace(cast(a.prodDateAsCheckDate as varchar(max)),char(10),''),char(13),''),'"','') as prodDateAsCheckDate
+,replace(replace(replace(cast(a.ReqUPINInEA021 as varchar(max)),char(10),''),char(13),''),'"','') as ReqUPINInEA021
+,replace(replace(replace(cast(a.hl7id1 as varchar(max)),char(10),''),char(13),''),'"','') as hl7id1
+,replace(replace(replace(cast(a.hl7id2 as varchar(max)),char(10),''),char(13),''),'"','') as hl7id2
+,replace(replace(replace(cast(a.insuranceclass as varchar(max)),char(10),''),char(13),''),'"','') as insuranceclass
+,replace(replace(replace(cast(a.InsTypeMedicare as varchar(max)),char(10),''),char(13),''),'"','') as InsTypeMedicare
+,replace(replace(replace(cast(a.InsTypeOthers as varchar(max)),char(10),''),char(13),''),'"','') as InsTypeOthers
+,replace(replace(replace(cast(a.FeeSchedId as varchar(max)),char(10),''),char(13),''),'"','') as FeeSchedId
+,replace(replace(replace(cast(a.SecClaimsElectronic as varchar(max)),char(10),''),char(13),''),'"','') as SecClaimsElectronic
+,replace(replace(replace(cast(a.PrAssignInd as varchar(max)),char(10),''),char(13),''),'"','') as PrAssignInd
+,replace(replace(replace(cast(a.Notes as varchar(max)),char(10),''),char(13),''),'"','') as Notes
+,replace(replace(replace(cast(a.Box31Format as varchar(max)),char(10),''),char(13),''),'"','') as Box31Format
+,replace(replace(replace(cast(a.Box17ProviderType as varchar(max)),char(10),''),char(13),''),'"','') as Box17ProviderType
+,replace(replace(replace(cast(a.Box17ProviderIdType as varchar(max)),char(10),''),char(13),''),'"','') as Box17ProviderIdType
+,replace(replace(replace(cast(a.Box17ProviderRuleEnabled as varchar(max)),char(10),''),char(13),''),'"','') as Box17ProviderRuleEnabled
+,replace(replace(replace(cast(a.SendInsPinForSupr as varchar(max)),char(10),''),char(13),''),'"','') as SendInsPinForSupr
+,replace(replace(replace(cast(a.insurancephone2 as varchar(max)),char(10),''),char(13),''),'"','') as insurancephone2
+,replace(replace(replace(cast(a.InsuranceType as varchar(max)),char(10),''),char(13),''),'"','') as InsuranceType
+,replace(replace(replace(cast(a.ClaimType as varchar(max)),char(10),''),char(13),''),'"','') as ClaimType
+,replace(replace(replace(cast(a.Box31Line2Format as varchar(max)),char(10),''),char(13),''),'"','') as Box31Line2Format
+,replace(replace(replace(cast(a.sendSubDemAlways as varchar(max)),char(10),''),char(13),''),'"','') as sendSubDemAlways
+,replace(replace(replace(cast(a.SplitClaimOnICD as varchar(max)),char(10),''),char(13),''),'"','') as SplitClaimOnICD
+,replace(replace(replace(cast(a.EnableReferralNumber as varchar(max)),char(10),''),char(13),''),'"','') as EnableReferralNumber
+,replace(replace(replace(cast(a.DoNotPrintHcfa29 as varchar(max)),char(10),''),char(13),''),'"','') as DoNotPrintHcfa29
+,replace(replace(replace(cast(a.DoNotPrintHcfa30 as varchar(max)),char(10),''),char(13),''),'"','') as DoNotPrintHcfa30
+,replace(replace(replace(cast(a.Box17ProviderIdTypeMap as varchar(max)),char(10),''),char(13),''),'"','') as Box17ProviderIdTypeMap
+,replace(replace(replace(cast(a.McaidNYPlanCode as varchar(max)),char(10),''),char(13),''),'"','') as McaidNYPlanCode
+,replace(replace(replace(cast(a.PrintHcfa22 as varchar(max)),char(10),''),char(13),''),'"','') as PrintHcfa22
+,replace(replace(replace(cast(a.EnableSympDate as varchar(max)),char(10),''),char(13),''),'"','') as EnableSympDate
+,replace(replace(replace(cast(a.EnableSimilarSympDate as varchar(max)),char(10),''),char(13),''),'"','') as EnableSimilarSympDate
+,replace(replace(replace(cast(a.SupressFacAddrForPOS11Enic as varchar(max)),char(10),''),char(13),''),'"','') as SupressFacAddrForPOS11Enic
+,replace(replace(replace(cast(a.UseNpi as varchar(max)),char(10),''),char(13),''),'"','') as UseNpi
+,replace(replace(replace(cast(a.UseLegacy as varchar(max)),char(10),''),char(13),''),'"','') as UseLegacy
+,replace(replace(replace(cast(a.x270payorId as varchar(max)),char(10),''),char(13),''),'"','') as x270payorId
+,replace(replace(replace(cast(a.UseGroupNoForEligibility as varchar(max)),char(10),''),char(13),''),'"','') as UseGroupNoForEligibility
+,replace(replace(replace(cast(a.CalculateAllowed as varchar(max)),char(10),''),char(13),''),'"','') as CalculateAllowed
+,replace(replace(replace(cast(a.SupressFacAddrForPOS11Paper as varchar(max)),char(10),''),char(13),''),'"','') as SupressFacAddrForPOS11Paper
+,replace(replace(replace(cast(a.x270LegacyNPI as varchar(max)),char(10),''),char(13),''),'"','') as x270LegacyNPI
+,replace(replace(replace(cast(a.FirstLinePost as varchar(max)),char(10),''),char(13),''),'"','') as FirstLinePost
+,replace(replace(replace(cast(a.SubscriberMask as varchar(max)),char(10),''),char(13),''),'"','') as SubscriberMask
+,replace(replace(replace(cast(a.subscriberLength as varchar(max)),char(10),''),char(13),''),'"','') as subscriberLength
+,replace(replace(replace(cast(a.CO42MapCode as varchar(max)),char(10),''),char(13),''),'"','') as CO42MapCode
+,replace(replace(replace(cast(a.PrintEPSDTReferralCodeInHcfa24C as varchar(max)),char(10),''),char(13),''),'"','') as PrintEPSDTReferralCodeInHcfa24C
+,replace(replace(replace(cast(a.SendStrictDOS as varchar(max)),char(10),''),char(13),''),'"','') as SendStrictDOS
+,replace(replace(replace(cast(a.UseFacilityPrvForRendProv as varchar(max)),char(10),''),char(13),''),'"','') as UseFacilityPrvForRendProv
+,replace(replace(replace(cast(a.sendP2ProvPrvAlways as varchar(max)),char(10),''),char(13),''),'"','') as sendP2ProvPrvAlways
+,replace(replace(replace(cast(a.RequiredReferral as varchar(max)),char(10),''),char(13),''),'"','') as RequiredReferral
+,replace(replace(replace(cast(a.FPStringMandatory as varchar(max)),char(10),''),char(13),''),'"','') as FPStringMandatory
+,replace(replace(replace(cast(a.SubNoMaxLen as varchar(max)),char(10),''),char(13),''),'"','') as SubNoMaxLen
+,replace(replace(replace(cast(a.SubNoMinLen as varchar(max)),char(10),''),char(13),''),'"','') as SubNoMinLen
+,replace(replace(replace(cast(a.SendOTAFSeg as varchar(max)),char(10),''),char(13),''),'"','') as SendOTAFSeg
+,replace(replace(replace(cast(a.HCFA_Box19 as varchar(max)),char(10),''),char(13),''),'"','') as HCFA_Box19
+,replace(replace(replace(cast(a.SendGrpNoin2310B as varchar(max)),char(10),''),char(13),''),'"','') as SendGrpNoin2310B
+,replace(replace(replace(cast(a.Send2420CAlways as varchar(max)),char(10),''),char(13),''),'"','') as Send2420CAlways
+,replace(replace(replace(cast(a.Send2420CIf2310DOmited as varchar(max)),char(10),''),char(13),''),'"','') as Send2420CIf2310DOmited
+,replace(replace(replace(cast(a.UseLegacyForPrint as varchar(max)),char(10),''),char(13),''),'"','') as UseLegacyForPrint
+,replace(replace(replace(cast(a.InsuranceAlert as varchar(max)),char(10),''),char(13),''),'"','') as InsuranceAlert
+,replace(replace(replace(cast(a.UseNPIForPrint as varchar(max)),char(10),''),char(13),''),'"','') as UseNPIForPrint
+,replace(replace(replace(cast(a.FeeSchedulesByLocation as varchar(max)),char(10),''),char(13),''),'"','') as FeeSchedulesByLocation
+,replace(replace(replace(cast(a.InsurancePrimaryType as varchar(max)),char(10),''),char(13),''),'"','') as InsurancePrimaryType
+,replace(replace(replace(cast(a.ExcludeInPtStmts as varchar(max)),char(10),''),char(13),''),'"','') as ExcludeInPtStmts
+,replace(replace(replace(cast(a.UseExtendedPrvOption as varchar(max)),char(10),''),char(13),''),'"','') as UseExtendedPrvOption
+,replace(replace(replace(cast(a.Send2000APrv as varchar(max)),char(10),''),char(13),''),'"','') as Send2000APrv
+,replace(replace(replace(cast(a.Send2310BPrv as varchar(max)),char(10),''),char(13),''),'"','') as Send2310BPrv
+,replace(replace(replace(cast(a.Send2420APrv as varchar(max)),char(10),''),char(13),''),'"','') as Send2420APrv
+,replace(replace(replace(cast(a.SuppressRefProvUPIN as varchar(max)),char(10),''),char(13),''),'"','') as SuppressRefProvUPIN
+,replace(replace(replace(cast(a.SuppressTaxIdInLoop2310A as varchar(max)),char(10),''),char(13),''),'"','') as SuppressTaxIdInLoop2310A
+,replace(replace(replace(cast(a.SuppressTaxIdInLoop2310B as varchar(max)),char(10),''),char(13),''),'"','') as SuppressTaxIdInLoop2310B
+,replace(replace(replace(cast(a.SuppressTaxIdInLoop2420A as varchar(max)),char(10),''),char(13),''),'"','') as SuppressTaxIdInLoop2420A
+,replace(replace(replace(cast(a.SuppressTaxIdInLoop2310DAnd2420C as varchar(max)),char(10),''),char(13),''),'"','') as SuppressTaxIdInLoop2310DAnd2420C
+,replace(replace(replace(cast(a.SubmitPtPmts as varchar(max)),char(10),''),char(13),''),'"','') as SubmitPtPmts
+,replace(replace(replace(cast(a.SuppressPrvInLoop2310A as varchar(max)),char(10),''),char(13),''),'"','') as SuppressPrvInLoop2310A
+,replace(replace(replace(cast(a.SuppressRendProvUPIN as varchar(max)),char(10),''),char(13),''),'"','') as SuppressRendProvUPIN
+,replace(replace(replace(cast(a.SuppressSuperProvUPIN as varchar(max)),char(10),''),char(13),''),'"','') as SuppressSuperProvUPIN
+,replace(replace(replace(cast(a.SuppressOrderProvUPIN as varchar(max)),char(10),''),char(13),''),'"','') as SuppressOrderProvUPIN
+,replace(replace(replace(cast(a.SuppressPurchasedProvUPIN as varchar(max)),char(10),''),char(13),''),'"','') as SuppressPurchasedProvUPIN
+,replace(replace(replace(cast(a.SuppressServiceFacilityUPIN as varchar(max)),char(10),''),char(13),''),'"','') as SuppressServiceFacilityUPIN
+,replace(replace(replace(cast(a.SuppressTaxIdInLoop2310C as varchar(max)),char(10),''),char(13),''),'"','') as SuppressTaxIdInLoop2310C
+,replace(replace(replace(cast(a.SuppressTaxIdInLoop2310E as varchar(max)),char(10),''),char(13),''),'"','') as SuppressTaxIdInLoop2310E
+,replace(replace(replace(cast(a.SuppressTaxIdInLoop2420E as varchar(max)),char(10),''),char(13),''),'"','') as SuppressTaxIdInLoop2420E
+,replace(replace(replace(cast(a.X270SendTrnAlways as varchar(max)),char(10),''),char(13),''),'"','') as X270SendTrnAlways
+,replace(replace(replace(cast(a.X270CustomMapLegacy as varchar(max)),char(10),''),char(13),''),'"','') as X270CustomMapLegacy
+,replace(replace(replace(cast(a.SendOtafInPrimary as varchar(max)),char(10),''),char(13),''),'"','') as SendOtafInPrimary
+,replace(replace(replace(cast(a.x270SendEbDateRange as varchar(max)),char(10),''),char(13),''),'"','') as x270SendEbDateRange
+,replace(replace(replace(cast(a.x270SendPrv as varchar(max)),char(10),''),char(13),''),'"','') as x270SendPrv
+,replace(replace(replace(cast(a.x270SendEbAddlInfo as varchar(max)),char(10),''),char(13),''),'"','') as x270SendEbAddlInfo
+,replace(replace(replace(cast(a.BestMatchCpt as varchar(max)),char(10),''),char(13),''),'"','') as BestMatchCpt
+,replace(replace(replace(cast(a.DoNotAddSalesTax as varchar(max)),char(10),''),char(13),''),'"','') as DoNotAddSalesTax
+,replace(replace(replace(cast(a.enrollmentReq as varchar(max)),char(10),''),char(13),''),'"','') as enrollmentReq
+,replace(replace(replace(cast(a.CountryCode as varchar(max)),char(10),''),char(13),''),'"','') as CountryCode
+,replace(replace(replace(cast(a.NDCFormat as varchar(max)),char(10),''),char(13),''),'"','') as NDCFormat
+,replace(replace(replace(cast(a.X270SendDoi as varchar(max)),char(10),''),char(13),''),'"','') as X270SendDoi
+,replace(replace(replace(cast(a.X270SendDosAsDoi as varchar(max)),char(10),''),char(13),''),'"','') as X270SendDosAsDoi
+,replace(replace(replace(cast(a.SendHyphenInTaxId as varchar(max)),char(10),''),char(13),''),'"','') as SendHyphenInTaxId
+,replace(replace(replace(cast(a.IsAnesthesiaMinutesInHCFA as varchar(max)),char(10),''),char(13),''),'"','') as IsAnesthesiaMinutesInHCFA
+,replace(replace(replace(cast(a.PrimaryTimelyFiling as varchar(max)),char(10),''),char(13),''),'"','') as PrimaryTimelyFiling
+,replace(replace(replace(cast(a.SecondaryTimelyFiling as varchar(max)),char(10),''),char(13),''),'"','') as SecondaryTimelyFiling
+,replace(replace(replace(cast(a.IsServiceLocationAddressinLoop2010AA as varchar(max)),char(10),''),char(13),''),'"','') as IsServiceLocationAddressinLoop2010AA
+,replace(replace(replace(cast(a.NoPrimaryOtafIn2400 as varchar(max)),char(10),''),char(13),''),'"','') as NoPrimaryOtafIn2400
+,replace(replace(replace(cast(a.StripLeadingZeroFromMoney as varchar(max)),char(10),''),char(13),''),'"','') as StripLeadingZeroFromMoney
+,replace(replace(replace(cast(a.SendMedicalRecordNumber as varchar(max)),char(10),''),char(13),''),'"','') as SendMedicalRecordNumber
+,replace(replace(replace(cast(a.x270SendGroupNo as varchar(max)),char(10),''),char(13),''),'"','') as x270SendGroupNo
+,replace(replace(replace(cast(a.x270SendRelationShip as varchar(max)),char(10),''),char(13),''),'"','') as x270SendRelationShip
+,replace(replace(replace(cast(a.x270SendSSN as varchar(max)),char(10),''),char(13),''),'"','') as x270SendSSN
+,replace(replace(replace(cast(a.x270SendInsuredN4 as varchar(max)),char(10),''),char(13),''),'"','') as x270SendInsuredN4
+,replace(replace(replace(cast(a.StripTrailingZerosFromMoney as varchar(max)),char(10),''),char(13),''),'"','') as StripTrailingZerosFromMoney
+,replace(replace(replace(cast(a.insuranceNameANSI as varchar(max)),char(10),''),char(13),''),'"','') as insuranceNameANSI
+,replace(replace(replace(cast(a.HPSAQualify as varchar(max)),char(10),''),char(13),''),'"','') as HPSAQualify
+,replace(replace(replace(cast(a.PrintEPSDTDataInHcfa10d as varchar(max)),char(10),''),char(13),''),'"','') as PrintEPSDTDataInHcfa10d
+,replace(replace(replace(cast(a.ConsiderToothNumberAsModifier as varchar(max)),char(10),''),char(13),''),'"','') as ConsiderToothNumberAsModifier
+,replace(replace(replace(cast(a.DoNotAddFinanceChrg as varchar(max)),char(10),''),char(13),''),'"','') as DoNotAddFinanceChrg
+,replace(replace(replace(cast(a.CapitationType as varchar(max)),char(10),''),char(13),''),'"','') as CapitationType
+,replace(replace(replace(cast(a.LiabilityCarrierCode as varchar(max)),char(10),''),char(13),''),'"','') as LiabilityCarrierCode
+,replace(replace(replace(cast(a.ecwMasterId as varchar(max)),char(10),''),char(13),''),'"','') as ecwMasterId
+,replace(replace(replace(cast(a.EnterpriseId as varchar(max)),char(10),''),char(13),''),'"','') as EnterpriseId
+,replace(replace(replace(cast(a.DoNotChangeClmAssgnmntAfterCapAdj as varchar(max)),char(10),''),char(13),''),'"','') as DoNotChangeClmAssgnmntAfterCapAdj
+,convert(varchar, cast(a.modifiedDate as datetime), 20) as modifiedDate
+,replace(replace(replace(cast(a.AdditionalMask as varchar(max)),char(10),''),char(13),''),'"','') as AdditionalMask
+
+
+from insurance a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.pid as varchar(max)),char(10),''),char(13),''),'"','') as pid
+,replace(replace(replace(cast(a.ControlNo as varchar(max)),char(10),''),char(13),''),'"','') as ControlNo
+,replace(replace(replace(cast(a.employername as varchar(max)),char(10),''),char(13),''),'"','') as employername
+,replace(replace(replace(cast(a.employeraddress as varchar(max)),char(10),''),char(13),''),'"','') as employeraddress
+,replace(replace(replace(cast(a.employeraddress2 as varchar(max)),char(10),''),char(13),''),'"','') as employeraddress2
+,replace(replace(replace(cast(a.employercity as varchar(max)),char(10),''),char(13),''),'"','') as employercity
+,replace(replace(replace(cast(a.employerstate as varchar(max)),char(10),''),char(13),''),'"','') as employerstate
+,replace(replace(replace(cast(a.employerzip as varchar(max)),char(10),''),char(13),''),'"','') as employerzip
+,replace(replace(replace(cast(a.employerPhone as varchar(max)),char(10),''),char(13),''),'"','') as employerPhone
+,replace(replace(replace(cast(a.msgflag as varchar(max)),char(10),''),char(13),''),'"','') as msgflag
+,replace(replace(replace(cast(a.insname as varchar(max)),char(10),''),char(13),''),'"','') as insname
+,replace(replace(replace(cast(a.insgroupno as varchar(max)),char(10),''),char(13),''),'"','') as insgroupno
+,replace(replace(replace(cast(a.inssubscriberno as varchar(max)),char(10),''),char(13),''),'"','') as inssubscriberno
+,replace(replace(replace(cast(a.inscopay as varchar(max)),char(10),''),char(13),''),'"','') as inscopay
+,replace(replace(replace(cast(a.pastHistory as varchar(max)),char(10),''),char(13),''),'"','') as pastHistory
+,replace(replace(replace(cast(a.pharmacyname as varchar(max)),char(10),''),char(13),''),'"','') as pharmacyname
+,replace(replace(replace(cast(a.pharmacyno as varchar(max)),char(10),''),char(13),''),'"','') as pharmacyno
+,replace(replace(replace(cast(a.surgicalHistory as varchar(max)),char(10),''),char(13),''),'"','') as surgicalHistory
+,replace(replace(replace(cast(a.hospitalization as varchar(max)),char(10),''),char(13),''),'"','') as hospitalization
+,replace(replace(replace(cast(a.medications as varchar(max)),char(10),''),char(13),''),'"','') as medications
+,replace(replace(replace(cast(a.insname2 as varchar(max)),char(10),''),char(13),''),'"','') as insname2
+,replace(replace(replace(cast(a.insgroupno2 as varchar(max)),char(10),''),char(13),''),'"','') as insgroupno2
+,replace(replace(replace(cast(a.inssubscriberno2 as varchar(max)),char(10),''),char(13),''),'"','') as inssubscriberno2
+,replace(replace(replace(cast(a.inscopay2 as varchar(max)),char(10),''),char(13),''),'"','') as inscopay2
+,replace(replace(replace(cast(a.straddress as varchar(max)),char(10),''),char(13),''),'"','') as straddress
+,replace(replace(replace(cast(a.city as varchar(max)),char(10),''),char(13),''),'"','') as city
+,replace(replace(replace(cast(a.state as varchar(max)),char(10),''),char(13),''),'"','') as state
+,replace(replace(replace(cast(a.zip as varchar(max)),char(10),''),char(13),''),'"','') as zip
+,replace(replace(replace(cast(a.doctorId as varchar(max)),char(10),''),char(13),''),'"','') as doctorId
+,replace(replace(replace(cast(a.AttendingDoctorId as varchar(max)),char(10),''),char(13),''),'"','') as AttendingDoctorId
+,replace(replace(replace(cast(a.pharmacyFax as varchar(max)),char(10),''),char(13),''),'"','') as pharmacyFax
+,replace(replace(replace(cast(a.pmcId as varchar(max)),char(10),''),char(13),''),'"','') as pmcId
+,replace(replace(replace(cast(a.insId as varchar(max)),char(10),''),char(13),''),'"','') as insId
+,replace(replace(replace(cast(a.insId2 as varchar(max)),char(10),''),char(13),''),'"','') as insId2
+,replace(replace(replace(cast(a.maritalstatus as varchar(max)),char(10),''),char(13),''),'"','') as maritalstatus
+,replace(replace(replace(cast(a.strAddress2 as varchar(max)),char(10),''),char(13),''),'"','') as strAddress2
+,replace(replace(replace(cast(a.notes as varchar(max)),char(10),''),char(13),''),'"','') as notes
+,replace(replace(replace(cast(a.deceased as varchar(max)),char(10),''),char(13),''),'"','') as deceased
+,replace(replace(replace(cast(a.deceasedDate as varchar(max)),char(10),''),char(13),''),'"','') as deceasedDate
+,replace(replace(replace(cast(a.deceasedNotes as varchar(max)),char(10),''),char(13),''),'"','') as deceasedNotes
+,replace(replace(replace(cast(a.language as varchar(max)),char(10),''),char(13),''),'"','') as language
+,replace(replace(replace(cast(a.GrId as varchar(max)),char(10),''),char(13),''),'"','') as GrId
+,replace(replace(replace(cast(a.GrRel as varchar(max)),char(10),''),char(13),''),'"','') as GrRel
+,replace(replace(replace(cast(a.IsGrPt as varchar(max)),char(10),''),char(13),''),'"','') as IsGrPt
+,replace(replace(replace(cast(a.GrType as varchar(max)),char(10),''),char(13),''),'"','') as GrType
+,replace(replace(replace(cast(a.PrimIns as varchar(max)),char(10),''),char(13),''),'"','') as PrimIns
+,replace(replace(replace(cast(a.ResType as varchar(max)),char(10),''),char(13),''),'"','') as ResType
+,replace(replace(replace(cast(a.StudentStatus as varchar(max)),char(10),''),char(13),''),'"','') as StudentStatus
+,replace(replace(replace(cast(a.EmpStatus as varchar(max)),char(10),''),char(13),''),'"','') as EmpStatus
+,replace(replace(replace(cast(a.picFileName as varchar(max)),char(10),''),char(13),''),'"','') as picFileName
+,replace(replace(replace(cast(a.RelInfo as varchar(max)),char(10),''),char(13),''),'"','') as RelInfo
+,convert(varchar, cast(a.RelInfoDate as datetime), 20) as RelInfoDate
+,replace(replace(replace(cast(a.PayorType as varchar(max)),char(10),''),char(13),''),'"','') as PayorType
+,replace(replace(replace(cast(a.SelfPay as varchar(max)),char(10),''),char(13),''),'"','') as SelfPay
+,replace(replace(replace(cast(a.hl7Id as varchar(max)),char(10),''),char(13),''),'"','') as hl7Id
+,replace(replace(replace(cast(a.BillingAlert as varchar(max)),char(10),''),char(13),''),'"','') as BillingAlert
+,replace(replace(replace(cast(a.BillingAlertNotes as varchar(max)),char(10),''),char(13),''),'"','') as BillingAlertNotes
+,replace(replace(replace(cast(a.givenToColl as varchar(max)),char(10),''),char(13),''),'"','') as givenToColl
+,convert(varchar, cast(a.givenDate as datetime), 20) as givenDate
+,replace(replace(replace(cast(a.DefFeeSchId as varchar(max)),char(10),''),char(13),''),'"','') as DefFeeSchId
+,replace(replace(replace(cast(a.race as varchar(max)),char(10),''),char(13),''),'"','') as race
+,replace(replace(replace(cast(a.PtStatus as varchar(max)),char(10),''),char(13),''),'"','') as PtStatus
+,convert(varchar, cast(a.ptStmtDate as datetime), 20) as ptStmtDate
+,replace(replace(replace(cast(a.refPrId as varchar(max)),char(10),''),char(13),''),'"','') as refPrId
+,replace(replace(replace(cast(a.rendPrId as varchar(max)),char(10),''),char(13),''),'"','') as rendPrId
+,replace(replace(replace(cast(a.nostatements as varchar(max)),char(10),''),char(13),''),'"','') as nostatements
+,replace(replace(replace(cast(a.CurrentCollectionStatus as varchar(max)),char(10),''),char(13),''),'"','') as CurrentCollectionStatus
+,convert(varchar, cast(a.CollectionTimestamp as datetime), 20) as CollectionTimestamp
+,replace(replace(replace(cast(a.interpretSvc as varchar(max)),char(10),''),char(13),''),'"','') as interpretSvc
+,replace(replace(replace(cast(a.GlobalAlert as varchar(max)),char(10),''),char(13),''),'"','') as GlobalAlert
+,replace(replace(replace(cast(a.characterestic as varchar(max)),char(10),''),char(13),''),'"','') as characterestic
+,convert(varchar, cast(a.CollectionStageDate as datetime), 20) as CollectionStageDate
+,convert(varchar, cast(a.regdate as datetime), 20) as regdate
+,replace(replace(replace(cast(a.ethnicity as varchar(max)),char(10),''),char(13),''),'"','') as ethnicity
+,replace(replace(replace(cast(a.vfc as varchar(max)),char(10),''),char(13),''),'"','') as vfc
+,replace(replace(replace(cast(a.empId as varchar(max)),char(10),''),char(13),''),'"','') as empId
+,replace(replace(replace(cast(a.irisenroll as varchar(max)),char(10),''),char(13),''),'"','') as irisenroll
+,replace(replace(replace(cast(a.CollectionAgencyStatus as varchar(max)),char(10),''),char(13),''),'"','') as CollectionAgencyStatus
+,replace(replace(replace(cast(a.RxConsent as varchar(max)),char(10),''),char(13),''),'"','') as RxConsent
+,replace(replace(replace(cast(a.acctbal as varchar(max)),char(10),''),char(13),''),'"','') as acctbal
+,convert(varchar, cast(a.CollStartStopDt as datetime), 20) as CollStartStopDt
+,replace(replace(replace(cast(a.MailOrderPharmacyId as varchar(max)),char(10),''),char(13),''),'"','') as MailOrderPharmacyId
+,replace(replace(replace(cast(a.MOMemberId as varchar(max)),char(10),''),char(13),''),'"','') as MOMemberId
+,replace(replace(replace(cast(a.teamMember as varchar(max)),char(10),''),char(13),''),'"','') as teamMember
+,replace(replace(replace(cast(a.bTranslator as varchar(max)),char(10),''),char(13),''),'"','') as bTranslator
+,replace(replace(replace(cast(a.Address2Country as varchar(max)),char(10),''),char(13),''),'"','') as Address2Country
+,replace(replace(replace(cast(a.VoiceEnabled as varchar(max)),char(10),''),char(13),''),'"','') as VoiceEnabled
+,replace(replace(replace(cast(a.assignedtoId as varchar(max)),char(10),''),char(13),''),'"','') as assignedtoId
+,replace(replace(replace(cast(a.assignedto as varchar(max)),char(10),''),char(13),''),'"','') as assignedto
+,replace(replace(replace(cast(a.UseStreetAddressForRxFlag as varchar(max)),char(10),''),char(13),''),'"','') as UseStreetAddressForRxFlag
+,replace(replace(replace(cast(a.textenabled as varchar(max)),char(10),''),char(13),''),'"','') as textenabled
+,convert(varchar, cast(a.GrStmtDate as datetime), 20) as GrStmtDate
+,replace(replace(replace(cast(a.msgCellflag as varchar(max)),char(10),''),char(13),''),'"','') as msgCellflag
+,replace(replace(replace(cast(a.enableEmail as varchar(max)),char(10),''),char(13),''),'"','') as enableEmail
+,replace(replace(replace(cast(a.enableLetters as varchar(max)),char(10),''),char(13),''),'"','') as enableLetters
+,convert(varchar, cast(a.webEnabledDate as datetime), 20) as webEnabledDate
+,replace(replace(replace(cast(a.preset as varchar(max)),char(10),''),char(13),''),'"','') as preset
+,replace(replace(replace(cast(a.encpwd as varchar(max)),char(10),''),char(13),''),'"','') as encpwd
+,replace(replace(replace(cast(a.lognotes as varchar(max)),char(10),''),char(13),''),'"','') as lognotes
+,replace(replace(replace(cast(a.optout as varchar(max)),char(10),''),char(13),''),'"','') as optout
+,replace(replace(replace(cast(a.optreasonId as varchar(max)),char(10),''),char(13),''),'"','') as optreasonId
+,replace(replace(replace(cast(a.IsMigratedRecord as varchar(max)),char(10),''),char(13),''),'"','') as IsMigratedRecord
+,replace(replace(replace(cast(a.DefaultLab as varchar(max)),char(10),''),char(13),''),'"','') as DefaultLab
+,replace(replace(replace(cast(a.DefaultDI as varchar(max)),char(10),''),char(13),''),'"','') as DefaultDI
+,replace(replace(replace(cast(a.emailreasonId as varchar(max)),char(10),''),char(13),''),'"','') as emailreasonId
+,replace(replace(replace(cast(a.isKioskConsentReceived as varchar(max)),char(10),''),char(13),''),'"','') as isKioskConsentReceived
+,replace(replace(replace(cast(a.isPtOptsOut as varchar(max)),char(10),''),char(13),''),'"','') as isPtOptsOut
+,replace(replace(replace(cast(a.secureMsgKey as varchar(max)),char(10),''),char(13),''),'"','') as secureMsgKey
+
+
+from patients a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.EncounterId as varchar(max)),char(10),''),char(13),''),'"','') as EncounterId
+,replace(replace(replace(cast(a.itemID as varchar(max)),char(10),''),char(13),''),'"','') as itemID
+,convert(varchar, cast(a.date as datetime), 20) as date
+,convert(varchar, cast(a.endDate as datetime), 20) as endDate
+,convert(varchar, cast(a.endData as datetime), 20) as endData
+,replace(replace(replace(cast(a.providerId as varchar(max)),char(10),''),char(13),''),'"','') as providerId
+,replace(replace(replace(cast(a.Notes as varchar(max)),char(10),''),char(13),''),'"','') as Notes
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+,replace(replace(replace(cast(a.Mod1 as varchar(max)),char(10),''),char(13),''),'"','') as Mod1
+,replace(replace(replace(cast(a.Mod2 as varchar(max)),char(10),''),char(13),''),'"','') as Mod2
+,replace(replace(replace(cast(a.Mod3 as varchar(max)),char(10),''),char(13),''),'"','') as Mod3
+,replace(replace(replace(cast(a.units as varchar(max)),char(10),''),char(13),''),'"','') as units
+,replace(replace(replace(cast(a.codeFlag as varchar(max)),char(10),''),char(13),''),'"','') as codeFlag
+,replace(replace(replace(cast(a.Icd1 as varchar(max)),char(10),''),char(13),''),'"','') as Icd1
+,replace(replace(replace(cast(a.Icd2 as varchar(max)),char(10),''),char(13),''),'"','') as Icd2
+,replace(replace(replace(cast(a.Icd3 as varchar(max)),char(10),''),char(13),''),'"','') as Icd3
+,replace(replace(replace(cast(a.Icd4 as varchar(max)),char(10),''),char(13),''),'"','') as Icd4
+,replace(replace(replace(cast(a.icdcode1 as varchar(max)),char(10),''),char(13),''),'"','') as icdcode1
+,replace(replace(replace(cast(a.icdcode2 as varchar(max)),char(10),''),char(13),''),'"','') as icdcode2
+,replace(replace(replace(cast(a.icdcode3 as varchar(max)),char(10),''),char(13),''),'"','') as icdcode3
+,replace(replace(replace(cast(a.icdcode4 as varchar(max)),char(10),''),char(13),''),'"','') as icdcode4
+,replace(replace(replace(cast(a.vitalCpt as varchar(max)),char(10),''),char(13),''),'"','') as vitalCpt
+,replace(replace(replace(cast(a.Mod4 as varchar(max)),char(10),''),char(13),''),'"','') as Mod4
+,replace(replace(replace(cast(a.ToothNumber as varchar(max)),char(10),''),char(13),''),'"','') as ToothNumber
+,replace(replace(replace(cast(a.Surface as varchar(max)),char(10),''),char(13),''),'"','') as Surface
+,replace(replace(replace(cast(a.documentedTime as varchar(max)),char(10),''),char(13),''),'"','') as documentedTime
+,replace(replace(replace(cast(a.ndccode as varchar(max)),char(10),''),char(13),''),'"','') as ndccode
+
+
+from billingdata a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.contactId as varchar(max)),char(10),''),char(13),''),'"','') as contactId
+,replace(replace(replace(cast(a.pid as varchar(max)),char(10),''),char(13),''),'"','') as pid
+,replace(replace(replace(cast(a.name as varchar(max)),char(10),''),char(13),''),'"','') as name
+,replace(replace(replace(cast(a.relation as varchar(max)),char(10),''),char(13),''),'"','') as relation
+,replace(replace(replace(cast(a.address as varchar(max)),char(10),''),char(13),''),'"','') as address
+,replace(replace(replace(cast(a.address2 as varchar(max)),char(10),''),char(13),''),'"','') as address2
+,replace(replace(replace(cast(a.city as varchar(max)),char(10),''),char(13),''),'"','') as city
+,replace(replace(replace(cast(a.state as varchar(max)),char(10),''),char(13),''),'"','') as state
+,replace(replace(replace(cast(a.zipcode as varchar(max)),char(10),''),char(13),''),'"','') as zipcode
+,replace(replace(replace(cast(a.homePhone as varchar(max)),char(10),''),char(13),''),'"','') as homePhone
+,replace(replace(replace(cast(a.workPhone as varchar(max)),char(10),''),char(13),''),'"','') as workPhone
+,replace(replace(replace(cast(a.vmid as varchar(max)),char(10),''),char(13),''),'"','') as vmid
+,replace(replace(replace(cast(a.delflag as varchar(max)),char(10),''),char(13),''),'"','') as delflag
+,replace(replace(replace(cast(a.Lname as varchar(max)),char(10),''),char(13),''),'"','') as Lname
+,replace(replace(replace(cast(a.Fname as varchar(max)),char(10),''),char(13),''),'"','') as Fname
+,replace(replace(replace(cast(a.MI as varchar(max)),char(10),''),char(13),''),'"','') as MI
+,replace(replace(replace(cast(a.Guardian as varchar(max)),char(10),''),char(13),''),'"','') as Guardian
+,replace(replace(replace(cast(a.RelatedPtId as varchar(max)),char(10),''),char(13),''),'"','') as RelatedPtId
+,replace(replace(replace(cast(a.HExt as varchar(max)),char(10),''),char(13),''),'"','') as HExt
+,replace(replace(replace(cast(a.WExt as varchar(max)),char(10),''),char(13),''),'"','') as WExt
+,replace(replace(replace(cast(a.Type1 as varchar(max)),char(10),''),char(13),''),'"','') as Type1
+,replace(replace(replace(cast(a.Type2 as varchar(max)),char(10),''),char(13),''),'"','') as Type2
+,replace(replace(replace(cast(a.Fax as varchar(max)),char(10),''),char(13),''),'"','') as Fax
+,replace(replace(replace(cast(a.Email as varchar(max)),char(10),''),char(13),''),'"','') as Email
+,replace(replace(replace(cast(a.Notes as varchar(max)),char(10),''),char(13),''),'"','') as Notes
+,replace(replace(replace(cast(a.Hippa as varchar(max)),char(10),''),char(13),''),'"','') as Hippa
+,replace(replace(replace(cast(a.displayorder as varchar(max)),char(10),''),char(13),''),'"','') as displayorder
+,replace(replace(replace(cast(a.maidenname as varchar(max)),char(10),''),char(13),''),'"','') as maidenname
+
+
+from contacts a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterID as varchar(max)),char(10),''),char(13),''),'"','') as encounterID
+,replace(replace(replace(cast(a.doctorID as varchar(max)),char(10),''),char(13),''),'"','') as doctorID
+,replace(replace(replace(cast(a.patientID as varchar(max)),char(10),''),char(13),''),'"','') as patientID
+,convert(varchar, cast(a.date as datetime), 20) as date
+,replace(replace(replace(cast(a.time as varchar(max)),char(10),''),char(13),''),'"','') as time
+,replace(replace(replace(cast(a.reason as varchar(max)),char(10),''),char(13),''),'"','') as reason
+,replace(replace(replace(cast(a.visitType as varchar(max)),char(10),''),char(13),''),'"','') as visitType
+,replace(replace(replace(cast(a.roomno as varchar(max)),char(10),''),char(13),''),'"','') as roomno
+,replace(replace(replace(cast(a.status as varchar(max)),char(10),''),char(13),''),'"','') as status
+
+
+from encounter a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterID as varchar(max)),char(10),''),char(13),''),'"','') as encounterID
+,replace(replace(replace(cast(a.patientID as varchar(max)),char(10),''),char(13),''),'"','') as patientID
+,replace(replace(replace(cast(a.doctorID as varchar(max)),char(10),''),char(13),''),'"','') as doctorID
+,convert(varchar, cast(a.date as datetime), 20) as date
+,replace(replace(replace(cast(a.time as varchar(max)),char(10),''),char(13),''),'"','') as time
+,convert(varchar, cast(a.startTime as datetime), 20) as startTime
+,convert(varchar, cast(a.endTime as datetime), 20) as endTime
+,replace(replace(replace(cast(a.reason as varchar(max)),char(10),''),char(13),''),'"','') as reason
+,replace(replace(replace(cast(a.VisitType as varchar(max)),char(10),''),char(13),''),'"','') as VisitType
+,replace(replace(replace(cast(a.roomNo as varchar(max)),char(10),''),char(13),''),'"','') as roomNo
+,replace(replace(replace(cast(a.STATUS as varchar(max)),char(10),''),char(13),''),'"','') as STATUS
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+,replace(replace(replace(cast(a.encType as varchar(max)),char(10),''),char(13),''),'"','') as encType
+,replace(replace(replace(cast(a.encLock as varchar(max)),char(10),''),char(13),''),'"','') as encLock
+,replace(replace(replace(cast(a.Notes as varchar(max)),char(10),''),char(13),''),'"','') as Notes
+,replace(replace(replace(cast(a.generalNotes as varchar(max)),char(10),''),char(13),''),'"','') as generalNotes
+,replace(replace(replace(cast(a.vmid as varchar(max)),char(10),''),char(13),''),'"','') as vmid
+,replace(replace(replace(cast(a.facilityId as varchar(max)),char(10),''),char(13),''),'"','') as facilityId
+,replace(replace(replace(cast(a.POS as varchar(max)),char(10),''),char(13),''),'"','') as POS
+,convert(varchar, cast(a.arrivedTime as datetime), 20) as arrivedTime
+,convert(varchar, cast(a.timeIn as datetime), 20) as timeIn
+,convert(varchar, cast(a.timeOut as datetime), 20) as timeOut
+,replace(replace(replace(cast(a.stsAfterArr as varchar(max)),char(10),''),char(13),''),'"','') as stsAfterArr
+,convert(varchar, cast(a.depTime as datetime), 20) as depTime
+,replace(replace(replace(cast(a.stsAfterChkIn as varchar(max)),char(10),''),char(13),''),'"','') as stsAfterChkIn
+,replace(replace(replace(cast(a.HL7Id as varchar(max)),char(10),''),char(13),''),'"','') as HL7Id
+,replace(replace(replace(cast(a.newPt as varchar(max)),char(10),''),char(13),''),'"','') as newPt
+,replace(replace(replace(cast(a.Dx as varchar(max)),char(10),''),char(13),''),'"','') as Dx
+,replace(replace(replace(cast(a.reminded as varchar(max)),char(10),''),char(13),''),'"','') as reminded
+,convert(varchar, cast(a.remindedDate as datetime), 20) as remindedDate
+,replace(replace(replace(cast(a.VisitCopay as varchar(max)),char(10),''),char(13),''),'"','') as VisitCopay
+,replace(replace(replace(cast(a.CopayChanged as varchar(max)),char(10),''),char(13),''),'"','') as CopayChanged
+,replace(replace(replace(cast(a.ClaimRequired as varchar(max)),char(10),''),char(13),''),'"','') as ClaimRequired
+,replace(replace(replace(cast(a.ClaimReq as varchar(max)),char(10),''),char(13),''),'"','') as ClaimReq
+,replace(replace(replace(cast(a.VisitTypeOverriden as varchar(max)),char(10),''),char(13),''),'"','') as VisitTypeOverriden
+,replace(replace(replace(cast(a.refPrName as varchar(max)),char(10),''),char(13),''),'"','') as refPrName
+,replace(replace(replace(cast(a.refPrId as varchar(max)),char(10),''),char(13),''),'"','') as refPrId
+,replace(replace(replace(cast(a.PSACGroup as varchar(max)),char(10),''),char(13),''),'"','') as PSACGroup
+,replace(replace(replace(cast(a.deptid as varchar(max)),char(10),''),char(13),''),'"','') as deptid
+,replace(replace(replace(cast(a.ResourceId as varchar(max)),char(10),''),char(13),''),'"','') as ResourceId
+,replace(replace(replace(cast(a.EncEligibilityStatus as varchar(max)),char(10),''),char(13),''),'"','') as EncEligibilityStatus
+,replace(replace(replace(cast(a.EligibilityMessage as varchar(max)),char(10),''),char(13),''),'"','') as EligibilityMessage
+,replace(replace(replace(cast(a.InvoiceId as varchar(max)),char(10),''),char(13),''),'"','') as InvoiceId
+,replace(replace(replace(cast(a.EligSubId as varchar(max)),char(10),''),char(13),''),'"','') as EligSubId
+,replace(replace(replace(cast(a.EncEligibilityStatus2 as varchar(max)),char(10),''),char(13),''),'"','') as EncEligibilityStatus2
+,replace(replace(replace(cast(a.EligibilityMessage2 as varchar(max)),char(10),''),char(13),''),'"','') as EligibilityMessage2
+,replace(replace(replace(cast(a.EncEligibilityStatus3 as varchar(max)),char(10),''),char(13),''),'"','') as EncEligibilityStatus3
+,replace(replace(replace(cast(a.EligibilityMessage3 as varchar(max)),char(10),''),char(13),''),'"','') as EligibilityMessage3
+,replace(replace(replace(cast(a.trans_dictation as varchar(max)),char(10),''),char(13),''),'"','') as trans_dictation
+,convert(varchar, cast(a.waitTime as datetime), 20) as waitTime
+,replace(replace(replace(cast(a.websync as varchar(max)),char(10),''),char(13),''),'"','') as websync
+,convert(varchar, cast(a.dateIn as datetime), 20) as dateIn
+,convert(varchar, cast(a.dateOut as datetime), 20) as dateOut
+,convert(varchar, cast(a.notesDoneTime as datetime), 20) as notesDoneTime
+,replace(replace(replace(cast(a.notesLoginId as varchar(max)),char(10),''),char(13),''),'"','') as notesLoginId
+,replace(replace(replace(cast(a.notesLogOutId as varchar(max)),char(10),''),char(13),''),'"','') as notesLogOutId
+,replace(replace(replace(cast(a.visittypeid as varchar(max)),char(10),''),char(13),''),'"','') as visittypeid
+,convert(varchar, cast(a.UTCStartTime as datetime), 20) as UTCStartTime
+,convert(varchar, cast(a.UTCEndTime as datetime), 20) as UTCEndTime
+,replace(replace(replace(cast(a.visitstscodeid as varchar(max)),char(10),''),char(13),''),'"','') as visitstscodeid
+,replace(replace(replace(cast(a.practiceId as varchar(max)),char(10),''),char(13),''),'"','') as practiceId
+,replace(replace(replace(cast(a.immnotessendstatus as varchar(max)),char(10),''),char(13),''),'"','') as immnotessendstatus
+,replace(replace(replace(cast(a.transitionofcare as varchar(max)),char(10),''),char(13),''),'"','') as transitionofcare
+,replace(replace(replace(cast(a.prNotesSendStatus as varchar(max)),char(10),''),char(13),''),'"','') as prNotesSendStatus
+,replace(replace(replace(cast(a.readytobill as varchar(max)),char(10),''),char(13),''),'"','') as readytobill
+,replace(replace(replace(cast(a.reviewbeforebill as varchar(max)),char(10),''),char(13),''),'"','') as reviewbeforebill
+,replace(replace(replace(cast(a.EncEligibilityStatus4 as varchar(max)),char(10),''),char(13),''),'"','') as EncEligibilityStatus4
+,replace(replace(replace(cast(a.EligibilityMessage4 as varchar(max)),char(10),''),char(13),''),'"','') as EligibilityMessage4
+
+
+from enc a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterID as varchar(max)),char(10),''),char(13),''),'"','') as encounterID
+,replace(replace(replace(cast(a.chiefComplaint as varchar(max)),char(10),''),char(13),''),'"','') as chiefComplaint
+,replace(replace(replace(cast(a.currentMedication as varchar(max)),char(10),''),char(13),''),'"','') as currentMedication
+,replace(replace(replace(cast(a.HPINotes as varchar(max)),char(10),''),char(13),''),'"','') as HPINotes
+,replace(replace(replace(cast(a.ExamNotes as varchar(max)),char(10),''),char(13),''),'"','') as ExamNotes
+,replace(replace(replace(cast(a.AsmtNotes as varchar(max)),char(10),''),char(13),''),'"','') as AsmtNotes
+,replace(replace(replace(cast(a.TreatNotes as varchar(max)),char(10),''),char(13),''),'"','') as TreatNotes
+,replace(replace(replace(cast(a.NextAppt as varchar(max)),char(10),''),char(13),''),'"','') as NextAppt
+,replace(replace(replace(cast(a.NextApptOpt as varchar(max)),char(10),''),char(13),''),'"','') as NextApptOpt
+,replace(replace(replace(cast(a.LockEnc as varchar(max)),char(10),''),char(13),''),'"','') as LockEnc
+,replace(replace(replace(cast(a.AddtlNotes as varchar(max)),char(10),''),char(13),''),'"','') as AddtlNotes
+,replace(replace(replace(cast(a.pastHistory as varchar(max)),char(10),''),char(13),''),'"','') as pastHistory
+,replace(replace(replace(cast(a.AllergiesFlag as varchar(max)),char(10),''),char(13),''),'"','') as AllergiesFlag
+,replace(replace(replace(cast(a.complaintsFlag as varchar(max)),char(10),''),char(13),''),'"','') as complaintsFlag
+,replace(replace(replace(cast(a.historyFlag as varchar(max)),char(10),''),char(13),''),'"','') as historyFlag
+,replace(replace(replace(cast(a.vitalsFlag as varchar(max)),char(10),''),char(13),''),'"','') as vitalsFlag
+,replace(replace(replace(cast(a.medicationFlag as varchar(max)),char(10),''),char(13),''),'"','') as medicationFlag
+,replace(replace(replace(cast(a.copay as varchar(max)),char(10),''),char(13),''),'"','') as copay
+,replace(replace(replace(cast(a.paymentType as varchar(max)),char(10),''),char(13),''),'"','') as paymentType
+,replace(replace(replace(cast(a.checkNo as varchar(max)),char(10),''),char(13),''),'"','') as checkNo
+,replace(replace(replace(cast(a.notesstatus as varchar(max)),char(10),''),char(13),''),'"','') as notesstatus
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.HospitalizationFlag as varchar(max)),char(10),''),char(13),''),'"','') as HospitalizationFlag
+,replace(replace(replace(cast(a.SurgicalFlag as varchar(max)),char(10),''),char(13),''),'"','') as SurgicalFlag
+,replace(replace(replace(cast(a.PregnantFlag as varchar(max)),char(10),''),char(13),''),'"','') as PregnantFlag
+,replace(replace(replace(cast(a.BreastFeedingFlag as varchar(max)),char(10),''),char(13),''),'"','') as BreastFeedingFlag
+,replace(replace(replace(cast(a.NonContributoryFlag as varchar(max)),char(10),''),char(13),''),'"','') as NonContributoryFlag
+,replace(replace(replace(cast(a.SurgicalHistoryFlag as varchar(max)),char(10),''),char(13),''),'"','') as SurgicalHistoryFlag
+,replace(replace(replace(cast(a.HospitalizationHistoryFlag as varchar(max)),char(10),''),char(13),''),'"','') as HospitalizationHistoryFlag
+,replace(replace(replace(cast(a.chieficds as varchar(max)),char(10),''),char(13),''),'"','') as chieficds
+,replace(replace(replace(cast(a.historyicds as varchar(max)),char(10),''),char(13),''),'"','') as historyicds
+,replace(replace(replace(cast(a.AsmtNotesHeader as varchar(max)),char(10),''),char(13),''),'"','') as AsmtNotesHeader
+,replace(replace(replace(cast(a.NextApptReason as varchar(max)),char(10),''),char(13),''),'"','') as NextApptReason
+,replace(replace(replace(cast(a.FollowUpNA as varchar(max)),char(10),''),char(13),''),'"','') as FollowUpNA
+,convert(varchar, cast(a.LockOrDoneDate as datetime), 20) as LockOrDoneDate
+,replace(replace(replace(cast(a.SocialHistoryFlag as varchar(max)),char(10),''),char(13),''),'"','') as SocialHistoryFlag
+,replace(replace(replace(cast(a.FamilyHistoryFlag as varchar(max)),char(10),''),char(13),''),'"','') as FamilyHistoryFlag
+,replace(replace(replace(cast(a.doneBy as varchar(max)),char(10),''),char(13),''),'"','') as doneBy
+,convert(varchar, cast(a.doneDate as datetime), 20) as doneDate
+,replace(replace(replace(cast(a.ImmunizationsVerified as varchar(max)),char(10),''),char(13),''),'"','') as ImmunizationsVerified
+,replace(replace(replace(cast(a.medreconciliationinternalflag as varchar(max)),char(10),''),char(13),''),'"','') as medreconciliationinternalflag
+,replace(replace(replace(cast(a.historyicdids as varchar(max)),char(10),''),char(13),''),'"','') as historyicdids
+,convert(varchar, cast(a.mddatelastseen as datetime), 20) as mddatelastseen
+
+
+from encounterdata a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Code as varchar(max)),char(10),''),char(13),''),'"','') as Code
+,replace(replace(replace(cast(a.Name as varchar(max)),char(10),''),char(13),''),'"','') as Name
+,replace(replace(replace(cast(a.EthId as varchar(max)),char(10),''),char(13),''),'"','') as EthId
+
+
+from ethnicity a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterID as varchar(max)),char(10),''),char(13),''),'"','') as encounterID
+,replace(replace(replace(cast(a.itemID as varchar(max)),char(10),''),char(13),''),'"','') as itemID
+,replace(replace(replace(cast(a.name as varchar(max)),char(10),''),char(13),''),'"','') as name
+,replace(replace(replace(cast(a.status as varchar(max)),char(10),''),char(13),''),'"','') as status
+,replace(replace(replace(cast(a.age as varchar(max)),char(10),''),char(13),''),'"','') as age
+,replace(replace(replace(cast(a.dob as varchar(max)),char(10),''),char(13),''),'"','') as dob
+
+
+from familydata a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterId as varchar(max)),char(10),''),char(13),''),'"','') as encounterId
+,replace(replace(replace(cast(a.itemId as varchar(max)),char(10),''),char(13),''),'"','') as itemId
+,replace(replace(replace(cast(a.icdItemid as varchar(max)),char(10),''),char(13),''),'"','') as icdItemid
+,replace(replace(replace(cast(a.icdCode as varchar(max)),char(10),''),char(13),''),'"','') as icdCode
+,replace(replace(replace(cast(a.icdDesc as varchar(max)),char(10),''),char(13),''),'"','') as icdDesc
+,replace(replace(replace(cast(a.snomedCode as varchar(max)),char(10),''),char(13),''),'"','') as snomedCode
+,replace(replace(replace(cast(a.diagnosedYear as varchar(max)),char(10),''),char(13),''),'"','') as diagnosedYear
+,replace(replace(replace(cast(a.diagnosedAge as varchar(max)),char(10),''),char(13),''),'"','') as diagnosedAge
+,replace(replace(replace(cast(a.name as varchar(max)),char(10),''),char(13),''),'"','') as name
+
+
+from familyhxdetails a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.LogID as varchar(max)),char(10),''),char(13),''),'"','') as LogID
+,replace(replace(replace(cast(a.LoginID as varchar(max)),char(10),''),char(13),''),'"','') as LoginID
+,replace(replace(replace(cast(a.DoctorID as varchar(max)),char(10),''),char(13),''),'"','') as DoctorID
+,replace(replace(replace(cast(a.PatientID as varchar(max)),char(10),''),char(13),''),'"','') as PatientID
+,replace(replace(replace(cast(a.ToID as varchar(max)),char(10),''),char(13),''),'"','') as ToID
+,replace(replace(replace(cast(a.ToName as varchar(max)),char(10),''),char(13),''),'"','') as ToName
+,replace(replace(replace(cast(a.ToFax as varchar(max)),char(10),''),char(13),''),'"','') as ToFax
+,replace(replace(replace(cast(a.ToCompany as varchar(max)),char(10),''),char(13),''),'"','') as ToCompany
+,replace(replace(replace(cast(a.EncounterID as varchar(max)),char(10),''),char(13),''),'"','') as EncounterID
+,replace(replace(replace(cast(a.FaxInitTime as varchar(max)),char(10),''),char(13),''),'"','') as FaxInitTime
+,replace(replace(replace(cast(a.Retry as varchar(max)),char(10),''),char(13),''),'"','') as Retry
+,replace(replace(replace(cast(a.Status as varchar(max)),char(10),''),char(13),''),'"','') as Status
+,replace(replace(replace(cast(a.faxdata as varchar(max)),char(10),''),char(13),''),'"','') as faxdata
+,replace(replace(replace(cast(a.FaxStatus as varchar(max)),char(10),''),char(13),''),'"','') as FaxStatus
+,convert(varchar, cast(a.SendDate as datetime), 20) as SendDate
+,replace(replace(replace(cast(a.FaxType as varchar(max)),char(10),''),char(13),''),'"','') as FaxType
+,replace(replace(replace(cast(a.FaxManLogID as varchar(max)),char(10),''),char(13),''),'"','') as FaxManLogID
+,replace(replace(replace(cast(a.FaxPrefix as varchar(max)),char(10),''),char(13),''),'"','') as FaxPrefix
+,replace(replace(replace(cast(a.FaxFile as varchar(max)),char(10),''),char(13),''),'"','') as FaxFile
+,replace(replace(replace(cast(a.FaxTransaction as varchar(max)),char(10),''),char(13),''),'"','') as FaxTransaction
+,replace(replace(replace(cast(a.RxIds as varchar(max)),char(10),''),char(13),''),'"','') as RxIds
+,replace(replace(replace(cast(a.FaxLogStatus as varchar(max)),char(10),''),char(13),''),'"','') as FaxLogStatus
+,replace(replace(replace(cast(a.FaxLogBatch as varchar(max)),char(10),''),char(13),''),'"','') as FaxLogBatch
+,replace(replace(replace(cast(a.FacilityID as varchar(max)),char(10),''),char(13),''),'"','') as FacilityID
+,replace(replace(replace(cast(a.FacilityName as varchar(max)),char(10),''),char(13),''),'"','') as FacilityName
+,replace(replace(replace(cast(a.reminded as varchar(max)),char(10),''),char(13),''),'"','') as reminded
+,convert(varchar, cast(a.remindedDate as datetime), 20) as remindedDate
+,replace(replace(replace(cast(a.FaxCoverPage as varchar(max)),char(10),''),char(13),''),'"','') as FaxCoverPage
+,replace(replace(replace(cast(a.FaxCoverPageID as varchar(max)),char(10),''),char(13),''),'"','') as FaxCoverPageID
+,replace(replace(replace(cast(a.FaxStatusMsg as varchar(max)),char(10),''),char(13),''),'"','') as FaxStatusMsg
+,replace(replace(replace(cast(a.FaxSubject as varchar(max)),char(10),''),char(13),''),'"','') as FaxSubject
+,replace(replace(replace(cast(a.LoginName as varchar(max)),char(10),''),char(13),''),'"','') as LoginName
+,convert(varchar, cast(a.scheduledDate as datetime), 20) as scheduledDate
+,replace(replace(replace(cast(a.sentnotification as varchar(max)),char(10),''),char(13),''),'"','') as sentnotification
+,replace(replace(replace(cast(a.OriginalFaxDoc as varchar(max)),char(10),''),char(13),''),'"','') as OriginalFaxDoc
+,replace(replace(replace(cast(a.FromName as varchar(max)),char(10),''),char(13),''),'"','') as FromName
+,replace(replace(replace(cast(a.FromVoice as varchar(max)),char(10),''),char(13),''),'"','') as FromVoice
+,replace(replace(replace(cast(a.fromcompany as varchar(max)),char(10),''),char(13),''),'"','') as fromcompany
+,convert(varchar, cast(a.FaxInitTime2 as datetime), 20) as FaxInitTime2
+,replace(replace(replace(cast(a.isMsgSent as varchar(max)),char(10),''),char(13),''),'"','') as isMsgSent
+,replace(replace(replace(cast(a.isTextMsgSent as varchar(max)),char(10),''),char(13),''),'"','') as isTextMsgSent
+
+
+from faxlogs a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.ImmStatusId as varchar(max)),char(10),''),char(13),''),'"','') as ImmStatusId
+,replace(replace(replace(cast(a.CODE as varchar(max)),char(10),''),char(13),''),'"','') as CODE
+,replace(replace(replace(cast(a.Description as varchar(max)),char(10),''),char(13),''),'"','') as Description
+,replace(replace(replace(cast(a.TYPE as varchar(max)),char(10),''),char(13),''),'"','') as TYPE
+
+
+from immunizationstatus a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.itemID as varchar(max)),char(10),''),char(13),''),'"','') as itemID
+,replace(replace(replace(cast(a.propID as varchar(max)),char(10),''),char(13),''),'"','') as propID
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+
+
+from itemdetail a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.labCode as varchar(max)),char(10),''),char(13),''),'"','') as labCode
+,replace(replace(replace(cast(a.cptCode as varchar(max)),char(10),''),char(13),''),'"','') as cptCode
+,replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.CptItemId as varchar(max)),char(10),''),char(13),''),'"','') as CptItemId
+
+
+from labcptmap a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.ReportId as varchar(max)),char(10),''),char(13),''),'"','') as ReportId
+,replace(replace(replace(cast(a.PropId as varchar(max)),char(10),''),char(13),''),'"','') as PropId
+,replace(replace(replace(cast(a.Value as varchar(max)),char(10),''),char(13),''),'"','') as Value
+,replace(replace(replace(cast(a.importFlag as varchar(max)),char(10),''),char(13),''),'"','') as importFlag
+,replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.UpdatedBy as varchar(max)),char(10),''),char(13),''),'"','') as UpdatedBy
+,convert(varchar, cast(a.UpdatedTime as datetime), 20) as UpdatedTime
+,replace(replace(replace(cast(a.TestID as varchar(max)),char(10),''),char(13),''),'"','') as TestID
+
+
+from labdatadetail a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.ReportId as varchar(max)),char(10),''),char(13),''),'"','') as ReportId
+,replace(replace(replace(cast(a.NAME as varchar(max)),char(10),''),char(13),''),'"','') as NAME
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+,replace(replace(replace(cast(a.units as varchar(max)),char(10),''),char(13),''),'"','') as units
+,replace(replace(replace(cast(a.range as varchar(max)),char(10),''),char(13),''),'"','') as range
+,replace(replace(replace(cast(a.flag as varchar(max)),char(10),''),char(13),''),'"','') as flag
+,replace(replace(replace(cast(a.notes as varchar(max)),char(10),''),char(13),''),'"','') as notes
+,replace(replace(replace(cast(a.resultStatus as varchar(max)),char(10),''),char(13),''),'"','') as resultStatus
+,replace(replace(replace(cast(a.labId as varchar(max)),char(10),''),char(13),''),'"','') as labId
+,replace(replace(replace(cast(a.hl7id as varchar(max)),char(10),''),char(13),''),'"','') as hl7id
+,replace(replace(replace(cast(a.profileid as varchar(max)),char(10),''),char(13),''),'"','') as profileid
+,replace(replace(replace(cast(a.serialno as varchar(max)),char(10),''),char(13),''),'"','') as serialno
+,replace(replace(replace(cast(a.obrcode as varchar(max)),char(10),''),char(13),''),'"','') as obrcode
+,replace(replace(replace(cast(a.corrreportno as varchar(max)),char(10),''),char(13),''),'"','') as corrreportno
+,replace(replace(replace(cast(a.performingSiteId as varchar(max)),char(10),''),char(13),''),'"','') as performingSiteId
+,replace(replace(replace(cast(a.prevvalue as varchar(max)),char(10),''),char(13),''),'"','') as prevvalue
+,convert(varchar, cast(a.AttrResultDate as datetime), 20) as AttrResultDate
+,convert(varchar, cast(a.AttrResultTime as datetime), 20) as AttrResultTime
+,replace(replace(replace(cast(a.obsubid as varchar(max)),char(10),''),char(13),''),'"','') as obsubid
+
+
+from hl7labdatadetail a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.itemID as varchar(max)),char(10),''),char(13),''),'"','') as itemID
+,replace(replace(replace(cast(a.itemName as varchar(max)),char(10),''),char(13),''),'"','') as itemName
+,replace(replace(replace(cast(a.itemDesc as varchar(max)),char(10),''),char(13),''),'"','') as itemDesc
+,replace(replace(replace(cast(a.parentID as varchar(max)),char(10),''),char(13),''),'"','') as parentID
+,replace(replace(replace(cast(a.xmlPath as varchar(max)),char(10),''),char(13),''),'"','') as xmlPath
+,replace(replace(replace(cast(a.xslPath as varchar(max)),char(10),''),char(13),''),'"','') as xslPath
+,replace(replace(replace(cast(a.itemType as varchar(max)),char(10),''),char(13),''),'"','') as itemType
+,replace(replace(replace(cast(a.supplierId as varchar(max)),char(10),''),char(13),''),'"','') as supplierId
+,replace(replace(replace(cast(a.price as varchar(max)),char(10),''),char(13),''),'"','') as price
+,replace(replace(replace(cast(a.discount as varchar(max)),char(10),''),char(13),''),'"','') as discount
+,replace(replace(replace(cast(a.specialPrice as varchar(max)),char(10),''),char(13),''),'"','') as specialPrice
+,convert(varchar, cast(a.startDate as datetime), 20) as startDate
+,convert(varchar, cast(a.endDate as datetime), 20) as endDate
+,convert(varchar, cast(a.createdDate as datetime), 20) as createdDate
+,convert(varchar, cast(a.modifiedDate as datetime), 20) as modifiedDate
+,replace(replace(replace(cast(a.viewType as varchar(max)),char(10),''),char(13),''),'"','') as viewType
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+,replace(replace(replace(cast(a.vmid as varchar(max)),char(10),''),char(13),''),'"','') as vmid
+,replace(replace(replace(cast(a.keyName as varchar(max)),char(10),''),char(13),''),'"','') as keyName
+,replace(replace(replace(cast(a.gender as varchar(max)),char(10),''),char(13),''),'"','') as gender
+,replace(replace(replace(cast(a.overdue as varchar(max)),char(10),''),char(13),''),'"','') as overdue
+,replace(replace(replace(cast(a.inactive as varchar(max)),char(10),''),char(13),''),'"','') as inactive
+,replace(replace(replace(cast(a.DrugNameId as varchar(max)),char(10),''),char(13),''),'"','') as DrugNameId
+,replace(replace(replace(cast(a.showPathologyDetail as varchar(max)),char(10),''),char(13),''),'"','') as showPathologyDetail
+,replace(replace(replace(cast(a.vmsgexclude as varchar(max)),char(10),''),char(13),''),'"','') as vmsgexclude
+
+
+from items a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.itemid as varchar(max)),char(10),''),char(13),''),'"','') as itemid
+,replace(replace(replace(cast(a.code as varchar(max)),char(10),''),char(13),''),'"','') as code
+,replace(replace(replace(cast(a.UpdatedBy as varchar(max)),char(10),''),char(13),''),'"','') as UpdatedBy
+,convert(varchar, cast(a.UpdatedTime as datetime), 20) as UpdatedTime
+,replace(replace(replace(cast(a.deleteflag as varchar(max)),char(10),''),char(13),''),'"','') as deleteflag
+
+
+from labloinccodes a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Name as varchar(max)),char(10),''),char(13),''),'"','') as Name
+,replace(replace(replace(cast(a.Favorite as varchar(max)),char(10),''),char(13),''),'"','') as Favorite
+,replace(replace(replace(cast(a.Code as varchar(max)),char(10),''),char(13),''),'"','') as Code
+,replace(replace(replace(cast(a.LangID as varchar(max)),char(10),''),char(13),''),'"','') as LangID
+,replace(replace(replace(cast(a.isocode1 as varchar(max)),char(10),''),char(13),''),'"','') as isocode1
+,replace(replace(replace(cast(a.isocode2 as varchar(max)),char(10),''),char(13),''),'"','') as isocode2
+,replace(replace(replace(cast(a.isoname as varchar(max)),char(10),''),char(13),''),'"','') as isoname
+
+
+from language_codes a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.ImmunizationId as varchar(max)),char(10),''),char(13),''),'"','') as ImmunizationId
+,replace(replace(replace(cast(a.patientId as varchar(max)),char(10),''),char(13),''),'"','') as patientId
+,replace(replace(replace(cast(a.ItemId as varchar(max)),char(10),''),char(13),''),'"','') as ItemId
+,replace(replace(replace(cast(a.location as varchar(max)),char(10),''),char(13),''),'"','') as location
+,convert(varchar, cast(a.givenDate as datetime), 20) as givenDate
+,replace(replace(replace(cast(a.givenBy as varchar(max)),char(10),''),char(13),''),'"','') as givenBy
+,replace(replace(replace(cast(a.lotNumber as varchar(max)),char(10),''),char(13),''),'"','') as lotNumber
+,replace(replace(replace(cast(a.Dose as varchar(max)),char(10),''),char(13),''),'"','') as Dose
+,replace(replace(replace(cast(a.VaccineManufacturer as varchar(max)),char(10),''),char(13),''),'"','') as VaccineManufacturer
+,replace(replace(replace(cast(a.dueDate as varchar(max)),char(10),''),char(13),''),'"','') as dueDate
+,replace(replace(replace(cast(a.dateVISgiven as varchar(max)),char(10),''),char(13),''),'"','') as dateVISgiven
+,replace(replace(replace(cast(a.DateonVIS as varchar(max)),char(10),''),char(13),''),'"','') as DateonVIS
+,replace(replace(replace(cast(a.Notes as varchar(max)),char(10),''),char(13),''),'"','') as Notes
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+,replace(replace(replace(cast(a.billable as varchar(max)),char(10),''),char(13),''),'"','') as billable
+,replace(replace(replace(cast(a.ImmtracDispatchStatus as varchar(max)),char(10),''),char(13),''),'"','') as ImmtracDispatchStatus
+,replace(replace(replace(cast(a.Selected as varchar(max)),char(10),''),char(13),''),'"','') as Selected
+,replace(replace(replace(cast(a.HistoryFlag as varchar(max)),char(10),''),char(13),''),'"','') as HistoryFlag
+,replace(replace(replace(cast(a.DoseNumber as varchar(max)),char(10),''),char(13),''),'"','') as DoseNumber
+,replace(replace(replace(cast(a.Facility as varchar(max)),char(10),''),char(13),''),'"','') as Facility
+,replace(replace(replace(cast(a.race_code as varchar(max)),char(10),''),char(13),''),'"','') as race_code
+,replace(replace(replace(cast(a.contactId as varchar(max)),char(10),''),char(13),''),'"','') as contactId
+,replace(replace(replace(cast(a.relation_code as varchar(max)),char(10),''),char(13),''),'"','') as relation_code
+,replace(replace(replace(cast(a.glname as varchar(max)),char(10),''),char(13),''),'"','') as glname
+,replace(replace(replace(cast(a.gfname as varchar(max)),char(10),''),char(13),''),'"','') as gfname
+,replace(replace(replace(cast(a.gminitial as varchar(max)),char(10),''),char(13),''),'"','') as gminitial
+,replace(replace(replace(cast(a.cptcvx as varchar(max)),char(10),''),char(13),''),'"','') as cptcvx
+,replace(replace(replace(cast(a.vaccinename as varchar(max)),char(10),''),char(13),''),'"','') as vaccinename
+,replace(replace(replace(cast(a.mvx_code as varchar(max)),char(10),''),char(13),''),'"','') as mvx_code
+,replace(replace(replace(cast(a.cvx_code as varchar(max)),char(10),''),char(13),''),'"','') as cvx_code
+,replace(replace(replace(cast(a.vfc_code as varchar(max)),char(10),''),char(13),''),'"','') as vfc_code
+,replace(replace(replace(cast(a.encounterid as varchar(max)),char(10),''),char(13),''),'"','') as encounterid
+,replace(replace(replace(cast(a.action as varchar(max)),char(10),''),char(13),''),'"','') as action
+,replace(replace(replace(cast(a.lotId as varchar(max)),char(10),''),char(13),''),'"','') as lotId
+,replace(replace(replace(cast(a.decDoses as varchar(max)),char(10),''),char(13),''),'"','') as decDoses
+,replace(replace(replace(cast(a.Route as varchar(max)),char(10),''),char(13),''),'"','') as Route
+,convert(varchar, cast(a.ExportedDate as datetime), 20) as ExportedDate
+,replace(replace(replace(cast(a.medicaidno as varchar(max)),char(10),''),char(13),''),'"','') as medicaidno
+,convert(varchar, cast(a.GivenTime as datetime), 20) as GivenTime
+,replace(replace(replace(cast(a.ReadBy as varchar(max)),char(10),''),char(13),''),'"','') as ReadBy
+,convert(varchar, cast(a.ReadDate as datetime), 20) as ReadDate
+,replace(replace(replace(cast(a.MMInduration as varchar(max)),char(10),''),char(13),''),'"','') as MMInduration
+,replace(replace(replace(cast(a.Impression as varchar(max)),char(10),''),char(13),''),'"','') as Impression
+,replace(replace(replace(cast(a.GivenById as varchar(max)),char(10),''),char(13),''),'"','') as GivenById
+,replace(replace(replace(cast(a.logBatchId as varchar(max)),char(10),''),char(13),''),'"','') as logBatchId
+,replace(replace(replace(cast(a.logStatus as varchar(max)),char(10),''),char(13),''),'"','') as logStatus
+,replace(replace(replace(cast(a.immsendstatus as varchar(max)),char(10),''),char(13),''),'"','') as immsendstatus
+,replace(replace(replace(cast(a.immprocessed as varchar(max)),char(10),''),char(13),''),'"','') as immprocessed
+,replace(replace(replace(cast(a.fromImmRegistry as varchar(max)),char(10),''),char(13),''),'"','') as fromImmRegistry
+,replace(replace(replace(cast(a.immstatus as varchar(max)),char(10),''),char(13),''),'"','') as immstatus
+,replace(replace(replace(cast(a.notAdminReasonCode as varchar(max)),char(10),''),char(13),''),'"','') as notAdminReasonCode
+,replace(replace(replace(cast(a.notAdminotherReason as varchar(max)),char(10),''),char(13),''),'"','') as notAdminotherReason
+,replace(replace(replace(cast(a.sourceOfHistory as varchar(max)),char(10),''),char(13),''),'"','') as sourceOfHistory
+,replace(replace(replace(cast(a.docfacilityId as varchar(max)),char(10),''),char(13),''),'"','') as docfacilityId
+,replace(replace(replace(cast(a.counselling as varchar(max)),char(10),''),char(13),''),'"','') as counselling
+
+
+from immunizations a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.patientId as varchar(max)),char(10),''),char(13),''),'"','') as patientId
+,replace(replace(replace(cast(a.letterId as varchar(max)),char(10),''),char(13),''),'"','') as letterId
+,replace(replace(replace(cast(a.letterName as varchar(max)),char(10),''),char(13),''),'"','') as letterName
+,replace(replace(replace(cast(a.printedBy as varchar(max)),char(10),''),char(13),''),'"','') as printedBy
+,convert(varchar, cast(a.date as datetime), 20) as date
+,convert(varchar, cast(a.time as datetime), 20) as time
+,replace(replace(replace(cast(a.categoryID as varchar(max)),char(10),''),char(13),''),'"','') as categoryID
+
+
+from letterlogs a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.pid as varchar(max)),char(10),''),char(13),''),'"','') as pid
+,replace(replace(replace(cast(a.insid as varchar(max)),char(10),''),char(13),''),'"','') as insid
+,replace(replace(replace(cast(a.startDate as varchar(max)),char(10),''),char(13),''),'"','') as startDate
+,replace(replace(replace(cast(a.endDate as varchar(max)),char(10),''),char(13),''),'"','') as endDate
+,replace(replace(replace(cast(a.groupNo as varchar(max)),char(10),''),char(13),''),'"','') as groupNo
+,replace(replace(replace(cast(a.subscriberNo as varchar(max)),char(10),''),char(13),''),'"','') as subscriberNo
+,replace(replace(replace(cast(a.copays as varchar(max)),char(10),''),char(13),''),'"','') as copays
+,replace(replace(replace(cast(a.copayType as varchar(max)),char(10),''),char(13),''),'"','') as copayType
+,replace(replace(replace(cast(a.insOrder as varchar(max)),char(10),''),char(13),''),'"','') as insOrder
+,replace(replace(replace(cast(a.DeleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as DeleteFlag
+,replace(replace(replace(cast(a.GrId as varchar(max)),char(10),''),char(13),''),'"','') as GrId
+,replace(replace(replace(cast(a.GrRel as varchar(max)),char(10),''),char(13),''),'"','') as GrRel
+,replace(replace(replace(cast(a.IsGrPt as varchar(max)),char(10),''),char(13),''),'"','') as IsGrPt
+,replace(replace(replace(cast(a.PaymentSource as varchar(max)),char(10),''),char(13),''),'"','') as PaymentSource
+,replace(replace(replace(cast(a.groupName as varchar(max)),char(10),''),char(13),''),'"','') as groupName
+,replace(replace(replace(cast(a.InsType as varchar(max)),char(10),''),char(13),''),'"','') as InsType
+,replace(replace(replace(cast(a.AssignBenefits as varchar(max)),char(10),''),char(13),''),'"','') as AssignBenefits
+,replace(replace(replace(cast(a.SeqNo as varchar(max)),char(10),''),char(13),''),'"','') as SeqNo
+,replace(replace(replace(cast(a.PtSigSource as varchar(max)),char(10),''),char(13),''),'"','') as PtSigSource
+,replace(replace(replace(cast(a.PPOIndex as varchar(max)),char(10),''),char(13),''),'"','') as PPOIndex
+,replace(replace(replace(cast(a.PPOId as varchar(max)),char(10),''),char(13),''),'"','') as PPOId
+,replace(replace(replace(cast(a.PayerClaimOfficeNo as varchar(max)),char(10),''),char(13),''),'"','') as PayerClaimOfficeNo
+,replace(replace(replace(cast(a.SuppInsInd as varchar(max)),char(10),''),char(13),''),'"','') as SuppInsInd
+,replace(replace(replace(cast(a.MedicaidId as varchar(max)),char(10),''),char(13),''),'"','') as MedicaidId
+,replace(replace(replace(cast(a.patSubscriberNo as varchar(max)),char(10),''),char(13),''),'"','') as patSubscriberNo
+,replace(replace(replace(cast(a.KenPAC as varchar(max)),char(10),''),char(13),''),'"','') as KenPAC
+,replace(replace(replace(cast(a.InsuranceClass as varchar(max)),char(10),''),char(13),''),'"','') as InsuranceClass
+,replace(replace(replace(cast(a.MedicaidSeqNo as varchar(max)),char(10),''),char(13),''),'"','') as MedicaidSeqNo
+,replace(replace(replace(cast(a.EncEligibilityStatus as varchar(max)),char(10),''),char(13),''),'"','') as EncEligibilityStatus
+,replace(replace(replace(cast(a.EligibilityMessage as varchar(max)),char(10),''),char(13),''),'"','') as EligibilityMessage
+,replace(replace(replace(cast(a.InsuredAltLName as varchar(max)),char(10),''),char(13),''),'"','') as InsuredAltLName
+,replace(replace(replace(cast(a.InsuredAltFName as varchar(max)),char(10),''),char(13),''),'"','') as InsuredAltFName
+,replace(replace(replace(cast(a.InsuredAltMiddleInitial as varchar(max)),char(10),''),char(13),''),'"','') as InsuredAltMiddleInitial
+,replace(replace(replace(cast(a.notes as varchar(max)),char(10),''),char(13),''),'"','') as notes
+,replace(replace(replace(cast(a.PatientAltLName as varchar(max)),char(10),''),char(13),''),'"','') as PatientAltLName
+,replace(replace(replace(cast(a.PatientAltFName as varchar(max)),char(10),''),char(13),''),'"','') as PatientAltFName
+,replace(replace(replace(cast(a.PatientAltMiddleInitial as varchar(max)),char(10),''),char(13),''),'"','') as PatientAltMiddleInitial
+,replace(replace(replace(cast(a.SubscriberSecondaryIdentifier as varchar(max)),char(10),''),char(13),''),'"','') as SubscriberSecondaryIdentifier
+,replace(replace(replace(cast(a.SubscriberIdentificationQualifier as varchar(max)),char(10),''),char(13),''),'"','') as SubscriberIdentificationQualifier
+,replace(replace(replace(cast(a.DentalIns as varchar(max)),char(10),''),char(13),''),'"','') as DentalIns
+,replace(replace(replace(cast(a.MedicaidSubId as varchar(max)),char(10),''),char(13),''),'"','') as MedicaidSubId
+,replace(replace(replace(cast(a.SubscriberSecondaryInvRef as varchar(max)),char(10),''),char(13),''),'"','') as SubscriberSecondaryInvRef
+,replace(replace(replace(cast(a.SubscriberSecondaryInvRefQualifier as varchar(max)),char(10),''),char(13),''),'"','') as SubscriberSecondaryInvRefQualifier
+,replace(replace(replace(cast(a.InsuranceImgName as varchar(max)),char(10),''),char(13),''),'"','') as InsuranceImgName
+,replace(replace(replace(cast(a.MultipleCoPay as varchar(max)),char(10),''),char(13),''),'"','') as MultipleCoPay
+,replace(replace(replace(cast(a.PCPCoPay as varchar(max)),char(10),''),char(13),''),'"','') as PCPCoPay
+,replace(replace(replace(cast(a.SpecialistCoPay as varchar(max)),char(10),''),char(13),''),'"','') as SpecialistCoPay
+,replace(replace(replace(cast(a.OtherCoPay as varchar(max)),char(10),''),char(13),''),'"','') as OtherCoPay
+,replace(replace(replace(cast(a.CoInsurance as varchar(max)),char(10),''),char(13),''),'"','') as CoInsurance
+,replace(replace(replace(cast(a.hl7id as varchar(max)),char(10),''),char(13),''),'"','') as hl7id
+
+
+from insurancedetail a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.id as varchar(max)),char(10),''),char(13),''),'"','') as id
+,replace(replace(replace(cast(a.patientid as varchar(max)),char(10),''),char(13),''),'"','') as patientid
+,replace(replace(replace(cast(a.truserid as varchar(max)),char(10),''),char(13),''),'"','') as truserid
+,convert(varchar, cast(a.modified_date as datetime), 20) as modified_date
+,convert(varchar, cast(a.modified_time as datetime), 20) as modified_time
+,convert(varchar, cast(a.timestamp as datetime), 20) as timestamp
+,replace(replace(replace(cast(a.status as varchar(max)),char(10),''),char(13),''),'"','') as status
+,replace(replace(replace(cast(a.truser_name as varchar(max)),char(10),''),char(13),''),'"','') as truser_name
+,replace(replace(replace(cast(a.action as varchar(max)),char(10),''),char(13),''),'"','') as action
+,replace(replace(replace(cast(a.dataelementid as varchar(max)),char(10),''),char(13),''),'"','') as dataelementid
+,replace(replace(replace(cast(a.logptspecificid as varchar(max)),char(10),''),char(13),''),'"','') as logptspecificid
+,replace(replace(replace(cast(a.itemid as varchar(max)),char(10),''),char(13),''),'"','') as itemid
+,replace(replace(replace(cast(a.encounterid as varchar(max)),char(10),''),char(13),''),'"','') as encounterid
+,replace(replace(replace(cast(a.data as varchar(max)),char(10),''),char(13),''),'"','') as data
+
+
+from logptspecificdata a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.ReportId as varchar(max)),char(10),''),char(13),''),'"','') as ReportId
+,replace(replace(replace(cast(a.EncounterId as varchar(max)),char(10),''),char(13),''),'"','') as EncounterId
+,replace(replace(replace(cast(a.ItemId as varchar(max)),char(10),''),char(13),''),'"','') as ItemId
+,replace(replace(replace(cast(a.reason as varchar(max)),char(10),''),char(13),''),'"','') as reason
+,replace(replace(replace(cast(a.received as varchar(max)),char(10),''),char(13),''),'"','') as received
+,replace(replace(replace(cast(a.result as varchar(max)),char(10),''),char(13),''),'"','') as result
+,convert(varchar, cast(a.ResultDate as datetime), 20) as ResultDate
+,replace(replace(replace(cast(a.Notes as varchar(max)),char(10),''),char(13),''),'"','') as Notes
+,replace(replace(replace(cast(a.status as varchar(max)),char(10),''),char(13),''),'"','') as status
+,replace(replace(replace(cast(a.Addendum as varchar(max)),char(10),''),char(13),''),'"','') as Addendum
+,replace(replace(replace(cast(a.priority as varchar(max)),char(10),''),char(13),''),'"','') as priority
+,replace(replace(replace(cast(a.assignedToId as varchar(max)),char(10),''),char(13),''),'"','') as assignedToId
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+,replace(replace(replace(cast(a.vmid as varchar(max)),char(10),''),char(13),''),'"','') as vmid
+,replace(replace(replace(cast(a.Type as varchar(max)),char(10),''),char(13),''),'"','') as Type
+,replace(replace(replace(cast(a.Billable as varchar(max)),char(10),''),char(13),''),'"','') as Billable
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.fromLabId as varchar(max)),char(10),''),char(13),''),'"','') as fromLabId
+,convert(varchar, cast(a.collDate as datetime), 20) as collDate
+,convert(varchar, cast(a.collTime as datetime), 20) as collTime
+,replace(replace(replace(cast(a.tolabid as varchar(max)),char(10),''),char(13),''),'"','') as tolabid
+,replace(replace(replace(cast(a.billClient as varchar(max)),char(10),''),char(13),''),'"','') as billClient
+,replace(replace(replace(cast(a.collSource as varchar(max)),char(10),''),char(13),''),'"','') as collSource
+,replace(replace(replace(cast(a.collVolume as varchar(max)),char(10),''),char(13),''),'"','') as collVolume
+,replace(replace(replace(cast(a.collUnits as varchar(max)),char(10),''),char(13),''),'"','') as collUnits
+,replace(replace(replace(cast(a.clinicalInfo as varchar(max)),char(10),''),char(13),''),'"','') as clinicalInfo
+,replace(replace(replace(cast(a.fasting as varchar(max)),char(10),''),char(13),''),'"','') as fasting
+,replace(replace(replace(cast(a.billType as varchar(max)),char(10),''),char(13),''),'"','') as billType
+,replace(replace(replace(cast(a.PregId as varchar(max)),char(10),''),char(13),''),'"','') as PregId
+,replace(replace(replace(cast(a.OBFLabType as varchar(max)),char(10),''),char(13),''),'"','') as OBFLabType
+,replace(replace(replace(cast(a.publishToPortal as varchar(max)),char(10),''),char(13),''),'"','') as publishToPortal
+,replace(replace(replace(cast(a.commonNotesFlag as varchar(max)),char(10),''),char(13),''),'"','') as commonNotesFlag
+,replace(replace(replace(cast(a.futureflag as varchar(max)),char(10),''),char(13),''),'"','') as futureflag
+,replace(replace(replace(cast(a.prevencounterid as varchar(max)),char(10),''),char(13),''),'"','') as prevencounterid
+,replace(replace(replace(cast(a.ordencounterid as varchar(max)),char(10),''),char(13),''),'"','') as ordencounterid
+,convert(varchar, cast(a.FutureOrderDate as datetime), 20) as FutureOrderDate
+,replace(replace(replace(cast(a.ReviewedBy as varchar(max)),char(10),''),char(13),''),'"','') as ReviewedBy
+,convert(varchar, cast(a.ReviewedDate as datetime), 20) as ReviewedDate
+,convert(varchar, cast(a.ReviewedTime as datetime), 20) as ReviewedTime
+,convert(varchar, cast(a.transDate as datetime), 20) as transDate
+,convert(varchar, cast(a.transTime as datetime), 20) as transTime
+,replace(replace(replace(cast(a.profileID as varchar(max)),char(10),''),char(13),''),'"','') as profileID
+,replace(replace(replace(cast(a.IntNotes as varchar(max)),char(10),''),char(13),''),'"','') as IntNotes
+,replace(replace(replace(cast(a.HMFlag as varchar(max)),char(10),''),char(13),''),'"','') as HMFlag
+,replace(replace(replace(cast(a.ccResultToList as varchar(max)),char(10),''),char(13),''),'"','') as ccResultToList
+,replace(replace(replace(cast(a.ccResultToListIds as varchar(max)),char(10),''),char(13),''),'"','') as ccResultToListIds
+,replace(replace(replace(cast(a.HasACopy as varchar(max)),char(10),''),char(13),''),'"','') as HasACopy
+,replace(replace(replace(cast(a.ResultStatus as varchar(max)),char(10),''),char(13),''),'"','') as ResultStatus
+,replace(replace(replace(cast(a.collDescription as varchar(max)),char(10),''),char(13),''),'"','') as collDescription
+,replace(replace(replace(cast(a.ordPhyName as varchar(max)),char(10),''),char(13),''),'"','') as ordPhyName
+,replace(replace(replace(cast(a.ordPhyId as varchar(max)),char(10),''),char(13),''),'"','') as ordPhyId
+,replace(replace(replace(cast(a.refPhyFlag as varchar(max)),char(10),''),char(13),''),'"','') as refPhyFlag
+,replace(replace(replace(cast(a.labrefid as varchar(max)),char(10),''),char(13),''),'"','') as labrefid
+,convert(varchar, cast(a.resultime as datetime), 20) as resultime
+,replace(replace(replace(cast(a.PSEHold as varchar(max)),char(10),''),char(13),''),'"','') as PSEHold
+,replace(replace(replace(cast(a.emailSent as varchar(max)),char(10),''),char(13),''),'"','') as emailSent
+,convert(varchar, cast(a.dtEmailSent as datetime), 20) as dtEmailSent
+,replace(replace(replace(cast(a.ActualFasting as varchar(max)),char(10),''),char(13),''),'"','') as ActualFasting
+,replace(replace(replace(cast(a.OrderInstructions as varchar(max)),char(10),''),char(13),''),'"','') as OrderInstructions
+,replace(replace(replace(cast(a.hl7id1 as varchar(max)),char(10),''),char(13),''),'"','') as hl7id1
+,replace(replace(replace(cast(a.hl7id2 as varchar(max)),char(10),''),char(13),''),'"','') as hl7id2
+,replace(replace(replace(cast(a.hl7id3 as varchar(max)),char(10),''),char(13),''),'"','') as hl7id3
+,replace(replace(replace(cast(a.newcol as varchar(max)),char(10),''),char(13),''),'"','') as newcol
+,replace(replace(replace(cast(a.cancelled as varchar(max)),char(10),''),char(13),''),'"','') as cancelled
+,replace(replace(replace(cast(a.resultSentStatus as varchar(max)),char(10),''),char(13),''),'"','') as resultSentStatus
+,replace(replace(replace(cast(a.performedby as varchar(max)),char(10),''),char(13),''),'"','') as performedby
+,replace(replace(replace(cast(a.approvalstatus as varchar(max)),char(10),''),char(13),''),'"','') as approvalstatus
+,replace(replace(replace(cast(a.SendVmsg as varchar(max)),char(10),''),char(13),''),'"','') as SendVmsg
+
+
+from labdata a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.reportId as varchar(max)),char(10),''),char(13),''),'"','') as reportId
+,convert(varchar, cast(a.HL7ResultDate as datetime), 20) as HL7ResultDate
+,convert(varchar, cast(a.HL7ResultTime as datetime), 20) as HL7ResultTime
+,replace(replace(replace(cast(a.urllink as varchar(max)),char(10),''),char(13),''),'"','') as urllink
+,replace(replace(replace(cast(a.interfacestatus as varchar(max)),char(10),''),char(13),''),'"','') as interfacestatus
+,replace(replace(replace(cast(a.processedresult as varchar(max)),char(10),''),char(13),''),'"','') as processedresult
+,replace(replace(replace(cast(a.VisitType as varchar(max)),char(10),''),char(13),''),'"','') as VisitType
+,convert(varchar, cast(a.DateReceived as datetime), 20) as DateReceived
+,convert(varchar, cast(a.resultrcvddatetime as datetime), 20) as resultrcvddatetime
+,replace(replace(replace(cast(a.MigrateFlag as varchar(max)),char(10),''),char(13),''),'"','') as MigrateFlag
+,replace(replace(replace(cast(a.SentOutReqNo as varchar(max)),char(10),''),char(13),''),'"','') as SentOutReqNo
+,replace(replace(replace(cast(a.facilityId as varchar(max)),char(10),''),char(13),''),'"','') as facilityId
+,convert(varchar, cast(a.specimenReceiveTime as datetime), 20) as specimenReceiveTime
+,convert(varchar, cast(a.specimenReceiveDate as datetime), 20) as specimenReceiveDate
+,replace(replace(replace(cast(a.isPACSLinkEnabled as varchar(max)),char(10),''),char(13),''),'"','') as isPACSLinkEnabled
+,convert(varchar, cast(a.observationDate as datetime), 20) as observationDate
+,convert(varchar, cast(a.observationTime as datetime), 20) as observationTime
+,replace(replace(replace(cast(a.SpecimenActionCode as varchar(max)),char(10),''),char(13),''),'"','') as SpecimenActionCode
+,replace(replace(replace(cast(a.PlacerGroupNumberID as varchar(max)),char(10),''),char(13),''),'"','') as PlacerGroupNumberID
+,replace(replace(replace(cast(a.PatientAltRace as varchar(max)),char(10),''),char(13),''),'"','') as PatientAltRace
+,replace(replace(replace(cast(a.bodysitecode as varchar(max)),char(10),''),char(13),''),'"','') as bodysitecode
+,replace(replace(replace(cast(a.ABNPrompted as varchar(max)),char(10),''),char(13),''),'"','') as ABNPrompted
+,replace(replace(replace(cast(a.ABNOption as varchar(max)),char(10),''),char(13),''),'"','') as ABNOption
+
+
+from labdataex a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.ID as varchar(max)),char(10),''),char(13),''),'"','') as ID
+,replace(replace(replace(cast(a.name as varchar(max)),char(10),''),char(13),''),'"','') as name
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+,replace(replace(replace(cast(a.LabId as varchar(max)),char(10),''),char(13),''),'"','') as LabId
+,replace(replace(replace(cast(a.labaddress as varchar(max)),char(10),''),char(13),''),'"','') as labaddress
+,replace(replace(replace(cast(a.labaddress2 as varchar(max)),char(10),''),char(13),''),'"','') as labaddress2
+,replace(replace(replace(cast(a.labcity as varchar(max)),char(10),''),char(13),''),'"','') as labcity
+,replace(replace(replace(cast(a.labstate as varchar(max)),char(10),''),char(13),''),'"','') as labstate
+,replace(replace(replace(cast(a.labzip as varchar(max)),char(10),''),char(13),''),'"','') as labzip
+,replace(replace(replace(cast(a.labphone as varchar(max)),char(10),''),char(13),''),'"','') as labphone
+,replace(replace(replace(cast(a.labfax as varchar(max)),char(10),''),char(13),''),'"','') as labfax
+,replace(replace(replace(cast(a.labemail as varchar(max)),char(10),''),char(13),''),'"','') as labemail
+,replace(replace(replace(cast(a.interfaceConfigured as varchar(max)),char(10),''),char(13),''),'"','') as interfaceConfigured
+,replace(replace(replace(cast(a.sendoutboundresult as varchar(max)),char(10),''),char(13),''),'"','') as sendoutboundresult
+,replace(replace(replace(cast(a.labcompanyType as varchar(max)),char(10),''),char(13),''),'"','') as labcompanyType
+,replace(replace(replace(cast(a.inHouseLab as varchar(max)),char(10),''),char(13),''),'"','') as inHouseLab
+,replace(replace(replace(cast(a.ResultLabId as varchar(max)),char(10),''),char(13),''),'"','') as ResultLabId
+,replace(replace(replace(cast(a.labCode as varchar(max)),char(10),''),char(13),''),'"','') as labCode
+,replace(replace(replace(cast(a.superhubInterfaceID as varchar(max)),char(10),''),char(13),''),'"','') as superhubInterfaceID
+
+
+from lablist a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.LOINC_NUM as varchar(max)),char(10),''),char(13),''),'"','') as LOINC_NUM
+,replace(replace(replace(cast(a.COMPONENT as varchar(max)),char(10),''),char(13),''),'"','') as COMPONENT
+,replace(replace(replace(cast(a.PROPERTY as varchar(max)),char(10),''),char(13),''),'"','') as PROPERTY
+,replace(replace(replace(cast(a.TIME_ASPCT as varchar(max)),char(10),''),char(13),''),'"','') as TIME_ASPCT
+,replace(replace(replace(cast(a.SYSTEM as varchar(max)),char(10),''),char(13),''),'"','') as SYSTEM
+,replace(replace(replace(cast(a.SCALE_TYP as varchar(max)),char(10),''),char(13),''),'"','') as SCALE_TYP
+,replace(replace(replace(cast(a.METHOD_TYP as varchar(max)),char(10),''),char(13),''),'"','') as METHOD_TYP
+,replace(replace(replace(cast(a.RELAT_NMS as varchar(max)),char(10),''),char(13),''),'"','') as RELAT_NMS
+,replace(replace(replace(cast(a.CLASS as varchar(max)),char(10),''),char(13),''),'"','') as CLASS
+,replace(replace(replace(cast(a.SOURCE as varchar(max)),char(10),''),char(13),''),'"','') as SOURCE
+,replace(replace(replace(cast(a.DT_LAST_CH as varchar(max)),char(10),''),char(13),''),'"','') as DT_LAST_CH
+,replace(replace(replace(cast(a.CHNG_TYPE as varchar(max)),char(10),''),char(13),''),'"','') as CHNG_TYPE
+,replace(replace(replace(cast(a.COMMENTS as varchar(max)),char(10),''),char(13),''),'"','') as COMMENTS
+,replace(replace(replace(cast(a.ANSWERLIST as varchar(max)),char(10),''),char(13),''),'"','') as ANSWERLIST
+,replace(replace(replace(cast(a.STATUS as varchar(max)),char(10),''),char(13),''),'"','') as STATUS
+,replace(replace(replace(cast(a.MAP_TO as varchar(max)),char(10),''),char(13),''),'"','') as MAP_TO
+,replace(replace(replace(cast(a.SCOPE as varchar(max)),char(10),''),char(13),''),'"','') as SCOPE
+,replace(replace(replace(cast(a.CONSUMER_NAME as varchar(max)),char(10),''),char(13),''),'"','') as CONSUMER_NAME
+,replace(replace(replace(cast(a.IPCC_UNITS as varchar(max)),char(10),''),char(13),''),'"','') as IPCC_UNITS
+,replace(replace(replace(cast(a.REFERENCE as varchar(max)),char(10),''),char(13),''),'"','') as REFERENCE
+,replace(replace(replace(cast(a.EXACT_CMP_SY as varchar(max)),char(10),''),char(13),''),'"','') as EXACT_CMP_SY
+,replace(replace(replace(cast(a.MOLAR_MASS as varchar(max)),char(10),''),char(13),''),'"','') as MOLAR_MASS
+,replace(replace(replace(cast(a.CLASSTYPE as varchar(max)),char(10),''),char(13),''),'"','') as CLASSTYPE
+,replace(replace(replace(cast(a.FORMULA as varchar(max)),char(10),''),char(13),''),'"','') as FORMULA
+,replace(replace(replace(cast(a.SPECIES as varchar(max)),char(10),''),char(13),''),'"','') as SPECIES
+,replace(replace(replace(cast(a.EXMPL_ANSWERS as varchar(max)),char(10),''),char(13),''),'"','') as EXMPL_ANSWERS
+,replace(replace(replace(cast(a.ACSSYM as varchar(max)),char(10),''),char(13),''),'"','') as ACSSYM
+,replace(replace(replace(cast(a.BASE_NAME as varchar(max)),char(10),''),char(13),''),'"','') as BASE_NAME
+,replace(replace(replace(cast(a.FINAL as varchar(max)),char(10),''),char(13),''),'"','') as FINAL
+,replace(replace(replace(cast(a.NAACCR_ID as varchar(max)),char(10),''),char(13),''),'"','') as NAACCR_ID
+,replace(replace(replace(cast(a.CODE_TABLE as varchar(max)),char(10),''),char(13),''),'"','') as CODE_TABLE
+,replace(replace(replace(cast(a.SETROOT as varchar(max)),char(10),''),char(13),''),'"','') as SETROOT
+,replace(replace(replace(cast(a.PanelElements as varchar(max)),char(10),''),char(13),''),'"','') as PanelElements
+,replace(replace(replace(cast(a.SURVEY_QUEST_TEXT as varchar(max)),char(10),''),char(13),''),'"','') as SURVEY_QUEST_TEXT
+,replace(replace(replace(cast(a.SURVEY_QUEST_SRC as varchar(max)),char(10),''),char(13),''),'"','') as SURVEY_QUEST_SRC
+,replace(replace(replace(cast(a.UnitsRequired as varchar(max)),char(10),''),char(13),''),'"','') as UnitsRequired
+,replace(replace(replace(cast(a.SUBMITTED_UNITS as varchar(max)),char(10),''),char(13),''),'"','') as SUBMITTED_UNITS
+,replace(replace(replace(cast(a.RelatedNames2 as varchar(max)),char(10),''),char(13),''),'"','') as RelatedNames2
+,replace(replace(replace(cast(a.SHORTNAME as varchar(max)),char(10),''),char(13),''),'"','') as SHORTNAME
+,replace(replace(replace(cast(a.ORDER_OBS as varchar(max)),char(10),''),char(13),''),'"','') as ORDER_OBS
+,replace(replace(replace(cast(a.CDISC_COMMON_TESTS as varchar(max)),char(10),''),char(13),''),'"','') as CDISC_COMMON_TESTS
+,replace(replace(replace(cast(a.HL7_FIELD_SUBFIELD_ID as varchar(max)),char(10),''),char(13),''),'"','') as HL7_FIELD_SUBFIELD_ID
+,replace(replace(replace(cast(a.EXTERNAL_COPYRIGHT_NOTICE as varchar(max)),char(10),''),char(13),''),'"','') as EXTERNAL_COPYRIGHT_NOTICE
+,replace(replace(replace(cast(a.UpdatedBy as varchar(max)),char(10),''),char(13),''),'"','') as UpdatedBy
+,convert(varchar, cast(a.UpdatedTime as datetime), 20) as UpdatedTime
+,replace(replace(replace(cast(a.deleteflag as varchar(max)),char(10),''),char(13),''),'"','') as deleteflag
+,replace(replace(replace(cast(a.EXAMPLE_UNITS as varchar(max)),char(10),''),char(13),''),'"','') as EXAMPLE_UNITS
+,replace(replace(replace(cast(a.INPC_PERCENTAGE as varchar(max)),char(10),''),char(13),''),'"','') as INPC_PERCENTAGE
+,replace(replace(replace(cast(a.LONG_COMMON_NAME as varchar(max)),char(10),''),char(13),''),'"','') as LONG_COMMON_NAME
+,replace(replace(replace(cast(a.HL7_V2_DATATYPE as varchar(max)),char(10),''),char(13),''),'"','') as HL7_V2_DATATYPE
+,replace(replace(replace(cast(a.HL7_V3_DATATYPE as varchar(max)),char(10),''),char(13),''),'"','') as HL7_V3_DATATYPE
+,replace(replace(replace(cast(a.CURATED_RANGE_AND_UNITS as varchar(max)),char(10),''),char(13),''),'"','') as CURATED_RANGE_AND_UNITS
+,replace(replace(replace(cast(a.DOCUMENT_SECTION as varchar(max)),char(10),''),char(13),''),'"','') as DOCUMENT_SECTION
+,replace(replace(replace(cast(a.DEFINITION_DESCRIPTION_HELP as varchar(max)),char(10),''),char(13),''),'"','') as DEFINITION_DESCRIPTION_HELP
+,replace(replace(replace(cast(a.EXAMPLE_UCUM_UNITS as varchar(max)),char(10),''),char(13),''),'"','') as EXAMPLE_UCUM_UNITS
+,replace(replace(replace(cast(a.EXAMPLE_SI_UCUM_UNITS as varchar(max)),char(10),''),char(13),''),'"','') as EXAMPLE_SI_UCUM_UNITS
+,replace(replace(replace(cast(a.STATUS_REASON as varchar(max)),char(10),''),char(13),''),'"','') as STATUS_REASON
+,replace(replace(replace(cast(a.STATUS_TEXT as varchar(max)),char(10),''),char(13),''),'"','') as STATUS_TEXT
+
+
+from loincmaster a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.UserId as varchar(max)),char(10),''),char(13),''),'"','') as UserId
+,replace(replace(replace(cast(a.Msg as varchar(max)),char(10),''),char(13),''),'"','') as Msg
+,replace(replace(replace(cast(a.Comments as varchar(max)),char(10),''),char(13),''),'"','') as Comments
+,replace(replace(replace(cast(a.Discussion as varchar(max)),char(10),''),char(13),''),'"','') as Discussion
+,replace(replace(replace(cast(a.StatusFlag as varchar(max)),char(10),''),char(13),''),'"','') as StatusFlag
+,replace(replace(replace(cast(a.Status as varchar(max)),char(10),''),char(13),''),'"','') as Status
+,convert(varchar, cast(a.CreateDate as datetime), 20) as CreateDate
+,convert(varchar, cast(a.ModifyDate as datetime), 20) as ModifyDate
+
+
+from maintenance a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.OldRxId as varchar(max)),char(10),''),char(13),''),'"','') as OldRxId
+,replace(replace(replace(cast(a.Prop as varchar(max)),char(10),''),char(13),''),'"','') as Prop
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+
+
+from oldrxdetail a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.OldRxId as varchar(max)),char(10),''),char(13),''),'"','') as OldRxId
+,replace(replace(replace(cast(a.ItemId as varchar(max)),char(10),''),char(13),''),'"','') as ItemId
+,replace(replace(replace(cast(a.MedicineName as varchar(max)),char(10),''),char(13),''),'"','') as MedicineName
+,replace(replace(replace(cast(a.encounterId as varchar(max)),char(10),''),char(13),''),'"','') as encounterId
+,replace(replace(replace(cast(a.PatientsFlag as varchar(max)),char(10),''),char(13),''),'"','') as PatientsFlag
+,replace(replace(replace(cast(a.DoctorsFlag as varchar(max)),char(10),''),char(13),''),'"','') as DoctorsFlag
+,replace(replace(replace(cast(a.Refill as varchar(max)),char(10),''),char(13),''),'"','') as Refill
+,replace(replace(replace(cast(a.AssessId as varchar(max)),char(10),''),char(13),''),'"','') as AssessId
+,replace(replace(replace(cast(a.ndc_code as varchar(max)),char(10),''),char(13),''),'"','') as ndc_code
+,replace(replace(replace(cast(a.FollowUpId as varchar(max)),char(10),''),char(13),''),'"','') as FollowUpId
+,convert(varchar, cast(a.StartDate as datetime), 20) as StartDate
+,replace(replace(replace(cast(a.PreparedBy as varchar(max)),char(10),''),char(13),''),'"','') as PreparedBy
+,replace(replace(replace(cast(a.DaysLeftAdjustNumber as varchar(max)),char(10),''),char(13),''),'"','') as DaysLeftAdjustNumber
+,replace(replace(replace(cast(a.awp as varchar(max)),char(10),''),char(13),''),'"','') as awp
+,replace(replace(replace(cast(a.awup as varchar(max)),char(10),''),char(13),''),'"','') as awup
+,replace(replace(replace(cast(a.RightPane_DLAN as varchar(max)),char(10),''),char(13),''),'"','') as RightPane_DLAN
+,convert(varchar, cast(a.StopDate as datetime), 20) as StopDate
+,replace(replace(replace(cast(a.rxNotes as varchar(max)),char(10),''),char(13),''),'"','') as rxNotes
+,replace(replace(replace(cast(a.rxSource as varchar(max)),char(10),''),char(13),''),'"','') as rxSource
+,replace(replace(replace(cast(a.rxSourceId as varchar(max)),char(10),''),char(13),''),'"','') as rxSourceId
+,replace(replace(replace(cast(a.rxkop as varchar(max)),char(10),''),char(13),''),'"','') as rxkop
+,replace(replace(replace(cast(a.rxDrugSource as varchar(max)),char(10),''),char(13),''),'"','') as rxDrugSource
+,replace(replace(replace(cast(a.RxOrderNo as varchar(max)),char(10),''),char(13),''),'"','') as RxOrderNo
+,replace(replace(replace(cast(a.PreparedById as varchar(max)),char(10),''),char(13),''),'"','') as PreparedById
+
+
+from oldrxmain a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterID as varchar(max)),char(10),''),char(13),''),'"','') as encounterID
+,replace(replace(replace(cast(a.catID as varchar(max)),char(10),''),char(13),''),'"','') as catID
+,replace(replace(replace(cast(a.itemID as varchar(max)),char(10),''),char(13),''),'"','') as itemID
+,replace(replace(replace(cast(a.propID as varchar(max)),char(10),''),char(13),''),'"','') as propID
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+
+
+from preventive a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.LogID as varchar(max)),char(10),''),char(13),''),'"','') as LogID
+,replace(replace(replace(cast(a.LoginID as varchar(max)),char(10),''),char(13),''),'"','') as LoginID
+,replace(replace(replace(cast(a.DoctorID as varchar(max)),char(10),''),char(13),''),'"','') as DoctorID
+,replace(replace(replace(cast(a.PatientID as varchar(max)),char(10),''),char(13),''),'"','') as PatientID
+,replace(replace(replace(cast(a.EncounterID as varchar(max)),char(10),''),char(13),''),'"','') as EncounterID
+,replace(replace(replace(cast(a.PrintData as varchar(max)),char(10),''),char(13),''),'"','') as PrintData
+,convert(varchar, cast(a.PrintDate as datetime), 20) as PrintDate
+,replace(replace(replace(cast(a.PrintType as varchar(max)),char(10),''),char(13),''),'"','') as PrintType
+,replace(replace(replace(cast(a.PrintTransaction as varchar(max)),char(10),''),char(13),''),'"','') as PrintTransaction
+,replace(replace(replace(cast(a.RxList as varchar(max)),char(10),''),char(13),''),'"','') as RxList
+,replace(replace(replace(cast(a.PrintLogStatus as varchar(max)),char(10),''),char(13),''),'"','') as PrintLogStatus
+,replace(replace(replace(cast(a.PrintLogBatch as varchar(max)),char(10),''),char(13),''),'"','') as PrintLogBatch
+
+
+from printlogs a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.patientId as varchar(max)),char(10),''),char(13),''),'"','') as patientId
+,replace(replace(replace(cast(a.encounterId as varchar(max)),char(10),''),char(13),''),'"','') as encounterId
+,replace(replace(replace(cast(a.asmtId as varchar(max)),char(10),''),char(13),''),'"','') as asmtId
+,replace(replace(replace(cast(a.specify as varchar(max)),char(10),''),char(13),''),'"','') as specify
+,replace(replace(replace(cast(a.notes as varchar(max)),char(10),''),char(13),''),'"','') as notes
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+,replace(replace(replace(cast(a.onsetdate as varchar(max)),char(10),''),char(13),''),'"','') as onsetdate
+,replace(replace(replace(cast(a.userid as varchar(max)),char(10),''),char(13),''),'"','') as userid
+,replace(replace(replace(cast(a.logdate as varchar(max)),char(10),''),char(13),''),'"','') as logdate
+,replace(replace(replace(cast(a.inactiveFlag as varchar(max)),char(10),''),char(13),''),'"','') as inactiveFlag
+,replace(replace(replace(cast(a.WUStatus as varchar(max)),char(10),''),char(13),''),'"','') as WUStatus
+,replace(replace(replace(cast(a.condition as varchar(max)),char(10),''),char(13),''),'"','') as condition
+,replace(replace(replace(cast(a.SlNo as varchar(max)),char(10),''),char(13),''),'"','') as SlNo
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.Risk as varchar(max)),char(10),''),char(13),''),'"','') as Risk
+,replace(replace(replace(cast(a.AddedDate as varchar(max)),char(10),''),char(13),''),'"','') as AddedDate
+,replace(replace(replace(cast(a.ProblemType as varchar(max)),char(10),''),char(13),''),'"','') as ProblemType
+,replace(replace(replace(cast(a.Resolved as varchar(max)),char(10),''),char(13),''),'"','') as Resolved
+,replace(replace(replace(cast(a.resolvedon as varchar(max)),char(10),''),char(13),''),'"','') as resolvedon
+,replace(replace(replace(cast(a.SNOMED as varchar(max)),char(10),''),char(13),''),'"','') as SNOMED
+,replace(replace(replace(cast(a.SNOMEDDesc as varchar(max)),char(10),''),char(13),''),'"','') as SNOMEDDesc
+,replace(replace(replace(cast(a.SNOMEDDescID as varchar(max)),char(10),''),char(13),''),'"','') as SNOMEDDescID
+
+
+from problemlist a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.PatientId as varchar(max)),char(10),''),char(13),''),'"','') as PatientId
+,replace(replace(replace(cast(a.NKPFlag as varchar(max)),char(10),''),char(13),''),'"','') as NKPFlag
+,convert(varchar, cast(a.NKPDate as datetime), 20) as NKPDate
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+
+
+from problemlist_ext a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterId as varchar(max)),char(10),''),char(13),''),'"','') as encounterId
+,replace(replace(replace(cast(a.catID as varchar(max)),char(10),''),char(13),''),'"','') as catID
+,replace(replace(replace(cast(a.itemID as varchar(max)),char(10),''),char(13),''),'"','') as itemID
+,replace(replace(replace(cast(a.propID as varchar(max)),char(10),''),char(13),''),'"','') as propID
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.VALUE2 as varchar(max)),char(10),''),char(13),''),'"','') as VALUE2
+
+
+from procedurespl a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterID as varchar(max)),char(10),''),char(13),''),'"','') as encounterID
+,replace(replace(replace(cast(a.summary as varchar(max)),char(10),''),char(13),''),'"','') as summary
+,replace(replace(replace(cast(a.xslId as varchar(max)),char(10),''),char(13),''),'"','') as xslId
+,replace(replace(replace(cast(a.unlocked as varchar(max)),char(10),''),char(13),''),'"','') as unlocked
+,convert(varchar, cast(a.ModifyDate as datetime), 20) as ModifyDate
+
+
+from progressnotes a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.propID as varchar(max)),char(10),''),char(13),''),'"','') as propID
+,replace(replace(replace(cast(a.name as varchar(max)),char(10),''),char(13),''),'"','') as name
+,replace(replace(replace(cast(a.description as varchar(max)),char(10),''),char(13),''),'"','') as description
+,replace(replace(replace(cast(a.type as varchar(max)),char(10),''),char(13),''),'"','') as type
+,replace(replace(replace(cast(a.viewtype as varchar(max)),char(10),''),char(13),''),'"','') as viewtype
+,replace(replace(replace(cast(a.size as varchar(max)),char(10),''),char(13),''),'"','') as size
+,replace(replace(replace(cast(a.displayName as varchar(max)),char(10),''),char(13),''),'"','') as displayName
+,replace(replace(replace(cast(a.pdetailID as varchar(max)),char(10),''),char(13),''),'"','') as pdetailID
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.delPropFlag as varchar(max)),char(10),''),char(13),''),'"','') as delPropFlag
+,replace(replace(replace(cast(a.vmid as varchar(max)),char(10),''),char(13),''),'"','') as vmid
+
+
+from properties a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.PtId as varchar(max)),char(10),''),char(13),''),'"','') as PtId
+,replace(replace(replace(cast(a.Code as varchar(max)),char(10),''),char(13),''),'"','') as Code
+,replace(replace(replace(cast(a.Name as varchar(max)),char(10),''),char(13),''),'"','') as Name
+,replace(replace(replace(cast(a.MDate as varchar(max)),char(10),''),char(13),''),'"','') as MDate
+,replace(replace(replace(cast(a.delflag as varchar(max)),char(10),''),char(13),''),'"','') as delflag
+,replace(replace(replace(cast(a.displayindex as varchar(max)),char(10),''),char(13),''),'"','') as displayindex
+
+
+from pt_adv_directives a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.id as varchar(max)),char(10),''),char(13),''),'"','') as id
+,replace(replace(replace(cast(a.RefId as varchar(max)),char(10),''),char(13),''),'"','') as RefId
+,replace(replace(replace(cast(a.doctype as varchar(max)),char(10),''),char(13),''),'"','') as doctype
+,replace(replace(replace(cast(a.docId as varchar(max)),char(10),''),char(13),''),'"','') as docId
+
+
+from ref_attachments a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterID as varchar(max)),char(10),''),char(13),''),'"','') as encounterID
+,replace(replace(replace(cast(a.catID as varchar(max)),char(10),''),char(13),''),'"','') as catID
+,replace(replace(replace(cast(a.itemID as varchar(max)),char(10),''),char(13),''),'"','') as itemID
+,replace(replace(replace(cast(a.propID as varchar(max)),char(10),''),char(13),''),'"','') as propID
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+
+
+from social a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.catId as varchar(max)),char(10),''),char(13),''),'"','') as catId
+,replace(replace(replace(cast(a.itemId as varchar(max)),char(10),''),char(13),''),'"','') as itemId
+,replace(replace(replace(cast(a.name as varchar(max)),char(10),''),char(13),''),'"','') as name
+,replace(replace(replace(cast(a.type as varchar(max)),char(10),''),char(13),''),'"','') as type
+,replace(replace(replace(cast(a.mandatory as varchar(max)),char(10),''),char(13),''),'"','') as mandatory
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+,replace(replace(replace(cast(a.parentId as varchar(max)),char(10),''),char(13),''),'"','') as parentId
+,replace(replace(replace(cast(a.triggerflag as varchar(max)),char(10),''),char(13),''),'"','') as triggerflag
+,replace(replace(replace(cast(a.itemType as varchar(max)),char(10),''),char(13),''),'"','') as itemType
+,replace(replace(replace(cast(a.nodeLevel as varchar(max)),char(10),''),char(13),''),'"','') as nodeLevel
+,replace(replace(replace(cast(a.tblName as varchar(max)),char(10),''),char(13),''),'"','') as tblName
+,replace(replace(replace(cast(a.chartDisplay as varchar(max)),char(10),''),char(13),''),'"','') as chartDisplay
+,replace(replace(replace(cast(a.multiSelect as varchar(max)),char(10),''),char(13),''),'"','') as multiSelect
+,replace(replace(replace(cast(a.IsSearchable as varchar(max)),char(10),''),char(13),''),'"','') as IsSearchable
+,replace(replace(replace(cast(a.defaultValue as varchar(max)),char(10),''),char(13),''),'"','') as defaultValue
+,replace(replace(replace(cast(a.defaultValueId as varchar(max)),char(10),''),char(13),''),'"','') as defaultValueId
+,replace(replace(replace(cast(a.modifynotes as varchar(max)),char(10),''),char(13),''),'"','') as modifynotes
+,replace(replace(replace(cast(a.readonly as varchar(max)),char(10),''),char(13),''),'"','') as readonly
+,replace(replace(replace(cast(a.dropdown as varchar(max)),char(10),''),char(13),''),'"','') as dropdown
+
+
+from structdatadetail a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterId as varchar(max)),char(10),''),char(13),''),'"','') as encounterId
+,replace(replace(replace(cast(a.catId as varchar(max)),char(10),''),char(13),''),'"','') as catId
+,replace(replace(replace(cast(a.itemId as varchar(max)),char(10),''),char(13),''),'"','') as itemId
+,replace(replace(replace(cast(a.detailId as varchar(max)),char(10),''),char(13),''),'"','') as detailId
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+,replace(replace(replace(cast(a.valueId as varchar(max)),char(10),''),char(13),''),'"','') as valueId
+,replace(replace(replace(cast(a.notes as varchar(max)),char(10),''),char(13),''),'"','') as notes
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+,replace(replace(replace(cast(a.chartdisplay as varchar(max)),char(10),''),char(13),''),'"','') as chartdisplay
+
+
+from structexam a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterId as varchar(max)),char(10),''),char(13),''),'"','') as encounterId
+,replace(replace(replace(cast(a.catId as varchar(max)),char(10),''),char(13),''),'"','') as catId
+,replace(replace(replace(cast(a.itemId as varchar(max)),char(10),''),char(13),''),'"','') as itemId
+,replace(replace(replace(cast(a.detailId as varchar(max)),char(10),''),char(13),''),'"','') as detailId
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+,replace(replace(replace(cast(a.valueId as varchar(max)),char(10),''),char(13),''),'"','') as valueId
+,replace(replace(replace(cast(a.notes as varchar(max)),char(10),''),char(13),''),'"','') as notes
+,replace(replace(replace(cast(a.chartdisplay as varchar(max)),char(10),''),char(13),''),'"','') as chartdisplay
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+
+
+from structhpi a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.ReqID as varchar(max)),char(10),''),char(13),''),'"','') as ReqID
+,replace(replace(replace(cast(a.RxType as varchar(max)),char(10),''),char(13),''),'"','') as RxType
+,replace(replace(replace(cast(a.MessageID as varchar(max)),char(10),''),char(13),''),'"','') as MessageID
+,replace(replace(replace(cast(a.RelatedMessageID as varchar(max)),char(10),''),char(13),''),'"','') as RelatedMessageID
+,replace(replace(replace(cast(a.SentTo as varchar(max)),char(10),''),char(13),''),'"','') as SentTo
+,replace(replace(replace(cast(a.SentFrom as varchar(max)),char(10),''),char(13),''),'"','') as SentFrom
+,replace(replace(replace(cast(a.SentTime as varchar(max)),char(10),''),char(13),''),'"','') as SentTime
+,replace(replace(replace(cast(a.MessageText as varchar(max)),char(10),''),char(13),''),'"','') as MessageText
+,replace(replace(replace(cast(a.StatusDesc as varchar(max)),char(10),''),char(13),''),'"','') as StatusDesc
+,replace(replace(replace(cast(a.AttemptNo as varchar(max)),char(10),''),char(13),''),'"','') as AttemptNo
+,convert(varchar, cast(a.LastAttemptTimeStamp as datetime), 20) as LastAttemptTimeStamp
+,replace(replace(replace(cast(a.PatientID as varchar(max)),char(10),''),char(13),''),'"','') as PatientID
+,replace(replace(replace(cast(a.encounterID as varchar(max)),char(10),''),char(13),''),'"','') as encounterID
+,replace(replace(replace(cast(a.Patient_FName as varchar(max)),char(10),''),char(13),''),'"','') as Patient_FName
+,replace(replace(replace(cast(a.Patient_LName as varchar(max)),char(10),''),char(13),''),'"','') as Patient_LName
+,replace(replace(replace(cast(a.Patient_MName as varchar(max)),char(10),''),char(13),''),'"','') as Patient_MName
+,replace(replace(replace(cast(a.DateOfBirth as varchar(max)),char(10),''),char(13),''),'"','') as DateOfBirth
+,replace(replace(replace(cast(a.Sex as varchar(max)),char(10),''),char(13),''),'"','') as Sex
+,replace(replace(replace(cast(a.Ssn as varchar(max)),char(10),''),char(13),''),'"','') as Ssn
+,replace(replace(replace(cast(a.AddressLine1 as varchar(max)),char(10),''),char(13),''),'"','') as AddressLine1
+,replace(replace(replace(cast(a.AddressLine2 as varchar(max)),char(10),''),char(13),''),'"','') as AddressLine2
+,replace(replace(replace(cast(a.City as varchar(max)),char(10),''),char(13),''),'"','') as City
+,replace(replace(replace(cast(a.State as varchar(max)),char(10),''),char(13),''),'"','') as State
+,replace(replace(replace(cast(a.ZipCode as varchar(max)),char(10),''),char(13),''),'"','') as ZipCode
+,replace(replace(replace(cast(a.Patient_PrimaryPhone as varchar(max)),char(10),''),char(13),''),'"','') as Patient_PrimaryPhone
+,replace(replace(replace(cast(a.Patient_CellPhone as varchar(max)),char(10),''),char(13),''),'"','') as Patient_CellPhone
+,replace(replace(replace(cast(a.Patient_Fax as varchar(max)),char(10),''),char(13),''),'"','') as Patient_Fax
+,replace(replace(replace(cast(a.Patient_Email as varchar(max)),char(10),''),char(13),''),'"','') as Patient_Email
+,replace(replace(replace(cast(a.DoctorID as varchar(max)),char(10),''),char(13),''),'"','') as DoctorID
+,replace(replace(replace(cast(a.SPI as varchar(max)),char(10),''),char(13),''),'"','') as SPI
+,replace(replace(replace(cast(a.StateLicenseNumber as varchar(max)),char(10),''),char(13),''),'"','') as StateLicenseNumber
+,replace(replace(replace(cast(a.doc_ssn as varchar(max)),char(10),''),char(13),''),'"','') as doc_ssn
+,replace(replace(replace(cast(a.DEANo as varchar(max)),char(10),''),char(13),''),'"','') as DEANo
+,replace(replace(replace(cast(a.doc_FName as varchar(max)),char(10),''),char(13),''),'"','') as doc_FName
+,replace(replace(replace(cast(a.doc_LName as varchar(max)),char(10),''),char(13),''),'"','') as doc_LName
+,replace(replace(replace(cast(a.doc_MName as varchar(max)),char(10),''),char(13),''),'"','') as doc_MName
+,replace(replace(replace(cast(a.doc_suffix as varchar(max)),char(10),''),char(13),''),'"','') as doc_suffix
+,replace(replace(replace(cast(a.Speciality as varchar(max)),char(10),''),char(13),''),'"','') as Speciality
+,replace(replace(replace(cast(a.SpecialityCode as varchar(max)),char(10),''),char(13),''),'"','') as SpecialityCode
+,replace(replace(replace(cast(a.doc_AddressLine1 as varchar(max)),char(10),''),char(13),''),'"','') as doc_AddressLine1
+,replace(replace(replace(cast(a.doc_AddressLine2 as varchar(max)),char(10),''),char(13),''),'"','') as doc_AddressLine2
+,replace(replace(replace(cast(a.doc_City as varchar(max)),char(10),''),char(13),''),'"','') as doc_City
+,replace(replace(replace(cast(a.doc_State as varchar(max)),char(10),''),char(13),''),'"','') as doc_State
+,replace(replace(replace(cast(a.doc_Zipcode as varchar(max)),char(10),''),char(13),''),'"','') as doc_Zipcode
+,replace(replace(replace(cast(a.doc_Primaryphone as varchar(max)),char(10),''),char(13),''),'"','') as doc_Primaryphone
+,replace(replace(replace(cast(a.doc_Pagerno as varchar(max)),char(10),''),char(13),''),'"','') as doc_Pagerno
+,replace(replace(replace(cast(a.doc_Mobilephone as varchar(max)),char(10),''),char(13),''),'"','') as doc_Mobilephone
+,replace(replace(replace(cast(a.PharmacyID as varchar(max)),char(10),''),char(13),''),'"','') as PharmacyID
+,replace(replace(replace(cast(a.NCPDPID as varchar(max)),char(10),''),char(13),''),'"','') as NCPDPID
+,replace(replace(replace(cast(a.PharmacyName as varchar(max)),char(10),''),char(13),''),'"','') as PharmacyName
+,replace(replace(replace(cast(a.Pharmacy_AddressLine1 as varchar(max)),char(10),''),char(13),''),'"','') as Pharmacy_AddressLine1
+,replace(replace(replace(cast(a.Pharmacy_City as varchar(max)),char(10),''),char(13),''),'"','') as Pharmacy_City
+,replace(replace(replace(cast(a.Pharmacy_State as varchar(max)),char(10),''),char(13),''),'"','') as Pharmacy_State
+,replace(replace(replace(cast(a.Pharmacy_Zipcode as varchar(max)),char(10),''),char(13),''),'"','') as Pharmacy_Zipcode
+,replace(replace(replace(cast(a.Pharmacy_Phone as varchar(max)),char(10),''),char(13),''),'"','') as Pharmacy_Phone
+,replace(replace(replace(cast(a.Pharmacy_Fax as varchar(max)),char(10),''),char(13),''),'"','') as Pharmacy_Fax
+,replace(replace(replace(cast(a.Pharmacy_Email as varchar(max)),char(10),''),char(13),''),'"','') as Pharmacy_Email
+,replace(replace(replace(cast(a.DrugDescription as varchar(max)),char(10),''),char(13),''),'"','') as DrugDescription
+,replace(replace(replace(cast(a.ProductCode as varchar(max)),char(10),''),char(13),''),'"','') as ProductCode
+,replace(replace(replace(cast(a.ProductCodeQualifier as varchar(max)),char(10),''),char(13),''),'"','') as ProductCodeQualifier
+,replace(replace(replace(cast(a.DosageForm as varchar(max)),char(10),''),char(13),''),'"','') as DosageForm
+,replace(replace(replace(cast(a.Strength as varchar(max)),char(10),''),char(13),''),'"','') as Strength
+,replace(replace(replace(cast(a.StrengthUnits as varchar(max)),char(10),''),char(13),''),'"','') as StrengthUnits
+,replace(replace(replace(cast(a.DrugDBCode as varchar(max)),char(10),''),char(13),''),'"','') as DrugDBCode
+,replace(replace(replace(cast(a.DrugDBCodeQualifier as varchar(max)),char(10),''),char(13),''),'"','') as DrugDBCodeQualifier
+,replace(replace(replace(cast(a.Frequency as varchar(max)),char(10),''),char(13),''),'"','') as Frequency
+,replace(replace(replace(cast(a.duration as varchar(max)),char(10),''),char(13),''),'"','') as duration
+,replace(replace(replace(cast(a.Quantity as varchar(max)),char(10),''),char(13),''),'"','') as Quantity
+,replace(replace(replace(cast(a.Take as varchar(max)),char(10),''),char(13),''),'"','') as Take
+,replace(replace(replace(cast(a.Refills as varchar(max)),char(10),''),char(13),''),'"','') as Refills
+,replace(replace(replace(cast(a.SubsMedAllowed as varchar(max)),char(10),''),char(13),''),'"','') as SubsMedAllowed
+,replace(replace(replace(cast(a.Comments as varchar(max)),char(10),''),char(13),''),'"','') as Comments
+,replace(replace(replace(cast(a.XMLData as varchar(max)),char(10),''),char(13),''),'"','') as XMLData
+,replace(replace(replace(cast(a.XMLResponseData as varchar(max)),char(10),''),char(13),''),'"','') as XMLResponseData
+,replace(replace(replace(cast(a.RefillsQualifier as varchar(max)),char(10),''),char(13),''),'"','') as RefillsQualifier
+,replace(replace(replace(cast(a.bAsynMsgPostedToDoc as varchar(max)),char(10),''),char(13),''),'"','') as bAsynMsgPostedToDoc
+,replace(replace(replace(cast(a.bVerified as varchar(max)),char(10),''),char(13),''),'"','') as bVerified
+,replace(replace(replace(cast(a.ScriptVersion as varchar(max)),char(10),''),char(13),''),'"','') as ScriptVersion
+,replace(replace(replace(cast(a.SentBy as varchar(max)),char(10),''),char(13),''),'"','') as SentBy
+,replace(replace(replace(cast(a.RxhubId as varchar(max)),char(10),''),char(13),''),'"','') as RxhubId
+,replace(replace(replace(cast(a.RouteSource as varchar(max)),char(10),''),char(13),''),'"','') as RouteSource
+,replace(replace(replace(cast(a.Addressed as varchar(max)),char(10),''),char(13),''),'"','') as Addressed
+,replace(replace(replace(cast(a.AddressedBy as varchar(max)),char(10),''),char(13),''),'"','') as AddressedBy
+,replace(replace(replace(cast(a.PrescriberOrderNo as varchar(max)),char(10),''),char(13),''),'"','') as PrescriberOrderNo
+,replace(replace(replace(cast(a.SentById as varchar(max)),char(10),''),char(13),''),'"','') as SentById
+,replace(replace(replace(cast(a.IpAddress as varchar(max)),char(10),''),char(13),''),'"','') as IpAddress
+,replace(replace(replace(cast(a.isVoiceMsgSent as varchar(max)),char(10),''),char(13),''),'"','') as isVoiceMsgSent
+,replace(replace(replace(cast(a.isTextMsgSent as varchar(max)),char(10),''),char(13),''),'"','') as isTextMsgSent
+,replace(replace(replace(cast(a.rxOrderNo as varchar(max)),char(10),''),char(13),''),'"','') as rxOrderNo
+,replace(replace(replace(cast(a.DEASchedule as varchar(max)),char(10),''),char(13),''),'"','') as DEASchedule
+
+
+from surescript_eprescription a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.ID as varchar(max)),char(10),''),char(13),''),'"','') as ID
+,replace(replace(replace(cast(a.ToName as varchar(max)),char(10),''),char(13),''),'"','') as ToName
+,replace(replace(replace(cast(a.ContactType as varchar(max)),char(10),''),char(13),''),'"','') as ContactType
+,replace(replace(replace(cast(a.ToPhone as varchar(max)),char(10),''),char(13),''),'"','') as ToPhone
+,replace(replace(replace(cast(a.Retry as varchar(max)),char(10),''),char(13),''),'"','') as Retry
+,replace(replace(replace(cast(a.voiceMessageStatus as varchar(max)),char(10),''),char(13),''),'"','') as voiceMessageStatus
+,replace(replace(replace(cast(a.SentDate as varchar(max)),char(10),''),char(13),''),'"','') as SentDate
+,replace(replace(replace(cast(a.Priority as varchar(max)),char(10),''),char(13),''),'"','') as Priority
+,replace(replace(replace(cast(a.VoiceMessageType as varchar(max)),char(10),''),char(13),''),'"','') as VoiceMessageType
+,replace(replace(replace(cast(a.VoiceMessageLiveText as varchar(max)),char(10),''),char(13),''),'"','') as VoiceMessageLiveText
+,replace(replace(replace(cast(a.VoiceMessageLiveAudio as varchar(max)),char(10),''),char(13),''),'"','') as VoiceMessageLiveAudio
+,replace(replace(replace(cast(a.VoiceMessageMachineText as varchar(max)),char(10),''),char(13),''),'"','') as VoiceMessageMachineText
+,replace(replace(replace(cast(a.VoiceMessageMachineAudio as varchar(max)),char(10),''),char(13),''),'"','') as VoiceMessageMachineAudio
+,replace(replace(replace(cast(a.InitialGreetingAudio as varchar(max)),char(10),''),char(13),''),'"','') as InitialGreetingAudio
+,replace(replace(replace(cast(a.VoiceMessageId as varchar(max)),char(10),''),char(13),''),'"','') as VoiceMessageId
+,convert(varchar, cast(a.Date_Created as datetime), 20) as Date_Created
+,replace(replace(replace(cast(a.Date_Modified as varchar(max)),char(10),''),char(13),''),'"','') as Date_Modified
+,replace(replace(replace(cast(a.isDeleted as varchar(max)),char(10),''),char(13),''),'"','') as isDeleted
+,replace(replace(replace(cast(a.StatusMsg as varchar(max)),char(10),''),char(13),''),'"','') as StatusMsg
+,replace(replace(replace(cast(a.CallerIDNumber as varchar(max)),char(10),''),char(13),''),'"','') as CallerIDNumber
+,replace(replace(replace(cast(a.InitialGreetingAudioText as varchar(max)),char(10),''),char(13),''),'"','') as InitialGreetingAudioText
+,replace(replace(replace(cast(a.OtherContactType as varchar(max)),char(10),''),char(13),''),'"','') as OtherContactType
+,replace(replace(replace(cast(a.EncounterID as varchar(max)),char(10),''),char(13),''),'"','') as EncounterID
+,replace(replace(replace(cast(a.MaxLiveReplays as varchar(max)),char(10),''),char(13),''),'"','') as MaxLiveReplays
+,replace(replace(replace(cast(a.OperatorNumber as varchar(max)),char(10),''),char(13),''),'"','') as OperatorNumber
+,replace(replace(replace(cast(a.ConfirmationStatus as varchar(max)),char(10),''),char(13),''),'"','') as ConfirmationStatus
+,replace(replace(replace(cast(a.DeliveryType as varchar(max)),char(10),''),char(13),''),'"','') as DeliveryType
+,replace(replace(replace(cast(a.ErrorMsg as varchar(max)),char(10),''),char(13),''),'"','') as ErrorMsg
+,replace(replace(replace(cast(a.LabID as varchar(max)),char(10),''),char(13),''),'"','') as LabID
+,replace(replace(replace(cast(a.ConfirmCancelEnabled as varchar(max)),char(10),''),char(13),''),'"','') as ConfirmCancelEnabled
+,replace(replace(replace(cast(a.PatientId as varchar(max)),char(10),''),char(13),''),'"','') as PatientId
+,replace(replace(replace(cast(a.PtStatementId as varchar(max)),char(10),''),char(13),''),'"','') as PtStatementId
+,replace(replace(replace(cast(a.Language as varchar(max)),char(10),''),char(13),''),'"','') as Language
+,convert(varchar, cast(a.ScheduledDate as datetime), 20) as ScheduledDate
+,convert(varchar, cast(a.ScheduledTime as datetime), 20) as ScheduledTime
+,replace(replace(replace(cast(a.SentByLastName as varchar(max)),char(10),''),char(13),''),'"','') as SentByLastName
+,replace(replace(replace(cast(a.SentByFirstName as varchar(max)),char(10),''),char(13),''),'"','') as SentByFirstName
+,replace(replace(replace(cast(a.SentBy as varchar(max)),char(10),''),char(13),''),'"','') as SentBy
+,replace(replace(replace(cast(a.FacilityId as varchar(max)),char(10),''),char(13),''),'"','') as FacilityId
+,convert(varchar, cast(a.SentTime as datetime), 20) as SentTime
+,replace(replace(replace(cast(a.uploadLocation as varchar(max)),char(10),''),char(13),''),'"','') as uploadLocation
+,replace(replace(replace(cast(a.TTSVoice as varchar(max)),char(10),''),char(13),''),'"','') as TTSVoice
+,replace(replace(replace(cast(a.VMsgUser as varchar(max)),char(10),''),char(13),''),'"','') as VMsgUser
+,replace(replace(replace(cast(a.VMsgPwd as varchar(max)),char(10),''),char(13),''),'"','') as VMsgPwd
+,replace(replace(replace(cast(a.AppServMachineName as varchar(max)),char(10),''),char(13),''),'"','') as AppServMachineName
+,replace(replace(replace(cast(a.AppServMachineIP as varchar(max)),char(10),''),char(13),''),'"','') as AppServMachineIP
+,replace(replace(replace(cast(a.parentid as varchar(max)),char(10),''),char(13),''),'"','') as parentid
+,replace(replace(replace(cast(a.recordurl as varchar(max)),char(10),''),char(13),''),'"','') as recordurl
+,replace(replace(replace(cast(a.StatusDetail as varchar(max)),char(10),''),char(13),''),'"','') as StatusDetail
+,replace(replace(replace(cast(a.ResourceId as varchar(max)),char(10),''),char(13),''),'"','') as ResourceId
+,replace(replace(replace(cast(a.recordedMessageId as varchar(max)),char(10),''),char(13),''),'"','') as recordedMessageId
+,replace(replace(replace(cast(a.ecwVersion as varchar(max)),char(10),''),char(13),''),'"','') as ecwVersion
+,replace(replace(replace(cast(a.ecmVersion as varchar(max)),char(10),''),char(13),''),'"','') as ecmVersion
+,replace(replace(replace(cast(a.timeZone as varchar(max)),char(10),''),char(13),''),'"','') as timeZone
+,replace(replace(replace(cast(a.retryfailedmsg as varchar(max)),char(10),''),char(13),''),'"','') as retryfailedmsg
+,replace(replace(replace(cast(a.ApptStatus as varchar(max)),char(10),''),char(13),''),'"','') as ApptStatus
+,replace(replace(replace(cast(a.ivrvalue as varchar(max)),char(10),''),char(13),''),'"','') as ivrvalue
+,replace(replace(replace(cast(a.AutoUpgradeKey as varchar(max)),char(10),''),char(13),''),'"','') as AutoUpgradeKey
+,replace(replace(replace(cast(a.OtherContactNumbers as varchar(max)),char(10),''),char(13),''),'"','') as OtherContactNumbers
+,replace(replace(replace(cast(a.ErrorCode as varchar(max)),char(10),''),char(13),''),'"','') as ErrorCode
+,convert(varchar, cast(a.MsgExpireTime as datetime), 20) as MsgExpireTime
+,replace(replace(replace(cast(a.PtPin as varchar(max)),char(10),''),char(13),''),'"','') as PtPin
+,replace(replace(replace(cast(a.PtPinType as varchar(max)),char(10),''),char(13),''),'"','') as PtPinType
+,replace(replace(replace(cast(a.isMsgSecured as varchar(max)),char(10),''),char(13),''),'"','') as isMsgSecured
+,replace(replace(replace(cast(a.msgSource as varchar(max)),char(10),''),char(13),''),'"','') as msgSource
+,replace(replace(replace(cast(a.providerGreetingsUid as varchar(max)),char(10),''),char(13),''),'"','') as providerGreetingsUid
+,replace(replace(replace(cast(a.ClientResponse as varchar(max)),char(10),''),char(13),''),'"','') as ClientResponse
+,replace(replace(replace(cast(a.messageJobType as varchar(max)),char(10),''),char(13),''),'"','') as messageJobType
+,replace(replace(replace(cast(a.FaxLogId as varchar(max)),char(10),''),char(13),''),'"','') as FaxLogId
+,replace(replace(replace(cast(a.eRxReqID as varchar(max)),char(10),''),char(13),''),'"','') as eRxReqID
+,replace(replace(replace(cast(a.eRxReFillReqID as varchar(max)),char(10),''),char(13),''),'"','') as eRxReFillReqID
+,replace(replace(replace(cast(a.providerid as varchar(max)),char(10),''),char(13),''),'"','') as providerid
+,replace(replace(replace(cast(a.campaignid as varchar(max)),char(10),''),char(13),''),'"','') as campaignid
+,replace(replace(replace(cast(a.campaign as varchar(max)),char(10),''),char(13),''),'"','') as campaign
+
+
+from voicemsglogs a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.ReferralId as varchar(max)),char(10),''),char(13),''),'"','') as ReferralId
+,replace(replace(replace(cast(a.patientID as varchar(max)),char(10),''),char(13),''),'"','') as patientID
+,replace(replace(replace(cast(a.insId as varchar(max)),char(10),''),char(13),''),'"','') as insId
+,replace(replace(replace(cast(a.refFrom as varchar(max)),char(10),''),char(13),''),'"','') as refFrom
+,replace(replace(replace(cast(a.authNo as varchar(max)),char(10),''),char(13),''),'"','') as authNo
+,convert(varchar, cast(a.date as datetime), 20) as date
+,replace(replace(replace(cast(a.reason as varchar(max)),char(10),''),char(13),''),'"','') as reason
+,replace(replace(replace(cast(a.diagnosis as varchar(max)),char(10),''),char(13),''),'"','') as diagnosis
+,convert(varchar, cast(a.refStDate as datetime), 20) as refStDate
+,convert(varchar, cast(a.refEnddate as datetime), 20) as refEnddate
+,replace(replace(replace(cast(a.visitsAllowed as varchar(max)),char(10),''),char(13),''),'"','') as visitsAllowed
+,replace(replace(replace(cast(a.visitsUsed as varchar(max)),char(10),''),char(13),''),'"','') as visitsUsed
+,replace(replace(replace(cast(a.RefTo as varchar(max)),char(10),''),char(13),''),'"','') as RefTo
+,replace(replace(replace(cast(a.notes as varchar(max)),char(10),''),char(13),''),'"','') as notes
+,replace(replace(replace(cast(a.deleteFlag as varchar(max)),char(10),''),char(13),''),'"','') as deleteFlag
+,replace(replace(replace(cast(a.referralType as varchar(max)),char(10),''),char(13),''),'"','') as referralType
+,replace(replace(replace(cast(a.priority as varchar(max)),char(10),''),char(13),''),'"','') as priority
+,replace(replace(replace(cast(a.assignedTo as varchar(max)),char(10),''),char(13),''),'"','') as assignedTo
+,replace(replace(replace(cast(a.assignedToId as varchar(max)),char(10),''),char(13),''),'"','') as assignedToId
+,replace(replace(replace(cast(a.status as varchar(max)),char(10),''),char(13),''),'"','') as status
+,replace(replace(replace(cast(a.authtype as varchar(max)),char(10),''),char(13),''),'"','') as authtype
+,replace(replace(replace(cast(a.procedures as varchar(max)),char(10),''),char(13),''),'"','') as procedures
+,replace(replace(replace(cast(a.fromfacility as varchar(max)),char(10),''),char(13),''),'"','') as fromfacility
+,replace(replace(replace(cast(a.ToFacility as varchar(max)),char(10),''),char(13),''),'"','') as ToFacility
+,replace(replace(replace(cast(a.speciality as varchar(max)),char(10),''),char(13),''),'"','') as speciality
+,replace(replace(replace(cast(a.POS as varchar(max)),char(10),''),char(13),''),'"','') as POS
+,replace(replace(replace(cast(a.UnitType as varchar(max)),char(10),''),char(13),''),'"','') as UnitType
+,replace(replace(replace(cast(a.FrontOfficeAuth as varchar(max)),char(10),''),char(13),''),'"','') as FrontOfficeAuth
+,replace(replace(replace(cast(a.ReferralNumber as varchar(max)),char(10),''),char(13),''),'"','') as ReferralNumber
+,convert(varchar, cast(a.apptDate as datetime), 20) as apptDate
+,replace(replace(replace(cast(a.clinicalNotes as varchar(max)),char(10),''),char(13),''),'"','') as clinicalNotes
+,convert(varchar, cast(a.ReceivedDate as datetime), 20) as ReceivedDate
+,replace(replace(replace(cast(a.refEncId as varchar(max)),char(10),''),char(13),''),'"','') as refEncId
+,replace(replace(replace(cast(a.ApptTime as varchar(max)),char(10),''),char(13),''),'"','') as ApptTime
+,replace(replace(replace(cast(a.extNHXApptBlockId as varchar(max)),char(10),''),char(13),''),'"','') as extNHXApptBlockId
+,replace(replace(replace(cast(a.extNHXRefTxId as varchar(max)),char(10),''),char(13),''),'"','') as extNHXRefTxId
+,replace(replace(replace(cast(a.refReqId as varchar(max)),char(10),''),char(13),''),'"','') as refReqId
+,replace(replace(replace(cast(a.refFromP2pNPI as varchar(max)),char(10),''),char(13),''),'"','') as refFromP2pNPI
+,replace(replace(replace(cast(a.refFromName as varchar(max)),char(10),''),char(13),''),'"','') as refFromName
+,replace(replace(replace(cast(a.refToP2pNPI as varchar(max)),char(10),''),char(13),''),'"','') as refToP2pNPI
+,replace(replace(replace(cast(a.refToName as varchar(max)),char(10),''),char(13),''),'"','') as refToName
+,replace(replace(replace(cast(a.uploadedToPtDocs as varchar(max)),char(10),''),char(13),''),'"','') as uploadedToPtDocs
+,convert(varchar, cast(a.modifiedDate as datetime), 20) as modifiedDate
+,replace(replace(replace(cast(a.refToCCNameList as varchar(max)),char(10),''),char(13),''),'"','') as refToCCNameList
+,replace(replace(replace(cast(a.refToCCNPIList as varchar(max)),char(10),''),char(13),''),'"','') as refToCCNPIList
+,replace(replace(replace(cast(a.p2pDeliveryStatus as varchar(max)),char(10),''),char(13),''),'"','') as p2pDeliveryStatus
+,convert(varchar, cast(a.statusUpdateDate as datetime), 20) as statusUpdateDate
+,replace(replace(replace(cast(a.ccdaValidationStatus as varchar(max)),char(10),''),char(13),''),'"','') as ccdaValidationStatus
+,replace(replace(replace(cast(a.fromDirectAddress as varchar(max)),char(10),''),char(13),''),'"','') as fromDirectAddress
+,replace(replace(replace(cast(a.toDirectAddress as varchar(max)),char(10),''),char(13),''),'"','') as toDirectAddress
+,replace(replace(replace(cast(a.toDirectAddress1 as varchar(max)),char(10),''),char(13),''),'"','') as toDirectAddress1
+
+
+from referral a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterId as varchar(max)),char(10),''),char(13),''),'"','') as encounterId
+,replace(replace(replace(cast(a.catId as varchar(max)),char(10),''),char(13),''),'"','') as catId
+,replace(replace(replace(cast(a.itemId as varchar(max)),char(10),''),char(13),''),'"','') as itemId
+,replace(replace(replace(cast(a.detailId as varchar(max)),char(10),''),char(13),''),'"','') as detailId
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+,replace(replace(replace(cast(a.valueId as varchar(max)),char(10),''),char(13),''),'"','') as valueId
+,replace(replace(replace(cast(a.notes as varchar(max)),char(10),''),char(13),''),'"','') as notes
+,replace(replace(replace(cast(a.chartdisplay as varchar(max)),char(10),''),char(13),''),'"','') as chartdisplay
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+
+
+from structpreventive a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.ID as varchar(max)),char(10),''),char(13),''),'"','') as ID
+,replace(replace(replace(cast(a.ToSMSName as varchar(max)),char(10),''),char(13),''),'"','') as ToSMSName
+,replace(replace(replace(cast(a.ToSMSNumber as varchar(max)),char(10),''),char(13),''),'"','') as ToSMSNumber
+,replace(replace(replace(cast(a.ToSMSProvider as varchar(max)),char(10),''),char(13),''),'"','') as ToSMSProvider
+,replace(replace(replace(cast(a.Retry as varchar(max)),char(10),''),char(13),''),'"','') as Retry
+,replace(replace(replace(cast(a.SMSMessageID as varchar(max)),char(10),''),char(13),''),'"','') as SMSMessageID
+,replace(replace(replace(cast(a.SMSMESSAGEBODY as varchar(max)),char(10),''),char(13),''),'"','') as SMSMESSAGEBODY
+,replace(replace(replace(cast(a.SmsMessageStatus as varchar(max)),char(10),''),char(13),''),'"','') as SmsMessageStatus
+,replace(replace(replace(cast(a.smsMessageType as varchar(max)),char(10),''),char(13),''),'"','') as smsMessageType
+,replace(replace(replace(cast(a.SMSSubject as varchar(max)),char(10),''),char(13),''),'"','') as SMSSubject
+,replace(replace(replace(cast(a.sentdate as varchar(max)),char(10),''),char(13),''),'"','') as sentdate
+,convert(varchar, cast(a.SentTime as datetime), 20) as SentTime
+,convert(varchar, cast(a.ScheduledDate as datetime), 20) as ScheduledDate
+,convert(varchar, cast(a.ScheduledTime as datetime), 20) as ScheduledTime
+,replace(replace(replace(cast(a.FromSMSName as varchar(max)),char(10),''),char(13),''),'"','') as FromSMSName
+,replace(replace(replace(cast(a.FromSMSNumber as varchar(max)),char(10),''),char(13),''),'"','') as FromSMSNumber
+,replace(replace(replace(cast(a.FromSMSProvider as varchar(max)),char(10),''),char(13),''),'"','') as FromSMSProvider
+,replace(replace(replace(cast(a.ClientId as varchar(max)),char(10),''),char(13),''),'"','') as ClientId
+,replace(replace(replace(cast(a.Priority as varchar(max)),char(10),''),char(13),''),'"','') as Priority
+,replace(replace(replace(cast(a.EcwWebSMSUser as varchar(max)),char(10),''),char(13),''),'"','') as EcwWebSMSUser
+,replace(replace(replace(cast(a.ErrorId as varchar(max)),char(10),''),char(13),''),'"','') as ErrorId
+,replace(replace(replace(cast(a.ErrorMsg as varchar(max)),char(10),''),char(13),''),'"','') as ErrorMsg
+,convert(varchar, cast(a.DateCreated as datetime), 20) as DateCreated
+,replace(replace(replace(cast(a.isDeleted as varchar(max)),char(10),''),char(13),''),'"','') as isDeleted
+,replace(replace(replace(cast(a.EncounterID as varchar(max)),char(10),''),char(13),''),'"','') as EncounterID
+,replace(replace(replace(cast(a.LabID as varchar(max)),char(10),''),char(13),''),'"','') as LabID
+,replace(replace(replace(cast(a.PatientId as varchar(max)),char(10),''),char(13),''),'"','') as PatientId
+,replace(replace(replace(cast(a.FacilityId as varchar(max)),char(10),''),char(13),''),'"','') as FacilityId
+,replace(replace(replace(cast(a.PtStatementId as varchar(max)),char(10),''),char(13),''),'"','') as PtStatementId
+,replace(replace(replace(cast(a.Language as varchar(max)),char(10),''),char(13),''),'"','') as Language
+,replace(replace(replace(cast(a.SMSMsgUser as varchar(max)),char(10),''),char(13),''),'"','') as SMSMsgUser
+,replace(replace(replace(cast(a.SMSMsgPwd as varchar(max)),char(10),''),char(13),''),'"','') as SMSMsgPwd
+,replace(replace(replace(cast(a.AppServMachineName as varchar(max)),char(10),''),char(13),''),'"','') as AppServMachineName
+,replace(replace(replace(cast(a.AppServMachineIP as varchar(max)),char(10),''),char(13),''),'"','') as AppServMachineIP
+,replace(replace(replace(cast(a.AppServMacAddr as varchar(max)),char(10),''),char(13),''),'"','') as AppServMacAddr
+,replace(replace(replace(cast(a.SentByLastName as varchar(max)),char(10),''),char(13),''),'"','') as SentByLastName
+,replace(replace(replace(cast(a.SentByFirstName as varchar(max)),char(10),''),char(13),''),'"','') as SentByFirstName
+,replace(replace(replace(cast(a.SentBy as varchar(max)),char(10),''),char(13),''),'"','') as SentBy
+,replace(replace(replace(cast(a.VendorMsgId as varchar(max)),char(10),''),char(13),''),'"','') as VendorMsgId
+,replace(replace(replace(cast(a.VendorSMSresponse as varchar(max)),char(10),''),char(13),''),'"','') as VendorSMSresponse
+,replace(replace(replace(cast(a.TemplateId as varchar(max)),char(10),''),char(13),''),'"','') as TemplateId
+,replace(replace(replace(cast(a.uploadlocation as varchar(max)),char(10),''),char(13),''),'"','') as uploadlocation
+,replace(replace(replace(cast(a.DoctorId as varchar(max)),char(10),''),char(13),''),'"','') as DoctorId
+,replace(replace(replace(cast(a.RequiredConfirm as varchar(max)),char(10),''),char(13),''),'"','') as RequiredConfirm
+,replace(replace(replace(cast(a.ConfirmNumber as varchar(max)),char(10),''),char(13),''),'"','') as ConfirmNumber
+,replace(replace(replace(cast(a.smsmsgreply as varchar(max)),char(10),''),char(13),''),'"','') as smsmsgreply
+,replace(replace(replace(cast(a.smsmsgreply_id as varchar(max)),char(10),''),char(13),''),'"','') as smsmsgreply_id
+,replace(replace(replace(cast(a.parentid as varchar(max)),char(10),''),char(13),''),'"','') as parentid
+,replace(replace(replace(cast(a.ActualMessage as varchar(max)),char(10),''),char(13),''),'"','') as ActualMessage
+,replace(replace(replace(cast(a.ResourceId as varchar(max)),char(10),''),char(13),''),'"','') as ResourceId
+,replace(replace(replace(cast(a.msgSource as varchar(max)),char(10),''),char(13),''),'"','') as msgSource
+,replace(replace(replace(cast(a.ecwversion as varchar(max)),char(10),''),char(13),''),'"','') as ecwversion
+,replace(replace(replace(cast(a.ecmversion as varchar(max)),char(10),''),char(13),''),'"','') as ecmversion
+,replace(replace(replace(cast(a.AutoUpgradeKey as varchar(max)),char(10),''),char(13),''),'"','') as AutoUpgradeKey
+,replace(replace(replace(cast(a.FaxLogId as varchar(max)),char(10),''),char(13),''),'"','') as FaxLogId
+,replace(replace(replace(cast(a.eRxReqID as varchar(max)),char(10),''),char(13),''),'"','') as eRxReqID
+,replace(replace(replace(cast(a.eRxReFillReqID as varchar(max)),char(10),''),char(13),''),'"','') as eRxReFillReqID
+,replace(replace(replace(cast(a.campaignid as varchar(max)),char(10),''),char(13),''),'"','') as campaignid
+,replace(replace(replace(cast(a.campaign as varchar(max)),char(10),''),char(13),''),'"','') as campaign
+
+
+from smsmsglogs a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterId as varchar(max)),char(10),''),char(13),''),'"','') as encounterId
+,replace(replace(replace(cast(a.catId as varchar(max)),char(10),''),char(13),''),'"','') as catId
+,replace(replace(replace(cast(a.itemId as varchar(max)),char(10),''),char(13),''),'"','') as itemId
+,replace(replace(replace(cast(a.detailId as varchar(max)),char(10),''),char(13),''),'"','') as detailId
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+,replace(replace(replace(cast(a.valueId as varchar(max)),char(10),''),char(13),''),'"','') as valueId
+,replace(replace(replace(cast(a.notes as varchar(max)),char(10),''),char(13),''),'"','') as notes
+,replace(replace(replace(cast(a.chartdisplay as varchar(max)),char(10),''),char(13),''),'"','') as chartdisplay
+,replace(replace(replace(cast(a.displayIndex as varchar(max)),char(10),''),char(13),''),'"','') as displayIndex
+
+
+from structsocialhistory a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.MsgId as varchar(max)),char(10),''),char(13),''),'"','') as MsgId
+,replace(replace(replace(cast(a.uid as varchar(max)),char(10),''),char(13),''),'"','') as uid
+,replace(replace(replace(cast(a.RefMsgId as varchar(max)),char(10),''),char(13),''),'"','') as RefMsgId
+,replace(replace(replace(cast(a.MsgFrom as varchar(max)),char(10),''),char(13),''),'"','') as MsgFrom
+,replace(replace(replace(cast(a.MsgTo as varchar(max)),char(10),''),char(13),''),'"','') as MsgTo
+,replace(replace(replace(cast(a.MsgType as varchar(max)),char(10),''),char(13),''),'"','') as MsgType
+,replace(replace(replace(cast(a.Priority as varchar(max)),char(10),''),char(13),''),'"','') as Priority
+,replace(replace(replace(cast(a.FolderId as varchar(max)),char(10),''),char(13),''),'"','') as FolderId
+,replace(replace(replace(cast(a.Subject as varchar(max)),char(10),''),char(13),''),'"','') as Subject
+,replace(replace(replace(cast(a.Body as varchar(max)),char(10),''),char(13),''),'"','') as Body
+,convert(varchar, cast(a.dtSent as datetime), 20) as dtSent
+,convert(varchar, cast(a.dtReceived as datetime), 20) as dtReceived
+,convert(varchar, cast(a.dtRead as datetime), 20) as dtRead
+,convert(varchar, cast(a.dtArchived as datetime), 20) as dtArchived
+,convert(varchar, cast(a.dtDeleted as datetime), 20) as dtDeleted
+,replace(replace(replace(cast(a.encounterId as varchar(max)),char(10),''),char(13),''),'"','') as encounterId
+,replace(replace(replace(cast(a.delflag as varchar(max)),char(10),''),char(13),''),'"','') as delflag
+,replace(replace(replace(cast(a.healthMaintainenceMsg as varchar(max)),char(10),''),char(13),''),'"','') as healthMaintainenceMsg
+,replace(replace(replace(cast(a.facilityid as varchar(max)),char(10),''),char(13),''),'"','') as facilityid
+,replace(replace(replace(cast(a.hasAttachment as varchar(max)),char(10),''),char(13),''),'"','') as hasAttachment
+
+
+from tblwebmsg a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.UsrLogID as varchar(max)),char(10),''),char(13),''),'"','') as UsrLogID
+,replace(replace(replace(cast(a.UsrID as varchar(max)),char(10),''),char(13),''),'"','') as UsrID
+,replace(replace(replace(cast(a.UsrName as varchar(max)),char(10),''),char(13),''),'"','') as UsrName
+,replace(replace(replace(cast(a.HostMac as varchar(max)),char(10),''),char(13),''),'"','') as HostMac
+,replace(replace(replace(cast(a.HostOS as varchar(max)),char(10),''),char(13),''),'"','') as HostOS
+,replace(replace(replace(cast(a.HostOSUsr as varchar(max)),char(10),''),char(13),''),'"','') as HostOSUsr
+,replace(replace(replace(cast(a.HostOSDomain as varchar(max)),char(10),''),char(13),''),'"','') as HostOSDomain
+,replace(replace(replace(cast(a.HostIP as varchar(max)),char(10),''),char(13),''),'"','') as HostIP
+,replace(replace(replace(cast(a.HostName as varchar(max)),char(10),''),char(13),''),'"','') as HostName
+,replace(replace(replace(cast(a.HostLoginTime as varchar(max)),char(10),''),char(13),''),'"','') as HostLoginTime
+,replace(replace(replace(cast(a.HostLogoutTime as varchar(max)),char(10),''),char(13),''),'"','') as HostLogoutTime
+,replace(replace(replace(cast(a.HostECWVersion as varchar(max)),char(10),''),char(13),''),'"','') as HostECWVersion
+,replace(replace(replace(cast(a.ServerLoginTime as varchar(max)),char(10),''),char(13),''),'"','') as ServerLoginTime
+,replace(replace(replace(cast(a.ServerLogoutTime as varchar(max)),char(10),''),char(13),''),'"','') as ServerLogoutTime
+,replace(replace(replace(cast(a.UsrStatus as varchar(max)),char(10),''),char(13),''),'"','') as UsrStatus
+
+
+from usrlogs a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.id as varchar(max)),char(10),''),char(13),''),'"','') as id
+,replace(replace(replace(cast(a.encId as varchar(max)),char(10),''),char(13),''),'"','') as encId
+,replace(replace(replace(cast(a.uid as varchar(max)),char(10),''),char(13),''),'"','') as uid
+,convert(varchar, cast(a.requestDate as datetime), 20) as requestDate
+,replace(replace(replace(cast(a.requestedBy as varchar(max)),char(10),''),char(13),''),'"','') as requestedBy
+,replace(replace(replace(cast(a.vsdata as varchar(max)),char(10),''),char(13),''),'"','') as vsdata
+,replace(replace(replace(cast(a.status as varchar(max)),char(10),''),char(13),''),'"','') as status
+,replace(replace(replace(cast(a.loggedfrom as varchar(max)),char(10),''),char(13),''),'"','') as loggedfrom
+,replace(replace(replace(cast(a.ccddata as varchar(max)),char(10),''),char(13),''),'"','') as ccddata
+
+
+from visitsummarylog a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.encounterID as varchar(max)),char(10),''),char(13),''),'"','') as encounterID
+,replace(replace(replace(cast(a.vitalID as varchar(max)),char(10),''),char(13),''),'"','') as vitalID
+,replace(replace(replace(cast(a.propID as varchar(max)),char(10),''),char(13),''),'"','') as propID
+,replace(replace(replace(cast(a.value as varchar(max)),char(10),''),char(13),''),'"','') as value
+,replace(replace(replace(cast(a.Id as varchar(max)),char(10),''),char(13),''),'"','') as Id
+,replace(replace(replace(cast(a.UpdatedBy as varchar(max)),char(10),''),char(13),''),'"','') as UpdatedBy
+,convert(varchar, cast(a.UpdatedTime as datetime), 20) as UpdatedTime
+,replace(replace(replace(cast(a.defaultValue as varchar(max)),char(10),''),char(13),''),'"','') as defaultValue
+,replace(replace(replace(cast(a.valueHtm as varchar(max)),char(10),''),char(13),''),'"','') as valueHtm
+,replace(replace(replace(cast(a.value2 as varchar(max)),char(10),''),char(13),''),'"','') as value2
+
+
+from vitals a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
+
+select
+replace(replace(replace(cast(a.uid as varchar(max)),char(10),''),char(13),''),'"','') as uid
+,replace(replace(replace(cast(a.uname as varchar(max)),char(10),''),char(13),''),'"','') as uname
+,replace(replace(replace(cast(a.upwd as varchar(max)),char(10),''),char(13),''),'"','') as upwd
+,replace(replace(replace(cast(a.udesc as varchar(max)),char(10),''),char(13),''),'"','') as udesc
+,replace(replace(replace(cast(a.uroomno as varchar(max)),char(10),''),char(13),''),'"','') as uroomno
+,replace(replace(replace(cast(a.umobileno as varchar(max)),char(10),''),char(13),''),'"','') as umobileno
+,replace(replace(replace(cast(a.upagerno as varchar(max)),char(10),''),char(13),''),'"','') as upagerno
+,replace(replace(replace(cast(a.ufname as varchar(max)),char(10),''),char(13),''),'"','') as ufname
+,replace(replace(replace(cast(a.uminitial as varchar(max)),char(10),''),char(13),''),'"','') as uminitial
+,replace(replace(replace(cast(a.ulname as varchar(max)),char(10),''),char(13),''),'"','') as ulname
+,replace(replace(replace(cast(a.uemail as varchar(max)),char(10),''),char(13),''),'"','') as uemail
+,replace(replace(replace(cast(a.uwebpage as varchar(max)),char(10),''),char(13),''),'"','') as uwebpage
+,replace(replace(replace(cast(a.upaddress as varchar(max)),char(10),''),char(13),''),'"','') as upaddress
+,replace(replace(replace(cast(a.upcity as varchar(max)),char(10),''),char(13),''),'"','') as upcity
+,replace(replace(replace(cast(a.upstate as varchar(max)),char(10),''),char(13),''),'"','') as upstate
+,replace(replace(replace(cast(a.upPhone as varchar(max)),char(10),''),char(13),''),'"','') as upPhone
+,replace(replace(replace(cast(a.UserType as varchar(max)),char(10),''),char(13),''),'"','') as UserType
+,replace(replace(replace(cast(a.zipcode as varchar(max)),char(10),''),char(13),''),'"','') as zipcode
+,replace(replace(replace(cast(a.dob as varchar(max)),char(10),''),char(13),''),'"','') as dob
+,replace(replace(replace(cast(a.ssn as varchar(max)),char(10),''),char(13),''),'"','') as ssn
+,replace(replace(replace(cast(a.mflag as varchar(max)),char(10),''),char(13),''),'"','') as mflag
+,replace(replace(replace(cast(a.updid as varchar(max)),char(10),''),char(13),''),'"','') as updid
+,convert(varchar, cast(a.cdate as datetime), 20) as cdate
+,convert(varchar, cast(a.mdate as datetime), 20) as mdate
+,replace(replace(replace(cast(a.sex as varchar(max)),char(10),''),char(13),''),'"','') as sex
+,replace(replace(replace(cast(a.upaddress2 as varchar(max)),char(10),''),char(13),''),'"','') as upaddress2
+,replace(replace(replace(cast(a.suffix as varchar(max)),char(10),''),char(13),''),'"','') as suffix
+,replace(replace(replace(cast(a.prefix as varchar(max)),char(10),''),char(13),''),'"','') as prefix
+,replace(replace(replace(cast(a.initials as varchar(max)),char(10),''),char(13),''),'"','') as initials
+,convert(varchar, cast(a.ptDob as datetime), 20) as ptDob
+,replace(replace(replace(cast(a.delFlag as varchar(max)),char(10),''),char(13),''),'"','') as delFlag
+,replace(replace(replace(cast(a.vmid as varchar(max)),char(10),''),char(13),''),'"','') as vmid
+,replace(replace(replace(cast(a.status as varchar(max)),char(10),''),char(13),''),'"','') as status
+,replace(replace(replace(cast(a.webenabled as varchar(max)),char(10),''),char(13),''),'"','') as webenabled
+,replace(replace(replace(cast(a.websync as varchar(max)),char(10),''),char(13),''),'"','') as websync
+,replace(replace(replace(cast(a.changePass as varchar(max)),char(10),''),char(13),''),'"','') as changePass
+,replace(replace(replace(cast(a.primaryservicelocation as varchar(max)),char(10),''),char(13),''),'"','') as primaryservicelocation
+,replace(replace(replace(cast(a.upreviousname as varchar(max)),char(10),''),char(13),''),'"','') as upreviousname
+,replace(replace(replace(cast(a.IsResource as varchar(max)),char(10),''),char(13),''),'"','') as IsResource
+,replace(replace(replace(cast(a.EligibilityStatus as varchar(max)),char(10),''),char(13),''),'"','') as EligibilityStatus
+,replace(replace(replace(cast(a.OSUUserType as varchar(max)),char(10),''),char(13),''),'"','') as OSUUserType
+,replace(replace(replace(cast(a.DefApptProvForResource as varchar(max)),char(10),''),char(13),''),'"','') as DefApptProvForResource
+,replace(replace(replace(cast(a.locked as varchar(max)),char(10),''),char(13),''),'"','') as locked
+,replace(replace(replace(cast(a.EncEligibilityStatus2 as varchar(max)),char(10),''),char(13),''),'"','') as EncEligibilityStatus2
+,replace(replace(replace(cast(a.EligibilityMessage2 as varchar(max)),char(10),''),char(13),''),'"','') as EligibilityMessage2
+,replace(replace(replace(cast(a.EncEligibilityStatus3 as varchar(max)),char(10),''),char(13),''),'"','') as EncEligibilityStatus3
+,replace(replace(replace(cast(a.EligibilityMessage3 as varchar(max)),char(10),''),char(13),''),'"','') as EligibilityMessage3
+,replace(replace(replace(cast(a.EncEligibilityStatus as varchar(max)),char(10),''),char(13),''),'"','') as EncEligibilityStatus
+,replace(replace(replace(cast(a.EligibilityMessage as varchar(max)),char(10),''),char(13),''),'"','') as EligibilityMessage
+,replace(replace(replace(cast(a.AllFacilities as varchar(max)),char(10),''),char(13),''),'"','') as AllFacilities
+,replace(replace(replace(cast(a.Emrsex as varchar(max)),char(10),''),char(13),''),'"','') as Emrsex
+,replace(replace(replace(cast(a.CountryCode as varchar(max)),char(10),''),char(13),''),'"','') as CountryCode
+,replace(replace(replace(cast(a.transgender as varchar(max)),char(10),''),char(13),''),'"','') as transgender
+,replace(replace(replace(cast(a.EnterpriseId as varchar(max)),char(10),''),char(13),''),'"','') as EnterpriseId
+,replace(replace(replace(cast(a.gestationalAge as varchar(max)),char(10),''),char(13),''),'"','') as gestationalAge
+,convert(varchar, cast(a.timeofbirth as datetime), 20) as timeofbirth
+,replace(replace(replace(cast(a.LANGUAGE as varchar(max)),char(10),''),char(13),''),'"','') as LANGUAGE
+,replace(replace(replace(cast(a.county as varchar(max)),char(10),''),char(13),''),'"','') as county
+,replace(replace(replace(cast(a.isCredentialed as varchar(max)),char(10),''),char(13),''),'"','') as isCredentialed
+,replace(replace(replace(cast(a.EncEligibilityStatus4 as varchar(max)),char(10),''),char(13),''),'"','') as EncEligibilityStatus4
+,replace(replace(replace(cast(a.EligibilityMessage4 as varchar(max)),char(10),''),char(13),''),'"','') as EligibilityMessage4
+,replace(replace(replace(cast(a.ACOUserType as varchar(max)),char(10),''),char(13),''),'"','') as ACOUserType
+,replace(replace(replace(cast(a.credentialschange as varchar(max)),char(10),''),char(13),''),'"','') as credentialschange
+
+
+from users a
+
+where a.createddate >= ?Lower_Bound?
+and coalesce(a.modifieddate,a.createddate) <= ?Upper_Bound?
+
+~OtherParam~
+
+-----------------------------------------------------------------------
