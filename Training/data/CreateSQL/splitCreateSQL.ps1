@@ -9,12 +9,9 @@ while(($line = $reader.ReadLine()) -ne $null)
     if($line -eq "------------------------------")
     {
         ++$count
-        if($line -eq "create table")
-        {
-        Write-Host $line
-        #$fnae
-        }
-        #$filename = "C:\Users\dinesh\Documents\GitHub\Python-DJ\Training\data\CreateSQL\PRMODALDH_0_{0}.sql" -f ($count)
+        $s = Select-String -Path 'C:\Users\dinesh\Documents\GitHub\Python-DJ\Training\data\ExtractQueries\alertdata.sql' -Pattern "from " | select -Expand Line
+        $s -replace " "
+        $filename = "C:\Users\dinesh\Documents\GitHub\Python-DJ\Training\data\CreateSQL\PRMODALDH_0_{0}.sql" -f ($s)
     }
 }
 
