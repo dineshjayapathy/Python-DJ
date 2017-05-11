@@ -30,48 +30,60 @@ def readencrypted(fpath):
                 if file != '':
                     print file
 
-
                 else:
                     print p.stderr.readline() + '\ncheck the filename/directory \ncheck the decryption key'
                 first_line = file.split('\n', 1)[0]
                 second_line = file.split('\n', 1)[1]
                 #line_count = len(file.split('\n', 1))
-
                 #print 'First line is \n' + str(first_line)
                 #print 'Line count is \n' + str(line_count)
-               # print 'first line is \n'+ file.split('\n')[0]
-                possible = [',', '\t', '-', '|','	']
-
-
+                possible = [',', '\t', '-', '|']
                 count = {}
-                countq={}
-
                 for delim in possible:
                     count[delim] = first_line.count(delim)
 
                 mostFreqDelim = max(count.iteritems(), key=operator.itemgetter(1))[0]
 
+                #header = first_line.replace(mostFreqDelim, ',').replace()
+
+
                 possibleq = ['|', '"']
+                countq = {}
                 for textq in possibleq:
                     countq[textq] = second_line.count(textq)
 
-
-                print countq.values()[0]
-                if countq.values()[0]!=0:
+                #print countq.values()[0]
+                if countq.values()[0]!=0 or countq.values()[1]!=0:
                     mostfreqTextq=max(countq.iteritems(), key=operator.itemgetter(1))[0]
+
                 else:
-                    mostfreqTextq='None'
+                    mostfreqTextq='NULL'
 
+                header = first_line.replace(mostFreqDelim, ',').replace(mostfreqTextq,'')
 
+                #header=first_line.replace(mostFreqDelim,',')
+                #to input into registration
+                if mostFreqDelim == '\t':
+                    mostFreqDelim = r'\t'
+                print 'delimiter is \n'+ '%s' % str(mostFreqDelim)
+                print 'textqualifier is \n' + '%s' % str(mostfreqTextq)
+                print 'column list is \n' +'%s' % header
 
-                print 'delimiter is \n'+ '#%s#' % str(mostFreqDelim)
-                print 'textqualifier is \n' + '#%s#' % str(mostfreqTextq)
+                # print ''\
+                #     'DECLARE @returnValue INT;'\
+                #     'DECLARE @PreSource_Acronym VARCHAR(MAX) = 'PR-UMEM';'\
+                #     'DECLARE @Table_Name VARCHAR(MAX) = 'MEMBER_ELIGIBILITY';'\
+                #     'DECLARE @File_Pattern VARCHAR(MAX) = '_Membership_';'\
+                #     'DECLARE @Delimiter VARCHAR(MAX) = '|';'\
+                #     'DECLARE @Truncate BIT = 0;'\
+                #     'DECLARE @IsFixedWidth BIT = 0;'\
+                #     'DECLARE @NeedsHeader BIT = 0;'\
+                #     'DECLARE @NeedsRowNumber BIT = 0;'\
+                #     'DECLARE @CheckHeader BIT = NULL;'\
 
                 p.kill()
     except Exception,e:
         print e
-
-
 
 if __name__=="__main__":
     readencrypted('a')
