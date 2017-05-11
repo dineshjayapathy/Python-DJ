@@ -12,7 +12,7 @@ def files():
                 if re.findall(r'^create table\s\w+', row):
                     a = ''.join(re.findall(r'^create table\s\w+', row)).replace('create table ', '')
                     #print a
-                    yield open('C:\DJ\Python-projects\DJ\Arcadia\output\createsql\sql\%s.sql' % a, 'w')
+                    yield open('C:\DJ\Python-projects\DJ\Arcadia\output\createsql\sql\PRMODALDH_0_%s.sql' % a, 'w')
 pat = '------------------------------'
 fs = files()
 
