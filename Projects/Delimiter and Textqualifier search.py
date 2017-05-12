@@ -65,6 +65,9 @@ def readencrypted(fpath):
                 #to input into registration
                 if mostFreqDelim == '\t':
                     mostFreqDelim = r'\t'
+                mostFreqDelim="'"+mostFreqDelim+"'"
+                if mostfreqTextq != 'NULL':
+                    mostfreqTextq="'"+mostfreqTextq+"'"
                 print 'delimiter is \n'+ '%s' % str(mostFreqDelim)
                 print 'textqualifier is \n' + '%s' % str(mostfreqTextq)
                 print 'column list is \n' +'%s' % header
@@ -75,15 +78,17 @@ def readencrypted(fpath):
                     'DECLARE @PreSource_Acronym VARCHAR(MAX) = \'PR-UMEM\';\n'\
                     'DECLARE @Table_Name VARCHAR(MAX) = \'MEMBER_ELIGIBILITY\';\n'\
                     'DECLARE @File_Pattern VARCHAR(MAX) = \'_Membership_\';\n'\
-                    'DECLARE @Delimiter VARCHAR(MAX) = \'|\';\n'\
+                    "DECLARE @Delimiter VARCHAR(MAX) = %s;" % mostFreqDelim
+                print 'DECLARE @TextQualifier VARCHAR(MAX) = {};\n'\
                     'DECLARE @Truncate BIT = 0;\n'\
                     'DECLARE @IsFixedWidth BIT = 0;\n'\
                     'DECLARE @NeedsHeader BIT = 0;\n'\
                     'DECLARE @NeedsRowNumber BIT = 0;\n'\
                     'DECLARE @CheckHeader BIT = NULL;\n' \
-                    'DECLARE @ Columns VARCHAR(MAX) = %s' \
+                    'DECLARE @ Columns VARCHAR(MAX) = {}'.format(mostfreqTextq,header)
+                print \
                     'DECLARE @ CustomMappingName VARCHAR(MAX) = NULL;'\
-                    '-- END PARAMS' % header
+                    '-- END PARAMS'
 
                 p.kill()
     except Exception,e:
