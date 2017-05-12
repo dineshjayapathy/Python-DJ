@@ -87,7 +87,7 @@ def readencrypted(fpath):
                     'DECLARE @CheckHeader BIT = NULL;\n' \
                     'DECLARE @ Columns VARCHAR(MAX) = {}'.format(mostfreqTextq,header)
                 print \
-                    'DECLARE @ CustomMappingName VARCHAR(MAX) = NULL;'\
+                    'DECLARE @ CustomMappingName VARCHAR(MAX) = NULL;\n'\
                     '-- END PARAMS'
 
                 p.kill()
