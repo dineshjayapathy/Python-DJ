@@ -17,7 +17,7 @@ def readlargefile(fpath):
             dr = '/'.join(dr.split('\\'))
 
             with open(dr) as infile:
-                head = [next(infile) for x in xrange(sz)]
+                head = [next(infile).rstrip() for x in xrange(sz)]
                 print "\n".join(head)
                 f.write("\n".join(head))
             f.close()
