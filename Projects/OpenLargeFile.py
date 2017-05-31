@@ -1,4 +1,7 @@
 ''' This tool can be used to open large flat files (even 2GB -10Gb)
+Currently it is scripted to read files with extension .xls
+change that per your need before running the script
+If the data in the file is smaller than the sample size it will error out.
 this reads the files from the input and creates the sample output
 '''
 import os
@@ -9,7 +12,7 @@ def readlargefile(fpath):
     sz=int(raw_input('Enter the sample size: \n'))
     for i in os.listdir(s):
         print i
-        if os.path.isfile(os.path.join(s, i)) and i.endswith('.txt'):
+        if os.path.isfile(os.path.join(s, i)) and i.endswith('.xls'):
             #f = open('C:\DJ\Bidco UI\OPTUM\data\Sample Athena -Optum feed\\' + i , 'w')
             f = open(os.path.join(o,i), 'w')
 
