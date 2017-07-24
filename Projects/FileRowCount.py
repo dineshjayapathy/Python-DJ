@@ -4,6 +4,9 @@ import pandas as pd
 
 s=raw_input('Enter the location of the files')
 
+os.chdir(r'D:\Clients\1047-OF-OPTUM\DEV\Data')
+
+s=r'D:\Clients\1047-OF-OPTUM\DEV\Data'
 j=0
 header=['TaskID','ExtractName','Records','AmountsField','Amount']
 a=[]
@@ -18,7 +21,7 @@ for i in os.listdir(s):
     #print i
     if os.path.isfile(os.path.join(s, i)):
         j += 1
-        dr = (os.path.join(s, i))  # works
+        dr = (os.path.join(s, i))
         dr = '/'.join(dr.split('\\'))
         #print dr
 
@@ -82,8 +85,10 @@ op.append(d)
 op.append(e)
 op.append(f1)
 
-print 'Here is the data that we need which is a list of lists \n'
-print op+'\n'
+#print 'Here is the data that we need which is a list of lists \n'
+#print op
+
+#print '\n'
 
 a = np.asarray(op)
 
@@ -91,6 +96,6 @@ a = np.asarray(op)
 
 
 df = pd.DataFrame(op)
-print 'Here is the same data converted into a DataFrame \n'
-print df
+#print 'Here is the same data converted into a DataFrame \n'
+#print df
 df.to_csv( 'C:\DJ\SQL\op1\CONTROL_TOTAL.csv',sep='|',index=False,header=False,quoting=True,doublequote='"')
