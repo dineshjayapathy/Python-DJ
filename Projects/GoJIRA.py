@@ -63,19 +63,21 @@ sys.setdefaultencoding('utf-8')
 cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER=QDWSQLOPS01;DATABASE=AnalyticsMonitoring;Trusted_Connection=TRUE')
 cursor = cnxn.cursor()
 
-
-cursor.execute('select [Client Acronym], [Source Acronym],[CR Name],Context,TRY_CONVERT(date,insert_timestamp) from CRorderformdashboard where TRY_CONVERT(date,insert_timestamp)=CONVERT(DATE,GETDATE())' )
+#cursor.execute('select [Client Acronym], [Source Acronym],[CR Name],Context,TRY_CONVERT(date,insert_timestamp) from CRorderformdashboard where TRY_CONVERT(date,insert_timestamp)=CONVERT(DATE,GETDATE())' )
+cursor.execute("select 'Test client' as a,'Test source' as b,'test CR name' as c,'Test context' as d" )
 tables = cursor.fetchall()
 
-# count=0
-# for i in tables:
-#     count += 1
-#
-#     client=i[0]
-#     source=i[1]
-#     crname=i[2]
-#     context=i[3]
-    #print 'Here are the variables we need',count, client, source,order_name
+
+
+count=0
+for i in tables:
+    count += 1
+
+    client=i[0]
+    source=i[1]
+    crname=i[2]
+    context=i[3]
+    print ('Here are the variables we need',count, client, source,crname,context)
 
 
 
@@ -133,14 +135,14 @@ issue_dict ={
 
 # pprint.pprint(issue_list)
 
-issues = jira.create_issue(fields=issue_dict)
-
-# for i in issues:
-#     print (i)
-#add the person in the email to watcher here.
-jira.add_watcher(issues.id, 'siddhesh.narkar')
-jira.add_watcher(issues.id, 'dinesh.jayapathy')
-jira.add_comment(issues.id, 'CR Created')
+# issues = jira.create_issue(fields=issue_dict)
+#
+# # for i in issues:
+# #     print (i)
+# #add the person in the email to watcher here.
+# jira.add_watcher(issues.id, 'siddhesh.narkar')
+# jira.add_watcher(issues.id, 'dinesh.jayapathy')
+# jira.add_comment(issues.id, 'CR Created')
 
 
 
