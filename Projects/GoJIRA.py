@@ -9,7 +9,7 @@ import time
 import csv
 import pyodbc
 import sys
-
+import json
 import config
 
 import pprint
@@ -63,8 +63,8 @@ sys.setdefaultencoding('utf-8')
 cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER=QDWSQLOPS01;DATABASE=AnalyticsMonitoring;Trusted_Connection=TRUE')
 cursor = cnxn.cursor()
 
-#cursor.execute('select [Client Acronym], [Source Acronym],[CR Name],Context,TRY_CONVERT(date,insert_timestamp) from CRorderformdashboard where TRY_CONVERT(date,insert_timestamp)=CONVERT(DATE,GETDATE())' )
-cursor.execute("select 'Test client' as a,'Test source' as b,'test CR name' as c,'Test context' as d" )
+cursor.execute("select Client_Acronym, Data_source_acronym,CR_Name,CR_Important_Context,Arcadia_Implementation_Lead_Email_Address,TRY_CONVERT(date,insert_timestamp), ID,CR_WorkEffortEstimate from ARC_OrderFormValues_old07072017 where id='13'" )
+#cursor.execute("select 'Test client' as a,'Test source' as b,'test CR name' as c,'Test context' as d" )
 tables = cursor.fetchall()
 
 
@@ -77,72 +77,90 @@ for i in tables:
     source=i[1]
     crname=i[2]
     context=i[3]
-    print ('Here are the variables we need',count, client, source,crname,context)
+    watcher='dinesh.jayapathy'#i[4]
+    id1=str(i[5])
+    estimate=i[6]
+    # print ('Here are the variables we need',count, client, source,crname,context)
 
 
 
 
-issue_dict ={
-# # {
-# #     'project': {'id': 123},
-# #     'summary': 'First issue of many',
-# #     'description': 'Look into this one',
-# #     'issuetype': {'name': 'Bug'},
-# # },
+    issue_dict ={
+    # {
+    #     'project': {'id': 123},
+    #     'summary': 'First issue of many',
+    #     'description': 'Look into this one',
+    #     'issuetype': {'name': 'Bug'},
+    # },
 
-#     #This works perfectly. project name is not a valid field in jira. It has a different name. find that out and use it.
-      #Actually, the project name is not needed. The project key AAI references Arcadia Analytics Implementations. So that is all we need.
-    'project': {'key': 'AAI'},
-    #'projectname': 'Arcadia Analytics Implementation',
-    'summary': 'CR|'+client+'| '+source+'| '+order_name,#The below fields don't map to JIRA till desc. The code works as such.
-    #'epic name':client+' '+source+' '+ehr+' '+impround, ignore this field. Epic name populates from sumary.
-    'customfield_11601': {'value': client}, #this is client
-    # 'customfield_11601': {'id': '12196' }, #this is client. This is causing an error for MODA. Not sure why.
-    'customfield_11609': {'value': source },#this is the data source. It should be an existing value. Else it will error out.Works now
-    'customfield_11626':'Change Request', #this is impround field
-    'description':context,
-    'issuetype': {'name': 'Epic'},
-    'customfield_11618':{'value':'Custom or Unknown'},
-    'customfield_11630': {'value': 'Unknown'},  # customer contract id. manadatory For all new tickets.
-    'customfield_10301': order_name , # Epic name. Mandatory field. For all new tickets.
-    #'timetracking':{'originalEstimate': '4h'}, Set estimated time to completion from CR form. Not working now.
-    #'customfield_10005': 'value'[0][2].append('Next Step Outside Connector') # {'name':'Next Step Outside Connector'} #do this later. this is the sprint field.
+    #     #This works perfectly. project name is not a valid field in jira. It has a different name. find that out and use it.
+          #Actually, the project name is not needed. The project key AAI references Arcadia Analytics Implementations. So that is all we need.
+        'project': {'key': 'AAI'},
+        #'projectname': 'Arcadia Analytics Implementation',
+        'summary': 'CR|'+client+'| '+source+'| '+order_name,#The below fields don't map to JIRA till desc. The code works as such.
+        #'epic name':client+' '+source+' '+ehr+' '+impround, ignore this field. Epic name populates from sumary.
+        'customfield_11601': {'value': client}, #this is client
+        # 'customfield_11601': {'id': '12196' }, #this is client. This is causing an error for MODA. Not sure why.
+        'customfield_11609': {'value': source },#this is the data source. It should be an existing value. Else it will error out.Works now
+        'customfield_11626':'Change Request', #this is impround field
+        'description':'test',
+        'issuetype': {'name': 'Epic'},
+        'customfield_11618':{'value':'Custom or Unknown'},
+        'customfield_11630': {'value': 'Unknown'},  # customer contract id. manadatory For all new tickets.
+        'customfield_10301': order_name , # Epic name. Mandatory field. For all new tickets.
+        # 'watcher':
+        # 'timetracking':{'originalEstimate': '4','remainingEstimate':'2'} #Set estimated time to completion from CR form. Not working now.
+        #'customfield_10005': 'value'[0][2].append('Next Step Outside Connector') # {'name':'Next Step Outside Connector'} #do this later. this is the sprint field.
+        #jira.add_watcher('AAI-75148', 'siddhesh.narkar') #this is the script to add watcher. add issue.id instead of AAI and the reporter username from sql
+    }
+    # {
+        # 'project': {'key': 'AAI'},
+        # # 'ProjectName': 'Arcadia Analytics Implementation',
+        # 'summary': order_name+source+ehr+impround+'Kick off',
+        # #'Issue ID': exid+client+' '+source+ehr+impround+'Kick off',
+        # #'Epic Link': client+' '+source+' '+ehr+' '+impround,
+        # 'customer contract id':buildtype,
+        # 'data source name':source,
+        # 'customer name': order_name,
+        # 'data source type': ehr,
+        # 'implementation round':impround,
+        # 'implementation phase': 'Kick off',
 
-    #jira.add_watcher('AAI-75148', 'siddhesh.narkar') #this is the script to add watcher. add issue.id instead of AAI and the reporter username from sql
-}
-# {
-    # 'project': {'key': 'AAI'},
-    # # 'ProjectName': 'Arcadia Analytics Implementation',
-    # 'summary': order_name+source+ehr+impround+'Kick off',
-    # #'Issue ID': exid+client+' '+source+ehr+impround+'Kick off',
-    # #'Epic Link': client+' '+source+' '+ehr+' '+impround,
-    # 'customer contract id':buildtype,
-    # 'data source name':source,
-    # 'customer name': order_name,
-    # 'data source type': ehr,
-    # 'implementation round':impround,
-    # 'implementation phase': 'Kick off',
-    # 'description':'test',
-    # 'issuetype': {'name': 'Story'},
-    # 'customfield_11630': {'value': 'Unknown'},  # customer contract id. manadatory For all new tickets.
-    # 'customfield_10301': 'test',  # Epic name. Mandatory field. For all new tickets.
+        # 'customfield_10301': 'test',  # Epic name. Mandatory field. For all new tickets.
+    # }
 
-# }
+    # pprint.pprint(issue_dict)
 
+    issues = jira.create_issue(fields=issue_dict)
+    # issues=str(issues)
 
+    # cursor.execute('''update ARC_OrderFormValues_old07072017
+    # set jira_upload=? where ID=?''',str(issues),id1)
+    # cnxn.commit()
 
+    # cursor.execute(u,(issues,id1))
+    issues.update(timetracking={'originalEstimate': estimate}) #this is the only way originalEstimate can be updated.
+
+    # print (issues.raw)
+    # pprint.pprint(issues.raw) #this is too many
+
+    #add orignalestimate to dict
+    #add wa
+    # issues.update(fields={'timetracking': 'new summary', 'description': 'A new summary was added'})
 
 
-# pprint.pprint(issue_list)
 
-# issues = jira.create_issue(fields=issue_dict)
-#
-# # for i in issues:
-# #     print (i)
-# #add the person in the email to watcher here.
-# jira.add_watcher(issues.id, 'siddhesh.narkar')
-# jira.add_watcher(issues.id, 'dinesh.jayapathy')
-# jira.add_comment(issues.id, 'CR Created')
+
+
+    # # for i in issues:
+    # #     print (i)
+    # #add the person in the email to watcher here.
+    # jira.add_watcher(issues.id, 'siddhesh.narkar')
+    jira.add_watcher(issues.id, 'dinesh.jayapathy')
+    jira.add_comment(issues.id, 'CR Created')
+    issue_dict.update({'watcher': watcher, 'originalEstimate': estimate,'comment':issues.fields.comment['comments']})
+    pprint.pprint(issue_dict)
+
 
 
 
