@@ -62,7 +62,7 @@ sys.setdefaultencoding('utf-8')
 cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER=QDWSQLOPS01;DATABASE=AnalyticsMonitoring;Trusted_Connection=TRUE')
 cursor = cnxn.cursor()
 
-cursor.execute("select Client_Acronym, Data_Source_Acronym, CR_Name, cr_Important_Context, Arcadia_Implementation_Lead_Email_Address, TRY_CONVERT(date,insert_timestamp), ID, CR_WorkEffortEstimate from ARC_OrderFormValues where ID='240'")
+cursor.execute("select Client_Acronym, Data_Source_Acronym, CR_Name, cr_Important_Context, CR_Owner_Email_Address, TRY_CONVERT(date,insert_timestamp), ID, CR_WorkEffortEstimate from ARC_OrderFormValues where TRY_CONVERT(date,insert_timestamp)=CONVERT(DATE,GETDATE())")
 
 
 
@@ -85,9 +85,9 @@ else:
         context=i[3]
         id1 = str(i[6])
         estimate = str(i[7])+'h'
-        watcher='dinesh.jayapathy@arcadiasolutions.com'
-        watcher=watcher.replace('@arcadiasolutions.com','')
-        # watcher=i[4].replace('@arcadiasolutions.com','')
+        # watcher='dinesh.jayapathy@arcadiasolutions.com'
+        # watcher=watcher.replace('@arcadiasolutions.com','')
+        watcher=i[4].replace('@arcadiasolutions.com','')
         #print 'Here are the variables we need',count, client, source,order_name
 
         issue_d = {
@@ -96,7 +96,7 @@ else:
               #Actually, the project name is not needed. The project key AAI references Arcadia Analytics Implementations. So that is all we need.
             'project': {'key': 'AAI'},
             #'projectname': 'Arcadia Analytics Implementation',
-            'summary': 'CR|'+client+'| '+source+'| '+crname,#The below fields don't map to JIRA till desc. The code works as such.
+            'summary': 'CR | '+client+' | '+source+' | '+crname,#The below fields don't map to JIRA till desc. The code works as such.
             #'epic name':client+' '+source+' '+ehr+' '+impround, ignore this field. Epic name populates from sumary.
             'customfield_11601': {'value': client}, #this is client
             # 'customfield_11601': {'id': '12196' }, #this is client. This is causing an error for MODA. Not sure why.
@@ -125,9 +125,9 @@ else:
 
 
         #Update the dashboard with the ticket number. Important. Works
-        # cursor.execute('''update ARC_OrderFormValues_old07072017
-        # set jira_upload=? where ID=?''', str(issues), id1)
-        # cnxn.commit()
+        cursor.execute('''update ARC_OrderFormValues
+        set jira_ticket=? where ID=?''', str(issue), id1)
+        cnxn.commit()
 
         # logging.debug(issue.id)
         logging.debug('JIRA Ticket number:'+str(issue))

@@ -136,7 +136,7 @@ if not orderform:
 
 else:
 
-    c=0
+    c=7089
     for i in orderform:
         try:
 
@@ -179,7 +179,8 @@ else:
                 #'projectname': 'Arcadia Analytics Implementation',
                 'summary': client+' '+source+' '+ehr+' '+impround,#
 
-                # 'customfield_11601': {'value': client}, #this is client. This is causing issue.
+                'customfield_11601': {'value': client}, #this is client. This is causing issue.
+                'customfield_11603':{'value': 'Kick off'},
                 'customfield_11609': {'value': source },#this is the data source.
                 # 'customfield_11626':{'value':impround}, #this is impround field. This is causing issue in upload.
                 'description':context,
@@ -188,7 +189,7 @@ else:
                 'customfield_11630': {'value': 'Unknown'},  # customer contract id. manadatory For all new tickets.
                 # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
                 'assignee': {'name': watcher},
-                # 'customfield_11005':{'value':'7089'+client+source+ehr+impround+'Kick off'} #this is the issue id it has to have proper exid
+                # 'customfield_11005': str(c)+client+' '+source+ehr+impround+'Kick off' #this is the issue id it has to have proper exid
                 #add epic link field after checking . Add this to story
 
                 #this is a sample issue id . The first part os exid which has to be unique
