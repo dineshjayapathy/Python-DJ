@@ -158,8 +158,9 @@ select Client_Acronym, Data_Source_Acronym,Important_Context,Arcadia_Implementat
 					WHEN Source_System_Software NOT LIKE '%Flat File%' AND Source_System_Software NOT LIKE '%Other%' THEN Source_System_Software
 					ELSE 'Custom or Unknown' END AS EHR
 ,TRY_CONVERT(date,insert_timestamp)
+,Arcadia_Implementation_Type
 					
-from ARC_OrderFormValues where ID in ('211')
+from ARC_OrderFormValues where ID in ('266')
 """)
 
 
@@ -192,13 +193,7 @@ else:
             # watcher=email.replace('@arcadiasolutions.com','')
 
 
-
-
-
-
-
                 #!! We first create the epic. Then use that epic ticket as a link(issue) to create story and subtasks.
-
 
             issue_d = {
 
@@ -213,7 +208,7 @@ else:
                 # 'customfield_11601': {'id': '12196' }, #this is client. This is causing an error for MODA. Not sure why.
                 'customfield_11609': {'value': source},
                 # this is the data source. It should be an existing value. Else it will error out.Works now
-                'customfield_11626': 'Change Request',  # this is impround field
+                'customfield_11626': impround,  # this is impround field
                 'description': context,
                 'issuetype': {'name': 'Epic'},
                 'customfield_11618': {'value':ehr},
@@ -295,7 +290,7 @@ else:
             pprint.pprint(issue_list)
 
             issues = jira.create_issues(field_list=issue_list)
-            print('These are the created issues :'+str(issues))
+            print('These are the created issues :'+str(issue)+str(issues))
 
             # pprint.pprint(issues)
 
