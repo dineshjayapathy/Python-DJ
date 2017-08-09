@@ -62,7 +62,7 @@ sys.setdefaultencoding('utf-8')
 cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER=QDWSQLOPS01;DATABASE=AnalyticsMonitoring;Trusted_Connection=TRUE')
 cursor = cnxn.cursor()
 
-cursor.execute("select Client_Acronym, Data_Source_Acronym, CR_Name, cr_Important_Context, CR_Owner_Email_Address, TRY_CONVERT(date,insert_timestamp), ID, CR_WorkEffortEstimate from ARC_OrderFormValues where TRY_CONVERT(date,insert_timestamp)=CONVERT(DATE,GETDATE())")
+cursor.execute("select Client_Acronym, Data_Source_Acronym, CR_Name, cr_Important_Context, CR_Owner_Email_Address, TRY_CONVERT(date,insert_timestamp), ID, CR_WorkEffortEstimate from ARC_OrderFormValues where JIRA_Ticket is NULL and CR_Name is not null")
 
 
 
