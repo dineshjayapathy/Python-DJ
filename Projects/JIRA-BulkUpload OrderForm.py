@@ -149,6 +149,36 @@ else:
 
 
 
+sitprepdesc='''
+*Description* 
+Prepare for delivery of connector to the QA environment
+
+*Sub Tasks*
+* Obtain System Access  
+* Survey Data Quality  
+* Define Testing Scope 
+* Project Team Testing Scope Review 
+* Entry Criteria Data Quality Analysis 
+* Connector Hand-off Review 
+* Test Output and Project Artifacts 
+* Promotion approval to QA Environment 
+
+*After Completion*
+(none)
+'''
+
+sitpsub1='''
+
+* Source EHR or other source system access 
+* Arcadia Analytics user interface and database access
+
+'''
+
+
+sitpsub2='''* Review client survey results that were taken before development started, if no survey has been done start client interaction which will set data expectations for “Compare” step.'''
+
+
+
 
 cursor.execute(
 """
@@ -160,7 +190,7 @@ select Client_Acronym, Data_Source_Acronym,Important_Context,Arcadia_Implementat
 ,TRY_CONVERT(date,insert_timestamp)
 ,Arcadia_Implementation_Type
 					
-from ARC_OrderFormValues where ID in ('266')
+from ARC_OrderFormValues where ID in ('266','267')
 """)
 
 
@@ -184,7 +214,7 @@ else:
             email=i[3]
             idO=i[4]
             ehr=i[5]
-            impround='Initial Build'
+            impround=i[7]    #'Initial Build'
             buildtype='Analytics Implementation:951'
             print (c,client,source,context,email,idO)
 
@@ -195,7 +225,7 @@ else:
 
                 #!! We first create the epic. Then use that epic ticket as a link(issue) to create story and subtasks.
 
-            issue_d = {
+            issue_epic = {
 
                 #     #This works perfectly. project name is not a valid field in jira. It has a different name. find that out and use it.
                 # Actually, the project name is not needed. The project key AAI references Arcadia Analytics Implementations. So that is all we need.
@@ -211,8 +241,8 @@ else:
                 'customfield_11626': impround,  # this is impround field
                 'description': context,
                 'issuetype': {'name': 'Epic'},
-                'customfield_11618': {'value':ehr},
-                'customfield_11630': {'value': 'Unknown'},  # customer contract id. manadatory For all new tickets.
+                'customfield_11618': {'value':ehr}, #data source type
+                'customfield_11630': {'value': 'Analytics Implementation:951'},  # customer contract id. manadatory For all new tickets.
                 'customfield_10301': client+' '+source+' '+ehr+' '+impround,  # Epic name. Mandatory field. For all new tickets.
                 'assignee': {'name': watcher},
                 # 'timeoriginalestimate': '5',
@@ -222,27 +252,27 @@ else:
                 # jira.add_watcher('AAI-75148', 'siddhesh.narkar') #this is the script to add watcher. add issue.id instead of AAI and the reporter username from sql
             }
 
-            pprint.pprint(issue_d)
+            pprint.pprint(issue_epic)
             # logging.debug(pprint.pprint(issue_d))
             # logging.debug(watcher)
-            issue = jira.create_issue(fields=issue_d)
+            issueEpic = jira.create_issue(fields=issue_epic)
             # Update the dashboard with the ticket number. Important. Works
             # cursor.execute('''update ARC_OrderFormValues
             #         set jira_ticket=? where ID=?''', str(issue), id1)
             # cnxn.commit()
-            logging.debug('JIRA Ticket number:' + str(issue))
-            logging.debug(issue_d)
+            logging.debug('JIRA Ticket number:' + str(issueEpic))
+            logging.debug(issue_epic)
 
-            print (issue)
+            print (issueEpic)
 
-            issueEpic=str(issue)
+            issueEpic=str(issueEpic)
 
 
-
+                # We then create the story tickets here
                 #!!!! The field customfield_10300 is the epic link field. Add issue to this.
                 # customfield_10300': u'AAI-75450',
 
-            issue_list=[
+            issue_story={
 
             # {
             #     'project': {'key': 'AAI'},
@@ -260,39 +290,73 @@ else:
             #     'assignee': {'name': watcher},
             # },
 
-            {   #story gets created with this setup. ClientName field casuses issue in upload.
+               #story gets created with this setup. ClientName field casuses issue in upload.
                 'project': {'key': 'AAI'},
                 #'projectname': 'Arcadia Analytics Implementation',
-                'summary': client+' '+source+' '+ehr+' '+impround+' Kick off',#
+                'summary': client+' '+source+' '+ehr+' '+impround+' SIT Prep',#
 
-                # 'customfield_11601': client, #this is client. This is causing issue.
-                'customfield_11603':{'value': 'Kick off'},
+                'customfield_11603':{'value': 'SIT Prep'}, #this is implementation phase
                 'customfield_11609': {'value': source },#this is the data source.
-                # 'customfield_11626':{'value':impround}, #this is impround field. This is causing issue in upload.
-                'description':context,
+                'customfield_11626': impround, #this is impround field. This is causing issue in upload.
+                'description':sitprepdesc,
                 'issuetype': {'name': 'Story'},
-                'customfield_11618':{'value':ehr},
-                'customfield_11630': {'value': 'Unknown'},  # customer contract id. manadatory For all new tickets.
+                'customfield_11618':{'value':ehr}, #data source type
+                'customfield_11630': {'value': 'Analytics Implementation:951'},  # customer contract id. manadatory For all new tickets.
                 # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
-                'assignee': {'name': watcher},
+                # 'assignee': {'name': watcher},
                 'customfield_10300': issueEpic,
+
                 # 'customfield_11005': '8100STW STWHPHC1Custom or UnknownInitial BuildKick off'#+'Kick off' #this is the issue id it has to have proper exid
                 #You can pull the exid from JIRA. Run a JQL to pull the most recent Kick off ticket uploaded by DJ. Pull the exid from that, increment it and assign it to the variable exid. For each ticket it gets incremented.
-                #add epic link field after checking . Add this to story
-
                 #this is a sample issue id . The first part os exid which has to be unique
                 # customfield_11005': u'1604CCC NEWHOther | v. 0Initial BuildKick off',
             }
 
 
-            ]
+            pprint.pprint(issue_story)
 
-            pprint.pprint(issue_list)
-
-            issues = jira.create_issues(field_list=issue_list)
-            print('These are the created issues :'+str(issue)+str(issues))
+            # issueStory = jira.create_issues(field_list=issue_story)
+            issueStory = jira.create_issue(fields=issue_story)
+            print('These are the created epic and story issues :'+str(issueEpic)+str(issueStory))
 
             # pprint.pprint(issues)
+            issueStory=str(issueStory)
+
+            issue_subtask =[
+            {
+
+                'project': {'key': 'AAI'},
+                'summary': 'Obtain System Access',
+                'customfield_11609': {'value': source},  # this is the data source.
+                'customfield_11626': impround,
+                'description': sitpsub1,
+                'issuetype': {'name': 'Sub-task'},
+                'customfield_11618': {'value': ehr}, #data source type
+                'customfield_11630': {'value': 'Analytics Implementation:951'},
+                'parent': {'key':issueStory}
+
+            },
+            {
+
+                'project': {'key': 'AAI'},
+                'summary': 'Survey Data Quality',
+                'customfield_11609': {'value': source},  # this is the data source.
+                'customfield_11626': impround,
+                'description': sitpsub2,
+                'issuetype': {'name': 'Sub-task'},
+                'customfield_11618': {'value': ehr}, #data source type
+                'customfield_11630': {'value': 'Analytics Implementation:951'},
+                'parent': {'key':issueStory}
+
+            }
+            ]
+
+            issueSubtask = jira.create_issues(field_list=issue_subtask)
+
+            pprint.pprint(issueSubtask)
+
+            print('This is the subtask that was just created :',str(issueSubtask))
+
 
         except Exception, e:
             print(e)
