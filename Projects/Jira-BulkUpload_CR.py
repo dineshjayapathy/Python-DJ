@@ -66,7 +66,7 @@ cursor = cnxn.cursor()
 cursor.execute("select Client_Acronym, Data_Source_Acronym, CR_Name, cr_Important_Context, CR_Owner_Email_Address, TRY_CONVERT(date,insert_timestamp), ID, CR_WorkEffortEstimate,CR_date_due,CR_Finance_team_PID,CR_Scope from ARC_OrderFormValues where JIRA_Ticket is NULL and CR_Name is not null")
 
 #test sql
-# cursor.execute("select Client_Acronym, Data_Source_Acronym, CR_Name, cr_Important_Context, CR_Owner_Email_Address, TRY_CONVERT(date,insert_timestamp), ID, CR_WorkEffortEstimate,CR_date_due,CR_Finance_team_PID,CR_Scope from ARC_OrderFormValues where ID='268'")
+# cursor.execute("select Client_Acronym, Data_Source_Acronym, CR_Name, cr_Important_Context, CR_Owner_Email_Address, TRY_CONVERT(date,insert_timestamp), ID, CR_WorkEffortEstimate,CR_date_due,CR_Finance_team_PID,CR_Scope from ARC_OrderFormValues where ID='272'")
 
 
 
@@ -89,9 +89,9 @@ else:
         context=i[3]
         id1 = str(i[6])
         estimate = str(i[7])+'h'
-        watcher='dinesh.jayapathy'
+        # watcher='dinesh.jayapathy'
         # watcher=watcher.replace('@arcadiasolutions.com','')
-        # watcher=i[4].replace('@arcadiasolutions.com','')
+        watcher=i[4].replace('@arcadiasolutions.com','')
         #print 'Here are the variables we need',count, client, source,order_name
         duedate=str(i[8])
         duedate=duedate[:10]
@@ -116,7 +116,7 @@ else:
             'description':'*Detailed Scope:*\n'+scope+'\n\n*Context of Need:*\n'+context,
             'issuetype': {'name': 'Epic'},
             'customfield_11618':{'value':'Custom or Unknown'},
-            'customfield_11630': {'value': finid},  # customer contract id. manadatory For all new tickets.
+            'customfield_11630': {'value': 'Unknown'},  # customer contract id. manadatory For all new tickets. tried mapping str(finid) This is a drop down. So value should be an existing value. New values not accepted.
             'customfield_10301': crname , # Epic name. Mandatory field. For all new tickets.
             'assignee': {'name': watcher},
             'duedate': duedate
@@ -141,8 +141,8 @@ else:
 
 
         #Update the dashboard with the ticket number. Important. Works
-        # cursor.execute("update ARC_OrderFormValues set jira_ticket=? where ID=?", str(issue), id1)
-        # cnxn.commit()
+        cursor.execute("update ARC_OrderFormValues set jira_ticket=? where ID=?", str(issue), id1)
+        cnxn.commit()
 
         # logging.debug(issue.id)
         logging.debug('JIRA Ticket number:'+str(issue))
@@ -157,7 +157,7 @@ else:
         # #timeoriginalestimate
         # #print (issue)
         # # add the person in the email to watcher here.
-        jira.add_watcher(issue.id, watcher)
+        # jira.add_watcher(issue.id, watcher)
 
-        jira.add_comment(issue.id, 'Your CR has been Created')
+        jira.add_comment(issue.id, 'Your CR has been created and is due by '+duedate)
 
