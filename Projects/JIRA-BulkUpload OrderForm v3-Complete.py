@@ -78,7 +78,7 @@ cursor = cnxn.cursor()
 #             'customfield_11626':'Change Request', #this is impround field
 #             'description':context,
 #             'issuetype': {'name': 'Epic'},
-#             'customfield_11618':{'value':'Custom or Unknown'},
+#             #'customfield_11618':{'value':'Custom or Unknown'},
 #             'customfield_11630': {'value': 'Unknown'},  # customer contract id. manadatory For all new tickets.
 #             'customfield_10301': crname , # Epic name. Mandatory field. For all new tickets.
 #             'assignee': {'name': watcher},
@@ -121,40 +121,38 @@ cursor = cnxn.cursor()
 
 
 # The below code gets the most recent exid. This will be used later when creating story tickets in issue_id which concatenates <EXID><CLNT> <DATASRC><EHR><IMPROUND>Kick off
+#
+# recent_issue = jira.search_issues(
+#     "reporter = dinesh.jayapathy and summary~'Initial Build Kick off' ORDER BY createdDate DESC",
+#     maxResults=1)
+#
+# # recentcount=0
+# for issueq in recent_issue:
+#     # if recentcount==0:
+#
+#     try:
+#         exidraw = issueq.fields.customfield_11005
+#     except:
+#         exidraw = None
+#         # recentcount+=1
+#
+# print('this is the recent exidraw: ' + str(exidraw))
+#
+# if exidraw is not None:
+#     # exid=re.match('^[^\d]*(\d+)',exidraw,1)
+#     p = re.match(r'^[^\d]*(\d+)', exidraw)
+#     exid = p.group(1)
+#     print('this is the exid ' + str(exid))
+#
+# else:
+#     print('Exid is empty: ' + str(exidraw))
 
-recent_issue = jira.search_issues(
-    "reporter = dinesh.jayapathy and summary~'Initial Build Kick off' ORDER BY createdDate DESC",
-    maxResults=1)
-
-# recentcount=0
-for issueq in recent_issue:
-    # if recentcount==0:
-
-    try:
-        exidraw = issueq.fields.customfield_11005
-    except:
-        exidraw = None
-        # recentcount+=1
-
-print('this is the recent exidraw: ' + str(exidraw))
-
-if exidraw is not None:
-    # exid=re.match('^[^\d]*(\d+)',exidraw,1)
-    p = re.match(r'^[^\d]*(\d+)', exidraw)
-    exid = p.group(1)
-    print('this is the exid ' + str(exid))
-
-else:
-    print('Exid is empty: ' + str(exidraw))
-
-
-epicdesc='''
+epicdesc = '''
 This Epic tracks the state of the Connector from kick off to Go-Live. 
-The Connector is complete when all the associated stories and sub tasks are in ""Closed"" state. 
+The Connector is complete when all the associated stories and sub tasks are in "Closed" state. 
 '''
 
-
-kickoffdesc='''
+kickoffdesc = '''
 *Description* 
 * Initiate and complete Client/Site kick off meeting(s)
 * Pass on Connectivity requirement section to the client
@@ -195,7 +193,7 @@ kickoffdesc='''
 ** Who else should be in the loop when we reach out to this person?
 '''
 
-accessdesc='''
+accessdesc = '''
 *Description* 
 * Reach out to client for access to front and back end 
 * Distribute encryption key if PRS or DF
@@ -216,8 +214,7 @@ accessdesc='''
 * Move SIT Prep, Query Development, and Extract and Load Tasks to “Open” state
 '''
 
-
-reqdesc='''
+reqdesc = '''
 *Description* 
 * Update the Client/Site Level wiki with the following information:
 ** Product version
@@ -237,9 +234,7 @@ After Completion
 *  Ensure  SIT Prep, Query Development, and Extract and Load Tasks are in “Open” state
 '''
 
-
-
-envblddesc='''
+envblddesc = '''
 *Description* 
 * Request environment build and support operations as needed to ensure the following are completed
 ** Back end deploys
@@ -254,9 +249,7 @@ Complete environment build (Operations)
 * Ensure all environment build tasks are complete 
 '''
 
-
-
-extloaddesc='''
+extloaddesc = '''
 *Description* 
 * Create new MCTs if needed
 * Add new MCTs to extract task flow
@@ -272,8 +265,7 @@ extloaddesc='''
 * Ensure that Query Development and Seed Data Prep are moved to “Open” state
 '''
 
-
-qdevdesc='''
+qdevdesc = '''
 *Description* 
 * Develop and test queries on data source backend based on requirements specified in Connector epic.
 * Confirm list of new queries to be reviewed in GIT pull request to new branch. (can be multiple commits, but only one pull request)
@@ -287,7 +279,7 @@ After Completion
 * Ensure that Code Review is in “Open” state
 '''
 
-coderevdesc='''
+coderevdesc = '''
 *Description* 
 * Confirm that all queries in pull request adhere to below development standards
 ** Pull latest versions of queries from GIT and analyze them against client requirements and Arcadia product requirements
@@ -303,8 +295,7 @@ coderevdesc='''
 * Ensure that DQA is moved to “Open” state
 '''
 
-
-seedprepdesc='''
+seedprepdesc = '''
 *Description* 
 * Create skeleton seed script for Staging & Warehouse
 * Run seed generation sproc from staging and populate spreadsheet for review
@@ -320,8 +311,7 @@ seedprepdesc='''
 * Ensure that Clinical Review is moved to “Open” state
 '''
 
-
-clinrevdesc='''
+clinrevdesc = '''
 *Description* 
 * Review clinical seeds and provide feedback
 
@@ -333,8 +323,7 @@ clinrevdesc='''
 (none)
 '''
 
-
-dqadesc='''
+dqadesc = '''
 *Description* 
 * Execute DQA playbook (compare results against client survey)
 * Fix issues in connector build until all test cases pass
@@ -348,8 +337,7 @@ Review DQA results (Solution Architect)
 * Ensure that Verification is moved to “Open” state
 '''
 
-
-verifdesc='''
+verifdesc = '''
 *Description* 
 * Generate QC Validation Extract File
 * Execute tests per QC playbook 
@@ -365,8 +353,7 @@ verifdesc='''
 * Ensure that Deliver to QA  is moved to “Open” state
 '''
 
-
-deliverqadesc='''
+deliverqadesc = '''
 *Description* 
 * Create Handoff Document 
 * Complete SA validation  
@@ -382,10 +369,6 @@ deliverqadesc='''
 *After Completion*
 * Ensure that SIT Execute  is moved to “Open” state
 '''
-
-
-
-
 
 sitprepdesc = '''
 *Description* 
@@ -405,9 +388,7 @@ Prepare for delivery of connector to the QA environment
 (none)
 '''
 
-
-
-sitexdesc='''
+sitexdesc = '''
 
 *Description* 
 
@@ -430,8 +411,7 @@ Execute internal testing of connector
 
 '''
 
-
-uatprepdesc='''
+uatprepdesc = '''
 *Description* 
 Prepare for UAT testing phase
 
@@ -449,9 +429,7 @@ Prepare for UAT testing phase
 (none)
 '''
 
-
-
-uatexecdesc='''
+uatexecdesc = '''
 *Description* 
 Perform client UAT sessions
 
@@ -468,8 +446,7 @@ Perform client UAT sessions
 (none)
 '''
 
-
-goliveapprvdesc='''
+goliveapprvdesc = '''
 *Description* 
 Promote to production
 
@@ -487,8 +464,7 @@ Promote to production
 (none)
 '''
 
-
-golivedesc='''
+golivedesc = '''
 *Description* 
 * Ensure client sign off is obtained
 * Fill out go-live checklist
@@ -505,7 +481,6 @@ golivedesc='''
 * Commence monitoring of connectors and related environments
 '''
 
-
 sitpsub1osa = '''
 
 * Source EHR or other source system access 
@@ -515,7 +490,7 @@ sitpsub1osa = '''
 
 sitpsub2sdq = '''* Review client survey results that were taken before development started, if no survey has been done start client interaction which will set data expectations for “Compare” step.'''
 
-sitpsub3dts='''
+sitpsub3dts = '''
 * Review project needs and plan as appropriate
 * Review any project specific requirements with author and request clarification in advance of test case writing. Any requirement gap issues should be escalated to the project team.
 * Work unique or new in this project that may require additional test planning 
@@ -524,12 +499,11 @@ sitpsub3dts='''
 * Coverage Matrix
 '''
 
-
-sitpsub4pttsr='''
+sitpsub4pttsr = '''
 * Review planned testing scope with project team for collaboration and buy-in
 '''
 
-sitpsub5ecdqa='''
+sitpsub5ecdqa = '''
 * Comparative analysis to survey 
 * Data Quality Analyzer  
 * Data Quality Scorecard 
@@ -538,7 +512,7 @@ sitpsub5ecdqa='''
 * Document non-blocking items for “SIT Execute Data Quality Follow on Investigation”  
 '''
 
-sitpsub6chr='''
+sitpsub6chr = '''
 * Meet with connector team to discuss issues uncovered during the connector build.  
 * Connector team to bring hand off results.  
 * Test team to bring comparative data analysis results.  
@@ -546,44 +520,39 @@ sitpsub6chr='''
 
 '''
 
-
-
-sitpsub7topa='''
+sitpsub7topa = '''
 * Prepare test materials in advance of promotion to QA 
 * “Test Results and Project Artifacts” repository with link on links page  
 * Test Case document
 * JIRA bug dashboard  
 '''
 
-sitpsub8paqe='''
+sitpsub8paqe = '''
 * Approve the deployment to the QA environment
 '''
 
-
-sitexecsub1uit='''
+sitexecsub1uit = '''
 * Customer data appears as expected in the application and is usable to them (use cases)
 * Filters, measures, and reports function perform as expected (smoke test)
 '''
 
-
-sitexecsub2mqt='''
+sitexecsub2mqt = '''
 * Validate the MPI process with queries
 * Check data completeness and data quality for MPI data elements.  
 * Do SQL validation queries  
 * MPI Patient Overlap Testing 
 '''
 
-sitexecsub3mmt='''
+sitexecsub3mmt = '''
 * Manually validate the MPI process manually and create report of 
 * MPI Accuracy Summary Report  
 '''
 
-
-sitexecsub4svt='''
+sitexecsub4svt = '''
 * Review scrubbed and unscrubbed values.  
 '''
 
-sitexecsub5sdqt='''
+sitexecsub5sdqt = '''
 * Run data quality testing and begin/continue documenting variances for client reporting
 * Validate MRNs provided by the customer meet expected result provided by customer
 * Investigate connector hand-off and other previously recorded data quality issues for client communication
@@ -592,61 +561,56 @@ sitexecsub5sdqt='''
 * What does not match based on survey
 '''
 
-sitexecsub6plt='''
+sitexecsub6plt = '''
 * Perform patient level testing.  
 * Initiative Performance Measures
 * Care Management Reports
 * Other Arcadia Analytics functionality continue to document findings for reporting to client
 '''
 
-sitexecsub7dqsr='''
+sitexecsub7dqsr = '''
 * Finalize data quality summary report.  Review with QA team for cross-project knowledge
 * Review with project team before client session to refine customer message
 * Communicate results with customer with project leadership support
 * Explain variances from their expected result
 '''
 
-sitexecsub8ir='''
+sitexecsub8ir = '''
 * Track the fixing of reported issues/bugs, and verify when they are reported as fixed.  
 * Ensure all bugs show on JIRA bug dashboard.  
 * Escalate priority issues.
 '''
 
-sitexecsub9rt='''
+sitexecsub9rt = '''
 * Select cases for re-test to ensure bug fixes have not had unintended consequences.
 '''
 
-sitexecsub10pu='''
+sitexecsub10pu = '''
 * Approve and promote code base to UAT
 '''
 
-
-uatprepsub1cpd='''
+uatprepsub1cpd = '''
 * Prepare the presentation deck for the customer session. 
 '''
 
-
-uatprepsub2usae='''
+uatprepsub2usae = '''
 * With project collaboration plan scope and set dates for UAT Training Demonstration and UAT Test Sessions.
 * Communicate with customer to set UAT agenda expectations.  
 * Include what they need like Access to source data (ehr), Internet Access, Computers
 * Recommend large monitors for two screen work etc. 
 '''
 
-
-uatprepsub3utsa='''
+uatprepsub3utsa = '''
 * Identify names of testers and ensure they have access to the UAT environment prior to the UAT training and testing sessions
 '''
 
-
-uatprepsub4uest='''
+uatprepsub4uest = '''
 * Smoke test the site in the UAT environment to ensure readiness for customer sessions.  
 * UI smoke test 
 * Measure performance results compare with QA
 '''
 
-
-uatprepsub5utc='''
+uatprepsub5utc = '''
 * Fully prepare test cases for customer session 
 * Create and/or update test scripts.  
 * Divide cases for appropriate assignment to testers.  
@@ -654,24 +618,23 @@ uatprepsub5utc='''
 * Sample single source patients should include high activity patients for SPR testing
 '''
 
-uatprepsub6udr='''
+uatprepsub6udr = '''
 * Perform some of the UAT test cases with some of the patients or members from the list to ensure testing will work during the customer session.
 '''
 
-
-uatprepsub7ppd='''
+uatprepsub7ppd = '''
 * With project leadership collaboration ensure up to date documentation on the product is provided to the customer prior to the sessions.
 '''
 
-uatprepsub8pkil='''
+uatprepsub8pkil = '''
 * With project collaboration create or update the client facing Known Issues list and provided and/or review it with the customer prior to the test session.
 '''
 
-uatexecsub1ctd='''
+uatexecsub1ctd = '''
 * Collaborate with project team to execute product training demonstration for the client.  This can be remote or in person, preferably in advance of test session.  Preferably in UAT with their data when they have access.  Showing the demo on the demo environment is last option. 
 '''
 
-uatexecsub2cus='''
+uatexecsub2cus = '''
 * Collaborate with project team to execute UAT test session with customer; preferably on site
 * Must be in UAT with their data when they have access
 * Demonstrate the test steps
@@ -679,16 +642,14 @@ uatexecsub2cus='''
 * Instruct testers to log issues on cases when unable to explain during the session.  Ensure someone in the office is scheduled to back up on site resources.  
 '''
 
-
-uatexecsub3cwre='''
+uatexecsub3cwre = '''
 * Compile test results
 * Evaluate all failures for cause
 * Enter defects to JIRA as appropriate
 * Add new issues to “Known Issues” list.
 '''
 
-
-uatexecsub4ursr='''
+uatexecsub4ursr = '''
 * Create a UAT Results Summary report and review with project team
 * Report should high level report a summary of the testing
 * At detail level each issue should be described for both root cause and resolution expectation
@@ -697,72 +658,64 @@ uatexecsub4ursr='''
 * If issue is enhancement add to product enhancement queue and communicate same to customer
 '''
 
-uatexecsub5sd='''
+uatexecsub5sd = '''
 * With project team collaboration create sign off draft document and introduce to client
 '''
 
-
-uatexecsub6ir='''
+uatexecsub6ir = '''
 * Work to resolve, validate and deploy all issues on the Known Issue list.  
 * Prioritize issues blocking sign-off to be resolved first.  
 '''
 
-uatexecsub7gla='''
+uatexecsub7gla = '''
 * Work to and receive sign-off from client to promote to production environment
 '''
 
-
-goliveapprvsub1stps='''
+goliveapprvsub1stps = '''
 * Begin transition of support to Production Support team
 * Compile pertinent data
 * Inform production support 
 * Get name of resource to start transitioning knowledge
 '''
 
-
-goliveapprvsub2pcdr='''
+goliveapprvsub2pcdr = '''
 * Perform validation steps that will be performed in production in UAT before the promotion. 
 * UI tests
 * Get “before” results measure data in UAT for later comparison
 * Get “before” picture of measures in prod if project is updating or replacing an existing connector
 '''
 
-goliveapprvsub3pp='''
+goliveapprvsub3pp = '''
 * Request production promotion
 * Ensure QA staffing for expected completion of production deploy
 '''
 
-goliveapprvsub4pc='''
+goliveapprvsub4pc = '''
 * Validate production install
 * System is up and available
 * Smoke test UI
 * Compare prod to results from production checkout dry run previously performed in UAT 
 '''
 
-
-goliveapprvsub5pcul='''
+goliveapprvsub5pcul = '''
 * Collaborate with project team to ensure accurate creation of production user logins
 '''
 
-
-
-goliveapprvsub6puat='''
+goliveapprvsub6puat = '''
 * Collaborate with project team to provide user admin and training documentation
 '''
 
-goliveapprvsub7qspip='''
+goliveapprvsub7qspip = '''
 * QA team to support production environment for Initial Period
 '''
 
-
-goliveapprvsub8ctps='''
+goliveapprvsub8ctps = '''
 * Transition client to production support after initial support period
 '''
 
-golivesub1pau='''
+golivesub1pau = '''
 * Provision access to users (Production Support)
 '''
-
 
 cursor.execute(
     """
@@ -773,8 +726,8 @@ cursor.execute(
                         ELSE 'Custom or Unknown' END AS EHR
     ,TRY_CONVERT(date,insert_timestamp)
     ,Arcadia_Implementation_Type
-    
-    from ARC_OrderFormValues where ID in ('269')
+
+    from ARC_OrderFormValues where ID in ('275','276')
     """)
 
 orderform = cursor.fetchall()
@@ -792,18 +745,20 @@ else:
             c += 1
             # print (c,i)
             client = i[0]
-            source = 'PHPS'#i[1]
+            source = i[1]  # this is failing. Try converting to string.
+            source = str(source)
             context = 'Test description. Will come from excel template later on.'
             email = i[3]
             idO = i[4]
             ehr = i[5]
-            impround = i[7]  # 'Initial Build'
+            impround = 'Initial Build'
+            conntype=i[7]
             buildtype = 'Analytics Implementation:951'
             print(c, client, source, context, email, idO)
 
-            watcher = 'dinesh.jayapathy@arcadiasolutions.com'
-            watcher = watcher.replace('@arcadiasolutions.com', '')
-            # watcher=email.replace('@arcadiasolutions.com','')
+            # watcher = 'dinesh.jayapathy@arcadiasolutions.com'
+            # watcher = watcher.replace('@arcadiasolutions.com', '')
+            watcher=email.replace('@arcadiasolutions.com','')
 
 
             # !! We first create the epic. Then use that epic ticket as a link(issue) to create story and subtasks.
@@ -814,23 +769,27 @@ else:
                 # Actually, the project name is not needed. The project key AAI references Arcadia Analytics Implementations. So that is all we need.
                 'project': {'key': 'AAI'},
                 # 'projectname': 'Arcadia Analytics Implementation',
-                'summary': client + ' ' + source + ' ' + ehr + ' ' + impround,
+                'summary': client + ' ' + source + ' ' + conntype +' '+ impround,
                 # The below fields don't map to JIRA till desc. The code works as such.
                 # 'epic name':client+' '+source+' '+ehr+' '+impround, ignore this field. Epic name populates from sumary.
                 'customfield_11601': {'value': client},  # this is client
                 # 'customfield_11601': {'id': '12196' },
-                'customfield_11609': {'value': source}, #this is causing issues for PHPS of
-                # this is the data source. It should be an existing value. Else it will error out.Works now
+                # 'customfield_11502': source, #this is causing issues for PHPS of
+                # 11609 this is the data source. It should be an existing value. Else it will error out. New values cannot be added to this select-list field through the api(works through upload template). it is a bug https://jira.atlassian.com/browse/JRASERVER-36112
+                # we will use the data source acronym field instead
+                'customfield_11502': source,
+
                 'customfield_11626': impround,  # this is impround field
                 'description': epicdesc,
                 'issuetype': {'name': 'Epic'},
-                'customfield_11618': {'value': ehr},  # data source type
+                #'customfield_11618': {'value': ehr},  # data source type
                 'customfield_11630': {'value': 'Analytics Implementation:951'},
-            # customer contract id. manadatory For all new tickets.
+                # customer contract id. manadatory For all new tickets.
                 'customfield_10301': client + ' ' + source + ' ' + ehr + ' ' + impround,
-            # Epic name. Mandatory field. For all new tickets.
+                # Epic name. Mandatory field. For all new tickets.
                 'assignee': {'name': watcher},
-                'priority': {'name': 'Minor'}
+                'priority': {'name': 'Minor'},
+                'customfield_11105' :conntype
                 # 'timeoriginalestimate': '5',
                 # 'timetracking':{'originalEstimate': '4d','remainingEstimate':'1d'}, #Set estimated time to completion from CR form. Not working now.
                 # 'customfield_10005': 'value'[0][2].append('Next Step Outside Connector') # {'name':'Next Step Outside Connector'} #do this later. this is the sprint field.
@@ -848,6 +807,10 @@ else:
             # cnxn.commit()
             logging.debug('JIRA Ticket number:' + str(issueEpic))
             logging.debug(issue_epic)
+            jira.add_comment(issueEpic.id,'The Epic has been created')
+
+            # jira.add_comment(issueEpic.id, 'The Epic'+client + ' ' + source + ' ' + conntype +' '+ impround+ ' has been Created. ' +str(issueEpic)) this works but looks like this
+            #The Epic ACPPS ACPNYS Plan Custom [File with Claims and Eligibility] Initial Buildhas been CreatedAAI-77104
 
             print(issueEpic)
 
@@ -865,11 +828,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Kick off',  #
 
                     'customfield_11603': {'value': 'Kick off'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': kickoffdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -883,11 +846,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Client Access',  #
 
                     'customfield_11603': {'value': 'Client Access'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': accessdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -901,11 +864,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Requirements',  #
 
                     'customfield_11603': {'value': 'Requirements'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': reqdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -919,11 +882,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Environment Build',  #
 
                     'customfield_11603': {'value': 'Environment Build'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': envblddesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -937,11 +900,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Extract and Load',  #
 
                     'customfield_11603': {'value': 'Extract and Load'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': extloaddesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -955,11 +918,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Query Development',  #
 
                     'customfield_11603': {'value': 'Query Development'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': qdevdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -973,11 +936,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Code Review',  #
 
                     'customfield_11603': {'value': 'Query Development'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': coderevdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -991,11 +954,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Seed Data Prep',  #
 
                     'customfield_11603': {'value': 'Seed Data Prep'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': seedprepdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -1010,11 +973,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Clinical Review',  #
 
                     'customfield_11603': {'value': 'Clinical Review'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': clinrevdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -1028,11 +991,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' DQA',  #
 
                     'customfield_11603': {'value': 'DQA'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': dqadesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -1046,11 +1009,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Verification',  #
 
                     'customfield_11603': {'value': 'Verification'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': verifdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -1064,11 +1027,11 @@ else:
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Deliver to QA',  #
 
                     'customfield_11603': {'value': 'Deliver to QA'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': deliverqadesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     # customer contract id. manadatory For all new tickets.
                     # 'customfield_10301': client+' '+source+' '+ehr+' '+impround, # Epic name. Mandatory field. For all new tickets.
@@ -1078,53 +1041,53 @@ else:
 
                 {
 
-                'project': {'key': 'AAI'},
-                # 'projectname': 'Arcadia Analytics Implementation',
-                'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' SIT Prep',  #
+                    'project': {'key': 'AAI'},
+                    # 'projectname': 'Arcadia Analytics Implementation',
+                    'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' SIT Prep',  #
 
-                'customfield_11603': {'value': 'SIT Prep'},  # this is implementation phase
-                'customfield_11609': {'value': source},  # this is the data source.
-                'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
-                'description': sitprepdesc,
-                'issuetype': {'name': 'Story'},
-                'customfield_11618': {'value': ehr},  # data source type
-                'customfield_11630': {'value': 'Analytics Implementation:951'},
-                'customfield_10300': issueEpic,
+                    'customfield_11603': {'value': 'SIT Prep'},  # this is implementation phase
+                    'customfield_11502': source,  # this is the data source.
+                    'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
+                    'description': sitprepdesc,
+                    'issuetype': {'name': 'Story'},
+                    #'customfield_11618': {'value': ehr},  # data source type
+                    'customfield_11630': {'value': 'Analytics Implementation:951'},
+                    'customfield_10300': issueEpic,
                 },
                 {
-                # story gets created with this setup. ClientName field casuses issue in upload.
-                'project': {'key': 'AAI'},
-                'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' SIT Execute',  #
-                'customfield_11603': {'value': 'SIT Execute'},  # this is implementation phase
-                'customfield_11609': {'value': source},  # this is the data source.
-                'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
-                'description': sitexdesc,
-                'issuetype': {'name': 'Story'},
-                'customfield_11618': {'value': ehr},  # data source type
-                'customfield_11630': {'value': 'Analytics Implementation:951'},
-                'customfield_10300': issueEpic,
+                    # story gets created with this setup. ClientName field casuses issue in upload.
+                    'project': {'key': 'AAI'},
+                    'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' SIT Execute',  #
+                    'customfield_11603': {'value': 'SIT Execute'},  # this is implementation phase
+                    'customfield_11502': source,  # this is the data source.
+                    'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
+                    'description': sitexdesc,
+                    'issuetype': {'name': 'Story'},
+                    #'customfield_11618': {'value': ehr},  # data source type
+                    'customfield_11630': {'value': 'Analytics Implementation:951'},
+                    'customfield_10300': issueEpic,
                 },
                 {
                     'project': {'key': 'AAI'},
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' UAT Prep',  #
                     'customfield_11603': {'value': 'UAT Prep'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': uatprepdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
-                    'customfield_11630': {'value': 'Analytics Implementation:951'}, #This is buildtype
+                    #'customfield_11618': {'value': ehr},  # data source type
+                    'customfield_11630': {'value': 'Analytics Implementation:951'},  # This is buildtype
                     'customfield_10300': issueEpic,
                 },
                 {
                     'project': {'key': 'AAI'},
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' UAT Execute',  #
                     'customfield_11603': {'value': 'UAT Execute'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': uatexecdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},  # This is buildtype
                     'customfield_10300': issueEpic,
                 },
@@ -1132,11 +1095,11 @@ else:
                     'project': {'key': 'AAI'},
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Go-Live Approval',  #
                     'customfield_11603': {'value': 'Go-Live Approval'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': goliveapprvdesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},  # This is buildtype
                     'customfield_10300': issueEpic,
                 },
@@ -1144,11 +1107,11 @@ else:
                     'project': {'key': 'AAI'},
                     'summary': client + ' ' + source + ' ' + ehr + ' ' + impround + ' Go-Live',  #
                     'customfield_11603': {'value': 'Go-Live'},  # this is implementation phase
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,  # this is impround field. This is causing issue in upload.
                     'description': golivedesc,
                     'issuetype': {'name': 'Story'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},  # This is buildtype
                     'customfield_10300': issueEpic,
                 },
@@ -1175,11 +1138,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Obtain System Access',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitpsub1osa,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitprep}
 
@@ -1188,11 +1151,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Survey Data Quality',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitpsub2sdq,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitprep}
 
@@ -1201,11 +1164,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Define Testing Scope',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitpsub3dts,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitprep}
 
@@ -1215,11 +1178,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Project Team Testing Scope Review',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitpsub4pttsr,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitprep}
 
@@ -1229,11 +1192,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Entry Criteria Data Quality Analysis',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitpsub5ecdqa,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitprep}
 
@@ -1243,11 +1206,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Connector Hand-off Review',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitpsub6chr,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitprep}
 
@@ -1257,11 +1220,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Test Output and Project Artifacts',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitpsub7topa,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitprep}
 
@@ -1271,32 +1234,27 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Promotion approval to QA Environment',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitpsub8paqe,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitprep}
 
                 },
 
-
-
-
-
-
-                #!!!  next set of subtasks are created here
+                # !!!  next set of subtasks are created here
 
                 {
 
                     'project': {'key': 'AAI'},
                     'summary': 'User Interface Testing',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitexecsub1uit,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitexec}
 
@@ -1306,11 +1264,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'MPI Query Testing',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitexecsub2mqt,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitexec}
 
@@ -1320,11 +1278,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'MPI Manual Testing',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitexecsub3mmt,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitexec}
 
@@ -1334,11 +1292,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Scrubbed Value Testing',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitexecsub4svt,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitexec}
 
@@ -1348,11 +1306,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'SIT Data Quality Testing',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitexecsub5sdqt,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitexec}
 
@@ -1362,11 +1320,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Patient Level Testing',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitexecsub6plt,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitexec}
 
@@ -1376,11 +1334,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Data Quality Summary Reporting',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitexecsub7dqsr,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitexec}
 
@@ -1390,11 +1348,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Issue Remediation',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitexecsub8ir,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitexec}
 
@@ -1404,11 +1362,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Regression Testing',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitexecsub9rt,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitexec}
 
@@ -1418,11 +1376,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Promote to UAT',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': sitexecsub10pu,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueSitexec}
 
@@ -1432,11 +1390,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Client Presentation Deck',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatprepsub1cpd,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatprep}
 
@@ -1446,11 +1404,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'UAT Scheduling and Agenda Expectations',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatprepsub2usae,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatprep}
 
@@ -1460,11 +1418,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'UAT Tester System Access',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatprepsub3utsa,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatprep}
 
@@ -1474,11 +1432,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'UAT Environment Smoke Test',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatprepsub4uest,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatprep}
 
@@ -1488,11 +1446,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'UAT Test Cases',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatprepsub5utc,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatprep}
 
@@ -1502,11 +1460,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'UAT Dry Run',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatprepsub6udr,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatprep}
 
@@ -1516,11 +1474,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Provide Product Documentation',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatprepsub7ppd,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatprep}
 
@@ -1530,27 +1488,26 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Provide Known Issues List',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatprepsub8pkil,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatprep}
 
                 },
 
-
-                #!!! Here we create sub tasks for UAT exec
+                # !!! Here we create sub tasks for UAT exec
                 {
 
                     'project': {'key': 'AAI'},
                     'summary': 'Client Training Demonstration',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatexecsub1ctd,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatexec}
 
@@ -1560,11 +1517,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Client UAT Session(s)',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatexecsub2cus,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatexec}
 
@@ -1574,11 +1531,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Client UAT Session(s)',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatexecsub2cus,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatexec}
 
@@ -1588,11 +1545,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Completed Workbook Results Evaluation ',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatexecsub3cwre,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatexec}
 
@@ -1602,11 +1559,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'UAT Results Summary Report ',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatexecsub4ursr,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatexec}
 
@@ -1616,11 +1573,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Sign-off Draft ',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatexecsub5sd,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatexec}
 
@@ -1630,11 +1587,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Issue Remediation',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatexecsub6ir,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatexec}
 
@@ -1644,28 +1601,27 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Go-Live Approval',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': uatexecsub7gla,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueUatexec}
 
                 },
 
-
-            # Here the Go live approval sub tasks are created
+                # Here the Go live approval sub tasks are created
 
                 {
 
                     'project': {'key': 'AAI'},
                     'summary': 'Start Transition to Production Support',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': goliveapprvsub1stps,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueGoliveapprv}
 
@@ -1674,11 +1630,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Production Checkout Dry Run',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': goliveapprvsub2pcdr,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueGoliveapprv}
 
@@ -1687,11 +1643,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Promote to Production',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': goliveapprvsub3pp,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueGoliveapprv}
 
@@ -1700,11 +1656,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Production Checkout',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': goliveapprvsub4pc,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueGoliveapprv}
 
@@ -1713,11 +1669,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Production Create User Logins',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': goliveapprvsub5pcul,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueGoliveapprv}
 
@@ -1725,12 +1681,12 @@ else:
                 {
 
                     'project': {'key': 'AAI'},
-                    'summary': 'Provide User Admin Training	',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'summary': 'Provide User Admin Training ',
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': goliveapprvsub6puat,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueGoliveapprv}
 
@@ -1739,11 +1695,11 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'QA Support Productions for Initial Period',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': goliveapprvsub7qspip,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueGoliveapprv}
 
@@ -1752,26 +1708,26 @@ else:
 
                     'project': {'key': 'AAI'},
                     'summary': 'Complete Transition to Production Support',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': goliveapprvsub8ctps,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueGoliveapprv}
 
                 },
 
-                #!! here the subtask for golive is created
+                # !! here the subtask for golive is created
                 {
 
                     'project': {'key': 'AAI'},
                     'summary': 'Provision access to users (Production Support)',
-                    'customfield_11609': {'value': source},  # this is the data source.
+                    'customfield_11502': source,  # this is the data source.
                     'customfield_11626': impround,
                     'description': golivesub1pau,
                     'issuetype': {'name': 'Sub-task'},
-                    'customfield_11618': {'value': ehr},  # data source type
+                    #'customfield_11618': {'value': ehr},  # data source type
                     'customfield_11630': {'value': 'Analytics Implementation:951'},
                     'parent': {'key': issueGolive}
 
