@@ -85,6 +85,7 @@ else:
 
         client=i[0]
         source=i[1]
+        source=str(source)
         crname=i[2]
         context=i[3]
         id1 = str(i[6])
@@ -111,7 +112,7 @@ else:
             #'epic name':client+' '+source+' '+ehr+' '+impround, ignore this field. Epic name populates from sumary.
             'customfield_11601': {'value': client}, #this is client
             # 'customfield_11601': {'id': '12196' }, #this is client. This is causing an error for MODA. Not sure why.
-            'customfield_11609': {'value': source },#this is the data source. It should be an existing value. Else it will error out.Works now
+            'customfield_11502':  source,#this is the data source. It should be an existing value. Else it will error out.Works now
             'customfield_11626':'Change Request', #this is impround field
             'description':'*Detailed Scope:*\n'+scope+'\n\n*Context of Need:*\n'+context,
             'issuetype': {'name': 'Epic'},

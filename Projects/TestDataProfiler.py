@@ -1,40 +1,17 @@
-
-
-#
 import jira.client
-
 import dateutil.parser
 from datetime import datetime, timedelta
 import time
 import csv
 import pyodbc
 import sys
-#
-# import config
-#
-# import pprint
-
-
-# import
-
-
 from sqlalchemy import *
-
 import urllib
+
 params = urllib.quote_plus("DRIVER={SQL Server};SERVER=PRESTGSQLDEV01;DATABASE=BIQMP_PRESTAGING_DEV;Trusted_Connection=TRUE")
-
 engine = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)
-
-
-
-
-
-#
 cnxn = pyodbc.connect("DRIVER={SQL Server};SERVER=PRESTGSQLDEV01;DATABASE=BIQMP_PRESTAGING_DEV;Trusted_Connection=TRUE")
 cursor = cnxn.cursor()
-
-
-
 
 cursor.execute('exec dataprofiler')
 #cursor.execute("select 'Test client' as a,'Test source' as b,'test CR name' as c,'Test context' as d" )

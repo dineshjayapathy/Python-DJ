@@ -150,6 +150,8 @@ cursor = cnxn.cursor()
 epicdesc = '''
 This Epic tracks the state of the Connector from kick off to Go-Live. 
 The Connector is complete when all the associated stories and sub tasks are in "Closed" state. 
+
+
 '''
 
 kickoffdesc = '''
@@ -727,7 +729,10 @@ cursor.execute(
     ,TRY_CONVERT(date,insert_timestamp)
     ,Arcadia_Implementation_Type
 
-    from ARC_OrderFormValues where ID in ('275','276')
+    from ARC_OrderFormValues 
+    
+    where JIRA_Ticket is null and Arcadia_Implementation_Lead_Name is not null
+    
     """)
 
 orderform = cursor.fetchall()
@@ -747,9 +752,10 @@ else:
             client = i[0]
             source = i[1]  # this is failing. Try converting to string.
             source = str(source)
-            context = 'Test description. Will come from excel template later on.'
+            context = i[2]#'Test description. Will come from excel template later on.'
+            context=str(context)
             email = i[3]
-            idO = i[4]
+            idO = str(i[4])
             ehr = i[5]
             impround = 'Initial Build'
             conntype=i[7]
@@ -780,7 +786,7 @@ else:
                 'customfield_11502': source,
 
                 'customfield_11626': impround,  # this is impround field
-                'description': epicdesc,
+                'description': epicdesc+context,
                 'issuetype': {'name': 'Epic'},
                 #'customfield_11618': {'value': ehr},  # data source type
                 'customfield_11630': {'value': 'Analytics Implementation:951'},
@@ -811,6 +817,8 @@ else:
 
             # jira.add_comment(issueEpic.id, 'The Epic'+client + ' ' + source + ' ' + conntype +' '+ impround+ ' has been Created. ' +str(issueEpic)) this works but looks like this
             #The Epic ACPPS ACPNYS Plan Custom [File with Claims and Eligibility] Initial Buildhas been CreatedAAI-77104
+            cursor.execute("update ARC_OrderFormValues set jira_ticket=? where ID=?", str(issueEpic), idO)
+            cnxn.commit()
 
             print(issueEpic)
 
