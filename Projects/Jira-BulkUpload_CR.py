@@ -159,6 +159,6 @@ else:
         # #print (issue)
         # # add the person in the email to watcher here.
         # jira.add_watcher(issue.id, watcher)
-
+        print('This is the ticket number:', issue)
         jira.add_comment(issue.id, 'Your CR has been created and is due by '+duedate)
 
