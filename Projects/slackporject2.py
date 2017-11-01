@@ -4,14 +4,15 @@ import subprocess
 import mmap
 '''
 Objective:
-This file when run should ask the user for an input from a menu like: what would you like to do
-a: encrypt file
-b: get header
-c: get file stats
-Based on this input the functions get called and the user has to input more parameters if necessary after which he gets an output.
+This toolkit can be used to validate and manipulate flat files.
+
+You need to have python 2.7 running in the machine.
+To view encrypted files, the private key should be installed in the machine.
 
 Author: Dinesh Jayapathy
-Date: 04-13-2017
+Created Date: 04-13-2017
+Updated Date: 10-04-2017
+
 '''
 def printitems(a):
     try:
@@ -55,6 +56,16 @@ def readencrypted(fpath):
                                      , stdout=subprocess.PIPE
                                      , stderr=subprocess.PIPE
                                      )
+
+
+                e = subprocess.Popen([r'C:\Program Files (x86)\GNU\GnuPG\pub\gpg.exe', '--batch','--list-packets','--verbose', dr]
+                                     , shell=True
+                                     , stdout=subprocess.PIPE
+                                     , stderr=subprocess.PIPE
+                                     )
+
+                encMessage=e.stdout.readlines()
+
                 # print 'The linecount is'+str(sum(1 for _ in p.stdout))
 
                 # lc = p.stdout.readline()
@@ -73,6 +84,8 @@ def readencrypted(fpath):
 
 
                 if file != '':
+                    for line in encMessage:
+                        print line
                     print file
                 else:
                     print p.stderr.readline() + '\ncheck the filename/directory \ncheck the decryption key'
@@ -168,9 +181,10 @@ def readline():
 def mainfunction():
     try:
 
-        userinput = raw_input("Enter an option \n a: Preview encrypted files \n b: Preview unencrypted files \n c: Read line from files \n d: Run 'File Parser' \n e: Get file statistics \n f: Rename files \n g: Get Rowcount on files \n h: Exit \n Enter a, b, c, d, e or f \n: ")
+        userinput = raw_input("Enter an option \n a: Preview encrypted files \n b: Preview unencrypted files \n c: Read line from files \n d: Run 'File Parser' \n e: Get file statistics \n f: Rename files \n g: Get Rowcount on files \n h: Exit \n\n Enter Your Choice eg. a \n: ")
 
         if userinput == 'a':
+            print "\nPreview encrypted files"
             readencrypted('a')
             mainfunction()
 

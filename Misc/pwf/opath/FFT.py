@@ -46,11 +46,14 @@ def readencrypted(fpath):
             print i
             if os.path.isfile(os.path.join(s, i)):
                 os.chdir(s)
+                #print s
+#			    print s
 
                 dr = (os.path.join(s, i))  # works
                 dr = '/'.join(dr.split('\\'))
+				
 
-                p = subprocess.Popen([r'C:\Program Files (x86)\GNU\GnuPG\pub\gpg.exe', '-d', dr]
+                p = subprocess.Popen([r'C:\GnuPG\gpg.exe', '-d', dr]
                                      , shell=True
                                      , stdout=subprocess.PIPE
                                      , stderr=subprocess.PIPE
@@ -112,95 +115,33 @@ def rowcount():
             print  'Line count for the file  {}  is {}'.format(i, lineNum + 1)
 
 
-
-def readunencrypted():
-    p = raw_input("Enter the file path:\n")
-    r = raw_input("Enter number of lines to read: \n")
-    try:
-
-        for i in os.listdir(p):
-            if os.path.isfile(os.path.join(p, i)):
-                os.chdir(p)
-                count = 0
-                print i
-                with open(i) as f:  # change your file path here
-                    for i in f:
-                        if count <= int(r):
-                            print count, i
-                            count += 1
-                            #
-                            # if count == 10000:#enter your line number here
-                            #     print count, i
-
-    except Exception, e:
-        print e
-
-
-
-
-def readline():
-    p = raw_input("Enter the file path:\n")
-    r = int(raw_input("Enter line number to read: \n"))
-    try:
-
-        for i in os.listdir(p):
-            if os.path.isfile(os.path.join(p, i)):
-                os.chdir(p)
-                count = 0
-                with open(i) as f:  # change your file path here
-                    for i in f:
-
-                        count += 1
-                        if count - 1 <= r <= count + 1:
-                            print count, i
-
-                            #
-                            # if count == 10000:#enter your line number here
-                            #     print count, i
-
-    except Exception, e:
-        print e
-
-
-
-
-
 def mainfunction():
     try:
 
-        userinput = raw_input("Enter an option \n a: Preview encrypted files \n b: Preview unencrypted files \n c: Read line from files \n d: Run 'File Parser' \n e: Get file statistics \n f: Rename files \n g: Get Rowcount on files \n h: Exit \n Enter a, b, c, d, e or f \n: ")
+        userinput = raw_input("Enter an option \n a: Preview encrypted files \n b: Run 'File Parser' \n c: Get file statistics \n d: Rename files \n e: Get Rowcount on files \n f: Exit \n Enter a, b, c, d, e or f \n: ")
 
         if userinput == 'a':
             readencrypted('a')
             mainfunction()
-
         if userinput == 'b':
-            readunencrypted()
-            mainfunction()
-
-        if userinput == 'c':
-            readline()
-            mainfunction()
-
-        if userinput == 'd':
 
             p=raw_input('Enter the path \n')
             subprocess.call(['python','csv_parse_dev.py',p])
             mainfunction()
 
-        if userinput == 'e':
+        if userinput == 'c':
             printitems('C:\DJ\Python-projects\DJ')
             mainfunction()
 
-        if userinput == 'f':
+        if userinput == 'd':
             renamef()
             mainfunction()
 
-        if userinput == 'g':
+        if userinput == 'e':
             rowcount()
             mainfunction()
 
-        if userinput == 'h':
+        if userinput == 'f':
             exit()
             mainfunction()
         else:
