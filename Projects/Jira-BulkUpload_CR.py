@@ -19,6 +19,23 @@ import pprint
 #Alternately this can also be pulled from the order form. but have a check in the middle to confirm by a user
 
 
+'''
+This form takes the records from AnalyticsMonitoring.com and creates JIRA tickets for Change Requests.
+The JIRA account used for this is gojira
+The config.py file will have to be created with the account details. Just create .py file and put the following in its contents and save it:
+
+username = 'gojira'
+password = <check email>
+
+The config.py file will have to be in the same location as this JIRA-Bulk_CR.py script.
+
+Create a pycharmvpn.bat file with the following as the content so that you can connect to db
+
+runas /netonly /user:Arcadiahosted.local\djayapathy "C:\Program Files (x86)\JetBrains\PyCharm Community Edition 2016.3.3\bin\pycharm.exe"
+
+'''
+
+
 import logging
 LOG_FILENAME = 'JIRA_BUlkUploadCR.log'
 logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
