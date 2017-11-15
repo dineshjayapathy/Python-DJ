@@ -731,7 +731,7 @@ cursor.execute(
 
     from ARC_OrderFormValues 
 
-    where JIRA_Ticket is null and Arcadia_Implementation_Lead_Name is not null
+    where JIRA_Ticket is null and Arcadia_Implementation_Lead_Name is not null and Data_Source_Acronym!='eCWc1'
 	
 
     """)
