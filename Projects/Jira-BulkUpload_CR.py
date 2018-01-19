@@ -15,9 +15,6 @@ import config_old
 
 import pprint
 
-#Get 3 inputs from the user client, name, source
-#Alternately this can also be pulled from the order form. but have a check in the middle to confirm by a user
-
 
 '''
 This form takes the records from AnalyticsMonitoring.com and creates JIRA tickets for Change Requests.
