@@ -745,11 +745,11 @@ cursor.execute(
 
     from ARC_OrderFormValues 
 
-    where JIRA_Ticket is null and Arcadia_Implementation_Lead_Name is not null and Data_Source_Acronym!='eCWc1' and client_acronym!='ACPPS'
+    where JIRA_Ticket is null and Arcadia_Implementation_Lead_Name is not null and Data_Source_Acronym!='eCWc1' and client_acronym not in ('ACPPS','MEDDMO') and Data_Source_Acronym not in ('BICHASIU','WBOMRSIU','SNTRAPH','XCLSORG')
 	
 
     """)
-
+#   where JIRA_Ticket is null and Arcadia_Implementation_Lead_Name is not null and Data_Source_Acronym!='eCWc1' and client_acronym not in ('ACPPS','MEDDMO') and Data_Source_Acronym not in ('BICHASIU','WBOMRSIU','SNTRAPH')
 orderform = cursor.fetchall()
 
 # print (orderform)
@@ -774,7 +774,7 @@ else:
             ehr = i[5]
             impround = 'Initial Build'
             conntype = i[7]
-            buildtype = 'Analytics Implementation:951'
+            buildtype = 'New Connector'
             print(c, client, source, context, email, idO)
             labels = ['InstallKit']
 

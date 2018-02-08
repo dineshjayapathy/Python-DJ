@@ -1,4 +1,9 @@
+'''
+This script unzip's all the zip files in a location.
+Accepts 3 parameters: location of file, password, destination. 
+If there is no pw then just hit enter without any input
 
+'''
 import os
 import subprocess
 
