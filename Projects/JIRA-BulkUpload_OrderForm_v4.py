@@ -745,7 +745,7 @@ cursor.execute(
 
     from ARC_OrderFormValues 
 
-    where JIRA_Ticket is null and Arcadia_Implementation_Lead_Name is not null and Data_Source_Acronym!='eCWc1' and client_acronym not in ('ACPPS','MEDDMO') and Data_Source_Acronym not in ('BICHASIU','WBOMRSIU','SNTRAPH','XCLSORG')
+    where JIRA_Ticket is null and Arcadia_Implementation_Lead_Name is not null and Data_Source_Acronym!='eCWc1' and client_acronym not in ('MEDDMO') and Data_Source_Acronym not in ('BICHASIU','WBOMRSIU','SNTRAPH','XCLSORG')
 	
 
     """)
@@ -804,7 +804,7 @@ else:
                 'description': epicdesc + context,
                 'issuetype': {'name': 'Epic'},
                 # 'customfield_11618': {'value': ehr},  # data source type
-                'customfield_11630': {'value': 'Analytics Implementation:951'},
+                'customfield_11630': {'value': 'Unknown'},
                 # customer contract id. manadatory For all new tickets.
                 'customfield_10301': client + ' ' + source + ' ' + conntype + ' ' + impround,
                 # Epic name. Mandatory field. For all new tickets.
